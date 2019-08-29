@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://www.sqlbtc.com/article/kubernetes-basic-concepts/</loc>
+        <lastmod>2019-08-29T15:54:29.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://www.sqlbtc.com/article/git%E5%91%BD%E4%BB%A4/</loc>
         <lastmod>2019-08-29T14:51:25.000Z</lastmod>
         <changefreq>weekly</changefreq>
