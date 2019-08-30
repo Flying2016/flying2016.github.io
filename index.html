@@ -283,31 +283,26 @@ Install Node.js  and Git
 
 <div class="post-preview">
 
-    <a href="/article/understanding-kubernetes-objects/">
+    <a href="/article/storage-class/">
         <h2 class="post-title">
                                  
-            [Kubernetes] 理解kubernetes对象
+            [Kubernetes] kubernetes之存储-StorageClass
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. kubernetes对象概述
-kubernetes中的对象是一些持久化的实体，可以理解为是对集群状态的描述或期望。
-包括：
-
-集群中哪些node上运行了哪些容器化应用
-应用的资源是否满足使用
-应用的执行策略，例如重启策略、更新策略、容错策略等。
-
-kubernetes的对象是一种意图（期望）的记录，kubernetes会始终保持预期创建的对象存在和集群运行在预期的状态下。
-操作kube......
+            [Kubernetes] kubernetes之存储-StorageClass
+StorageClass
+1. StorageClass概述
+StorageClass提供了一种描述存储类（class）的方法，不同的class可能会映射到不同的服务质量等级和备份策略或其他策略等。
+StorageClass 对象中包含 provisioner、parameters 和 reclaimPolicy......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-03-01
+            2019-09-01
         </p>
         <div class="tags">
             
@@ -321,33 +316,240 @@ kubernetes的对象是一种意图（期望）的记录，kubernetes会始终保
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes-basic-concepts/">
+    <a href="/article/client-go/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes基本概念
+            Untitled
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. Master
-集群的控制节点，负责整个集群的管理和控制，kubernetes的所有的命令基本都是发给Master，由它来负责具体的执行过程。
-1.1. Master的组件
-
-kube-apiserver：资源增删改查的入口
-kube-controller-manager：资源对象的大总管
-kube-scheduler：负责资源调度（Pod调度）
-etcd Server:kubernet......
+            本文个人博客地址：http://www.huweihuang.com/article/source-analysis/client-go-source-analysis/
+1. client-go简介
+1.1 client-go说明
+​	client-go是一个调用kubernetes集群资源对象API的客户端，即通过client-go实现对kubernetes集群中资源对象（包括deplo......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2019-08-30
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/csi-provisioner/">
+        <h2 class="post-title">
+                                 
+            Untitled
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+本文主要分析csi-provisioner的源码，关于开发一个Dynamic Provisioner，具体可参考nfs-client-provisioner的源码分析
+
+1. Dynamic Provisioner
+1.1. Provisioner Interface
+开发Dynamic Provisioner需要实现Provisioner接口，该接口有两个方法，分别是：
+
+Provisi......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2019-08-30
+        </p>
+        <div class="tags">
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/etcd-introduction/">
+        <h2 class="post-title">
+                                 
+            Untitled
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. Etcd是什么（what）
+etcd is a distributed, consistent key-value store for shared configuration and service discovery, with a focus on being:
+
+Secure: automatic TLS with optional client cert authentica......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2019-08-30
+        </p>
+        <div class="tags">
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/etcd-setup-flags/">
+        <h2 class="post-title">
+                                 
+            Untitled
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. Etcd配置参数
+123456789101112131415161718/ # etcd --helpusage: etcd [flags]       start an etcd server       etcd --version       show the version of etcd       etcd -h | --help       show the help i......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2019-08-30
+        </p>
+        <div class="tags">
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/etcdctl-v2/">
+        <h2 class="post-title">
+                                 
+            Untitled
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. etcdctl介绍
+etcdctl是一个命令行的客户端，它提供了一下简洁的命令，可理解为命令工具集，可以方便我们在对服务进行测试或者手动修改数据库内容。etcdctl与其他xxxctl的命令原理及操作类似（例如kubectl，systemctl）。
+用法：etcdctl [global options] command [command options][args…]
+2. Etcd常......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2019-08-30
+        </p>
+        <div class="tags">
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/etcdctl-v3/">
+        <h2 class="post-title">
+                                 
+            Untitled
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+etcdctl的v3版本与v2版本使用命令有所不同，本文介绍etcdctl v3版本的命令工具的使用方式。
+
+1. etcdctl的安装
+etcdctl的二进制文件可以在 github.com/coreos/etcd/releases 选择对应的版本下载，例如可以执行以下install_etcdctl.sh的脚本，修改其中的版本信息。
+1234567891011121314#!/bin/b......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2019-08-30
+        </p>
+        <div class="tags">
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/install-k8s-by-kubespray/">
+        <h2 class="post-title">
+                                 
+            Untitled
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. 环境准备
+1.1. 部署机器
+
+以下机器为虚拟机
+
+
+
+
+机器IP
+主机名
+角色
+系统版本
+备注
+
+
+
+
+172.16.94.140
+kube-master-0
+k8s master
+Centos 4.17.14
+内存：3G
+
+
+172.16.94.141
+kube-node-41
+k8s node
+Centos 4.17.14
+内存：3G
+
+
+172.16.94.142
+kube-n......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2019-08-30
+        </p>
+        <div class="tags">
             
         </div>
     
@@ -361,6 +563,10 @@ etcd Server:kubernet......
 
 <ul class="pager">
     
+    
+        <li class="next">
+            <a href="/page/2/">Older Posts &rarr;</a>
+        </li>
     
 </ul>
 
@@ -396,11 +602,15 @@ etcd Server:kubernet......
             
         
             
-            <a href="/tags/#Kubernetes" title="Kubernetes" rel="2">Kubernetes</a>
+            <a href="/tags/#Kubernetes" title="Kubernetes" rel="28">Kubernetes</a>
             
         
             
             <a href="/tags/#git" title="git" rel="1">git</a>
+            
+        
+            
+            <a href="/tags/#Docker" title="Docker" rel="5">Docker</a>
             
         
     </div>
@@ -460,15 +670,19 @@ etcd Server:kubernet......
         </li>
       
         <li>
-          <a href="/article/understanding-kubernetes-objects/">[Kubernetes] 理解kubernetes对象</a>
+          <a href="/article/storage-class/">[Kubernetes] kubernetes之存储-StorageClass</a>
         </li>
       
         <li>
-          <a href="/article/hexo-theme-huweihuang/">[Hexo] Theme HuWeihuang</a>
+          <a href="/article/client-go/">(no title)</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes-basic-concepts/">[Kubernetes] Kubernetes基本概念</a>
+          <a href="/article/csi-provisioner/">(no title)</a>
+        </li>
+      
+        <li>
+          <a href="/article/etcd-introduction/">(no title)</a>
         </li>
       
     </ul>
@@ -495,7 +709,7 @@ etcd Server:kubernet......
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">8</span></li></ul>
     </div>
 
         <hr>

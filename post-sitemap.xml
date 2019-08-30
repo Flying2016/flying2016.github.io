@@ -7,8 +7,328 @@
     </url>
 
     <url>
+        <loc>http://www.sqlbtc.com/article/etcd-auth-and-security/</loc>
+        <lastmod>2019-08-30T00:52:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/dynamic-provisioning/</loc>
+        <lastmod>2019-08-30T00:49:38.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/volume/</loc>
+        <lastmod>2019-08-30T00:48:37.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/dockerfile-usage/</loc>
+        <lastmod>2019-08-30T00:46:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/docker-network/</loc>
+        <lastmod>2019-08-30T00:45:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/docker-commands-principle/</loc>
+        <lastmod>2019-08-30T00:44:01.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/docker-architecture/</loc>
+        <lastmod>2019-08-30T00:41:52.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/12-factor/</loc>
+        <lastmod>2019-08-30T00:39:56.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/install-docker/</loc>
+        <lastmod>2019-08-30T00:27:15.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/install-kubectl/</loc>
+        <lastmod>2019-08-30T00:16:59.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/kubectl-alias/</loc>
+        <lastmod>2019-08-30T00:14:33.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/kubectl-commands/</loc>
+        <lastmod>2019-08-30T00:13:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://www.sqlbtc.com/article/kubernetes-basic-concepts/</loc>
-        <lastmod>2019-08-29T15:54:29.000Z</lastmod>
+        <lastmod>2019-08-30T00:11:06.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/kubernetes-core-principle-scheduler/</loc>
+        <lastmod>2019-08-30T00:09:27.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/kubernetes-network/</loc>
+        <lastmod>2019-08-30T00:08:46.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/kubernetes-troubleshooting/</loc>
+        <lastmod>2019-08-30T00:07:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/quality-of-service/</loc>
+        <lastmod>2019-08-30T00:06:19.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/limit-range/</loc>
+        <lastmod>2019-08-30T00:04:35.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/nfs-client-provisioner/</loc>
+        <lastmod>2019-08-30T00:03:03.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/nodeselector-and-taint/</loc>
+        <lastmod>2019-08-29T23:59:27.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/persistent-volume-claim/</loc>
+        <lastmod>2019-08-29T23:58:28.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/storage-class/</loc>
+        <lastmod>2019-08-29T23:56:45.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/persistent-volume/</loc>
+        <lastmod>2019-08-29T23:54:37.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/resource-quota/</loc>
+        <lastmod>2019-08-29T23:43:28.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/safely-drain-node/</loc>
+        <lastmod>2019-08-29T23:40:21.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/client-go/</loc>
+        <lastmod>2019-08-29T23:10:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/csi-provisioner/</loc>
+        <lastmod>2019-08-29T23:10:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/etcd-introduction/</loc>
+        <lastmod>2019-08-29T23:10:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/etcd-setup-flags/</loc>
+        <lastmod>2019-08-29T23:10:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/etcdctl-v2/</loc>
+        <lastmod>2019-08-29T23:10:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/etcdctl-v3/</loc>
+        <lastmod>2019-08-29T23:10:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/install-k8s-by-kubespray/</loc>
+        <lastmod>2019-08-29T23:10:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/install-k8s-by-minikube/</loc>
+        <lastmod>2019-08-29T23:10:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/raft/</loc>
+        <lastmod>2019-08-29T23:10:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/kubernetes-core-principle-api-server/</loc>
+        <lastmod>2019-08-29T23:10:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/kubernetes-core-principle-kubelet/</loc>
+        <lastmod>2019-08-29T23:10:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/kubernetes-core-principle-controller-manager/</loc>
+        <lastmod>2019-08-29T23:10:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/cadvisor-introduction/</loc>
+        <lastmod>2019-08-29T23:10:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/heapster-introduction/</loc>
+        <lastmod>2019-08-29T23:10:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/influxdb-introduction/</loc>
+        <lastmod>2019-08-29T23:10:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.sqlbtc.com/article/kubernetes-cluster-monitoring/</loc>
+        <lastmod>2019-08-29T23:10:11.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
