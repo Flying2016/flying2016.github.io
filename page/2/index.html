@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://www.sqlbtc.com/page/2/">
+    <link rel="canonical" href="http://blog.sqlbtc.com/page/2/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -211,28 +211,33 @@
 
 <div class="post-preview">
 
-    <a href="/article/install-k8s-by-minikube/">
+    <a href="/article/kubernetes-install-k8s-by-minikube/">
         <h2 class="post-title">
                                  
-            Untitled
+            [Kubernetes] kubernetes install minikube 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
+[Kubernetes] kubernetes install minikube
+
+
 以下内容基于Linux系统，特别为Ubuntu系统
 
 1. 安装kubectl
-1curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linu......
+1curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kube......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-08-30
+            2018-07-13
         </p>
         <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -242,44 +247,7 @@
 
 <div class="post-preview">
 
-    <a href="/article/raft/">
-        <h2 class="post-title">
-                                 
-            Untitled
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1. Raft协议[分布式一致性算法]
-
-raft算法中涉及三种角色，分别是：
-
-follower: 跟随者
-candidate: 候选者，选举过程中的中间状态角色
-leader: 领导者
-
-2. 过程
-2.1. 选举
-有两个timeout来控制选举，第一个是election timeout，该时间是节点从follower到成为candidate的时间，该时间是150到300毫秒之间的随机值......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2019-08-30
-        </p>
-        <div class="tags">
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/12-factor/">
+    <a href="/article/kubernetes-12-factor/">
         <h2 class="post-title">
                                  
             [Kubernetes] 12-Factor(要素)
@@ -288,7 +256,7 @@ leader: 领导者
             
         </h3>
         <div class="post-content-preview">
-            [Kubernetes] 12-Factor(要素)
+            ###[Kubernetes] kubernetes之12-Factor(要素)
 
 以下主要介绍PaaS平台设计架构中使用到的方法论，统称为12-Factor(要素)
 
@@ -296,14 +264,13 @@ leader: 领导者
 软件通常会作为一种服务来交付，即软件即服务(SaaS)。12-Factor原则为构建SaaS应用提供了以下的方法论：
 
 使用标准化流程自动配置，减少开发者的学习成本。
-和操作系统解耦，使其可以在各个系统间提供最大的移植性。
-适合部署在现代的云计算......
+和操作系统解耦，使其可以在各个系统间提供最大的移植......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-03-01
+            2018-06-23
         </p>
         <div class="tags">
             
@@ -317,33 +284,31 @@ leader: 领导者
 
 <div class="post-preview">
 
-    <a href="/article/docker-architecture/">
+    <a href="/article/kubernetes-nodeselector-and-taint/">
         <h2 class="post-title">
                                  
-            [Docker] Docker系列之Docker架构图
+            [Kubernetes] kubernetes指定节点调度与隔离
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            [Docker] Docker系列之Docker架构图
-1. Docker的总架构图
-
-docker是一个C/S模式的架构，后端是一个松耦合架构，模块各司其职。
-
-用户是使用Docker Client与Docker Daemon建立通信，并发送请求给后者。
-Docker Daemon作为Docker架构中的主体部分，首先提供Server的功能使其可以接受Docker Client的请求；
-E......
+            1. NodeSelector
+1.1. 概念
+如果需要限制Pod到指定的Node上运行，则可以给Node打标签并给Pod配置NodeSelector。
+1.2. 使用方式
+1.2.1. 给Node打标签
+12345678910111213# get node的namekubectl get nodes# 设置Labelkubectl label nodes &lt;node-name&gt......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-03-01
+            2018-06-23
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker" title="Docker">Docker</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -353,31 +318,43 @@ E......
 
 <div class="post-preview">
 
-    <a href="/article/docker-commands-principle/">
+    <a href="/article/kubernetes-kubectl-alias/">
         <h2 class="post-title">
                                  
-            [Docker] Docker系列之Docker基本概念原理图
+            [Kubernetes] kubernetes kubectl的别名kubectl-aliases
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            [Docker] Docker系列之Docker基本概念原理图
-1. 基本概念
-1.1. image layer（镜像层）
-镜像可以看成是由多个镜像层叠加起来的一个文件系统，镜像层也可以简单理解为一个基本的镜像，而每个镜像层之间通过指针的形式进行叠加。
+            
+[Kubernetes] kubernetes kubectl的别名kubectl-aliases
 
-根据上图，镜像层的主要组成部分包括镜像层id，镜像层指针【指向父层】，元数据【layer metadata】包含了docker构建和运行的......
+1. kubectl-aliases
+kubectl-aliases开源工具是由脚本通过拼接各种kubectl相关元素组成的alias命令别名列表，其中命令别名拼接元素如下：
+
+
+
+base
+[system?]
+[operation]
+[resource]
+[flags]
+
+
+
+
+kube......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-03-01
+            2018-06-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker" title="Docker">Docker</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -387,31 +364,29 @@ E......
 
 <div class="post-preview">
 
-    <a href="/article/docker-network/">
+    <a href="/article/kubernetes-client-go/">
         <h2 class="post-title">
                                  
-            [Docker] Docker系列之Docker的网络基础
+            [Kubernetes] kubernetes之 client-go简介
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            [Docker] Docker系列之Docker的网络基础
-1. Docker的网络基础
-1.1. Network Namespace
-不同的网络命名空间中，协议栈是独立的，完全隔离，彼此之间无法通信。同一个网络命名空间有独立的路由表和独立的Iptables/Netfilter来提供包的转发、NAT、IP包过滤等功能。
-1.1.1. 网络命名空间的实现
-将与网络协议栈相关的全局变量变成一个N......
+            kubernetes之 client-go简介
+1. client-go简介
+1.1 client-go说明
+​	client-go是一个调用kubernetes集群资源对象API的客户端，即通过client-go实现对kubernetes集群中资源对象（包括deployment、service、ingress、replicaSet、pod、namespace、node等）的增删改查等操作。......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-03-01
+            2018-06-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker" title="Docker">Docker</a>
+              <a href="/tags/#Kubernetes devops" title="Kubernetes devops">Kubernetes devops</a>
             
         </div>
     
@@ -421,32 +396,33 @@ E......
 
 <div class="post-preview">
 
-    <a href="/article/dockerfile-usage/">
+    <a href="/article/kubernetes-csi-provisioner/">
         <h2 class="post-title">
                                  
-            [Docker] Docker系列之Dockerfile
+            [Kubernetes] kubernetes之Dynamic Provisioner
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            [Docker] Docker系列之Dockerfile
-1. Dockerfile的说明
-dockerfile指令忽略大小写，建议大写，#作为注释，每行只支持一条指令，指令可以带多个参数。
-dockerfile指令分为构建指令和设置指令。
+            
+本文主要分析csi-provisioner的源码，关于开发一个Dynamic Provisioner，具体可参考nfs-client-provisioner的源码分析
 
-构建指令：用于构建image，其指定的操作不会在运行image的容器中执行。
-设置指令：用于设置image的属性，其指定的操作会在运行image的容器......
+1. Dynamic Provisioner
+1.1. Provisioner Interface
+开发Dynamic Provisioner需要实现Provisioner接口，该接口有两个方法，分别是：
+
+Provisi......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-03-01
+            2018-06-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker" title="Docker">Docker</a>
+              <a href="/tags/#Kubernetes devops" title="Kubernetes devops">Kubernetes devops</a>
             
         </div>
     
@@ -456,26 +432,28 @@ dockerfile指令分为构建指令和设置指令。
 
 <div class="post-preview">
 
-    <a href="/article/dynamic-provisioning/">
+    <a href="/article/kubernetes-dynamic-provisioning/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之存储-Dynamic Volume Provisioning
+            [Kubernetes] kubernetes之存储 Dynamic Volume Provisioning
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            [Kubernetes] kubernetes之存储-Dynamic Volume Provisionin
+            
+[Kubernetes] kubernetes之存储Dynamic Volume Provisioning
+
 Dynamic Volume Provisioning
 Dynamic volume provisioning允许用户按需自动创建存储卷，这种方式可以让用户不需要关心存储的复杂性和差别，又可以选择不同的存储类型。
 1. 开启Dynamic Provisioning
-需要先提前创建Sto......
+需要先提前创建S......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-03-01
+            2018-06-12
         </p>
         <div class="tags">
             
@@ -489,27 +467,27 @@ Dynamic volume provisioning允许用户按需自动创建存储卷，这种方�
 
 <div class="post-preview">
 
-    <a href="/article/etcd-auth-and-security/">
+    <a href="/article/kubernetes-kubernetes-troubleshooting/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之ETCD-Etcd访问控制
+            [Kubernetes] Kubernetes集群问题排查
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            [Kubernetes] kubernetes之ETCD-Etcd访问控制
-1. ETCD资源类型
-There are three types of resources in etcd
+            1. 查看系统Event事件
+ 1kubectl describe pod &lt;PodName&gt; --namespace=&lt;NAMESPACE&gt;
+该命令可以显示Pod创建时的配置定义、状态等信息和最近的Event事件，事件信息可用于排错。例如当Pod状态为Pending，可通过查看Event事件确认原因，一般原因有几种：
 
-permission resources: users and roles in the user store
-key-value resources: key-value pairs in the key......
+没有可用的Node可调度
+开启了资源配额管理并......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-03-01
+            2017-09-20
         </p>
         <div class="tags">
             
@@ -523,34 +501,61 @@ key-value resources: key-value pairs in the key......
 
 <div class="post-preview">
 
-    <a href="/article/install-docker/">
+    <a href="/article/kubernetes-kubernetes-core-principle-api-server/">
         <h2 class="post-title">
                                  
-            [Docker] Docker系列之CentOS安装Docker
+            [Kubernetes] Kubernetes核心原理（一）之API Server
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            [Docker] Docker系列之CentOS安装Docker
-1. CentOS 安装Docker
+            1. API Server简介
+k8s API Server提供了k8s各类资源对象（pod,RC,Service等）的增删改查及watch等HTTP Rest接口，是整个系统的数据总线和数据中心。
+kubernetes API Server的功能：
 
-建议使用centos7
-
-1.1. 安装Docker
-1.1.1. 卸载旧版本
-旧版本的Docker命名为docker或docker-engine，如果有安装旧版本，先卸载旧版本
-12345678910$ sudo yum remove -y docker \              ......
+提供了集群管理的REST API接口(包括认证授权、数据校验以及集群状态变更)；
+提供其他模块之间的数据交互和通信的枢纽（其他模块通过API......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-03-01
+            2017-09-18
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker" title="Docker">Docker</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes-kubernetes-core-principle-kubelet/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] Kubernetes核心原理（四）之kubelet
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. kubelet简介
+在kubernetes集群中，每个Node节点都会启动kubelet进程，用来处理Master节点下发到本节点的任务，管理Pod和其中的容器。kubelet会在API Server上注册节点信息，定期向Master汇报节点资源使用情况，并通过cAdvisor监控容器和节点资源。可以把kubelet理解成【Server-Agent】架构中的agent，是Node上的p......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-08-16
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -603,19 +608,17 @@ key-value resources: key-value pairs in the key......
     <div class="tags">
         
             
-            <a href="/tags/#Hexo" title="Hexo" rel="1">Hexo</a>
+            <a href="/tags/#Kubernetes" title="Kubernetes" rel="32">Kubernetes</a>
             
         
             
-            <a href="/tags/#Kubernetes" title="Kubernetes" rel="28">Kubernetes</a>
+        
+            
+            <a href="/tags/#Kubernetes devops" title="Kubernetes devops" rel="3">Kubernetes devops</a>
             
         
             
-            <a href="/tags/#git" title="git" rel="1">git</a>
-            
-        
-            
-            <a href="/tags/#Docker" title="Docker" rel="5">Docker</a>
+            <a href="/tags/#Docker系列" title="Docker系列" rel="5">Docker系列</a>
             
         
     </div>
@@ -671,23 +674,23 @@ key-value resources: key-value pairs in the key......
     <ul>
       
         <li>
-          <a href="/article/git命令/">[git] git命令</a>
+          <a href="/article/kubernetes-etcd-auth-and-security/">[Kubernetes] kubernetes之ETCD访问控制</a>
         </li>
       
         <li>
-          <a href="/article/storage-class/">[Kubernetes] kubernetes之存储-StorageClass</a>
+          <a href="/article/kubernetes-etcd-introduction/">[Kubernetes] kubernetes之ETCD介绍</a>
         </li>
       
         <li>
-          <a href="/article/client-go/">(no title)</a>
+          <a href="/article/kubernetes-etcd-setup-flags/">[Kubernetes] kubernetes之Etcd配置参数</a>
         </li>
       
         <li>
-          <a href="/article/csi-provisioner/">(no title)</a>
+          <a href="/article/kubernetes-etcdctl-v3/">[Kubernetes] kubernetes之etcdctl命令安装</a>
         </li>
       
         <li>
-          <a href="/article/etcd-introduction/">(no title)</a>
+          <a href="/article/kubernetes-etcdctl-v2/">[Kubernetes] kubernetes之etcdctl命令工具介绍</a>
         </li>
       
     </ul>
@@ -701,11 +704,11 @@ key-value resources: key-value pairs in the key......
 <ul class="list-inline">
 
     
-        <li><a href="http://blog.csdn.net/huwh_" target="_blank">CSDN Blog 黄国辉</a></li>
+        <li><a href="http://blog.sqlbtc.com" target="_blank">Blog 黄国辉</a></li>
     
-        <li><a href="http://dockone.io/people/黄国辉" target="_blank">DockOne 黄国辉</a></li>
+        <li><a href="http://www.liujiangblog.com/" target="_blank">Django2.2教程</a></li>
     
-        <li><a href="https://yq.aliyun.com/u/sqlbtc" target="_blank">阿里云栖社区 黄国辉</a></li>
+        <li><a href="https://www.kubernetes.org.cn/k8s" target="_blank">k8s中文社区 </a></li>
     
 </ul>
 
@@ -714,7 +717,7 @@ key-value resources: key-value pairs in the key......
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>
@@ -762,11 +765,11 @@ key-value resources: key-value pairs in the key......
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    re-Ported by <a href="http://www.sqlbtc.com">黄国辉</a> |
-                    <iframe
+                    re-Ported by <a href="http://blog.sqlbtc.com">黄国辉</a> |
+                    <!-- iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"
-                        src="https://ghbtns.com/github-btn.html?user=huweihuang&repo=hexo-theme-huweihuang&type=star&count=true" >
+                        src="https://ghbtns.com/github-btn.html?user=huweihuang&repo=hexo-theme-huweihuang&type=star&count=true" -->
                     </iframe>
                 </p>
             </div>
@@ -819,7 +822,7 @@ key-value resources: key-value pairs in the key......
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://www.sqlbtc.com/js/jquery.tagcloud.js",function(){
+        async("http://blog.sqlbtc.com/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
@@ -884,7 +887,7 @@ key-value resources: key-value pairs in the key......
 	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
     <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
 <!-- Image to hack wechat -->
-<img src="http://www.sqlbtc.com/img/icon_wechat.png" width="0" height="0" />
+<img src="http://blog.sqlbtc.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
 </body>

@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://www.sqlbtc.com/page/3/">
+    <link rel="canonical" href="http://blog.sqlbtc.com/page/3/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -211,26 +211,23 @@
 
 <div class="post-preview">
 
-    <a href="/article/install-kubectl/">
+    <a href="/article/kubernetes-kubernetes-core-principle-controller-manager/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之kubectl的安装
+            [Kubernetes] Kubernetes核心原理（二）之Controller Manager
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] kubernetes之kubectl的安装
-
-1. kubectl的安装
-1curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt......
+            1. Controller Manager简介
+Controller Manager作为集群内部的管理控制中心，负责集群内的Node、Pod副本、服务端点（Endpoint）、命名空间（Namespace）、服务账号（ServiceAccount）、资源定额（ResourceQuota）的管理，当某个Node意外宕机时，Controller Manager会及时发现并执行自动化修复流程，确保......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-03-01
+            2017-08-15
         </p>
         <div class="tags">
             
@@ -244,41 +241,25 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubectl-alias/">
+    <a href="/article/kubernetes-kubernetes-core-principle-scheduler/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之kubectl命令别名
+            [Kubernetes] Kubernetes核心原理（三）之Scheduler
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-kubernetes之kubectl命令别名
-
-1. kubectl-aliases
-kubectl-aliases开源工具是由脚本通过拼接各种kubectl相关元素组成的alias命令别名列表，其中命令别名拼接元素如下：
-
-
-
-base
-[system?]
-[operation]
-[resource]
-[flags]
-
-
-
-
-kubectl
--n=kube-system
-get desc......
+            1. Scheduler简介
+Scheduler负责Pod调度。在整个系统中起&quot;承上启下&quot;作用，承上：负责接收Controller Manager创建的新的Pod，为其选择一个合适的Node；启下：Node上的kubelet接管Pod的生命周期。
+Scheduler：
+1）通过调度算法为待调度Pod列表的每个Pod从Node列表中选择一个最适合的Node，并将信息写入et......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-03-01
+            2017-08-15
         </p>
         <div class="tags">
             
@@ -292,103 +273,30 @@ get desc......
 
 <div class="post-preview">
 
-    <a href="/article/kubectl-commands/">
+    <a href="/article/kubernetes-limit-range/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之kubectl命令介绍
+            [Kubernetes] Kubernetes资源配额之Pod限额 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-k8s 命令
+[Kubernetes] Kubernetes资源配额之Pod限额
 
-1. kubectl命令介绍
-kubectl的命令语法
-1kubectl [command] [TYPE] [NAME] [flags]
-其中command，TYPE，NAME，和flags分别是：
-
-
-command: 指定要在一个或多个资源进行操作，例如create，get，describe，delete。
-
-
-TYPE：指定资源类型。资源类型区分大小写，您可以指定单数......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2019-03-01
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-network/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes之网络-k8s网络
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            [Kubernetes] kubernetes之网络-k8s网络
-1. kubernetes网络模型
-1.1. 基础原则
-
-每个Pod都拥有一个独立的IP地址，而且假定所有Pod都在一个可以直接连通的、扁平的网络空间中，不管是否运行在同一Node上都可以通过Pod的IP来访问。
-k8s中Pod的IP是最小粒度IP。同一个Pod内所有的容器共享一个网络堆栈，该模型称为IP-per-Pod模型。......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2019-03-01
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/limit-range/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes之资源配额-Pod限额
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            [Kubernetes] kubernetes之资源配额-Pod限额
 Pod限额（LimitRange）
 
 ResourceQuota对象是限制某个namespace下所有Pod(容器)的资源限额
 LimitRange对象是限制某个namespace单个Pod(容器)的资源限额
 
-LimitRange对象用来定义某个命名空间下某种资源对象的使用限额，其中资源对象包括：Pod、Containe......
+LimitRange对象用来定义某个命名空间下某种资源对象的使用限额，其中资源对象包括：Pod、Contain......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-03-01
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -402,63 +310,28 @@ LimitRange对象用来定义某个命名空间下某种资源对象的使用限�
 
 <div class="post-preview">
 
-    <a href="/article/nfs-client-provisioner/">
+    <a href="/article/kubernetes-persistent-volume-claim/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之nfs-client-provisioner源码分析
+            [Kubernetes] Kubernetes存储之PersistentVolumeClaim 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            nfs-client-provisioner源码分析
-
-如果要开发一个Dynamic Provisioner，需要使用到the helper library。
-
-1. Dynamic Provisioner
-1.1. Provisioner Interface
-开发Dynamic Provisioner需要实现Provisioner接口，该接口有两个方法，分别是：
-
-Provision：创建......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2019-03-01
-        </p>
-        <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
+[Kubernetes] Kubernetes存储之PersistentVolumeClaim
 
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/persistent-volume-claim/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes之存储-PersistentVolumeClaim
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            [Kubernetes] kubernetes之存储-PersistentVolumeClaim
 PersistentVolumeClaim
 1. PVC概述
 PersistentVolumeClaim（简称PVC）是用户存储的请求，PVC消耗PV的资源，可以请求特定的大小和访问模式，需要指定归属于某个Namespace，在同一个Namespace的Pod才可以指定对应的PVC。
-当需要不同......
+当需要不......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-03-01
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -472,28 +345,30 @@ PersistentVolumeClaim（简称PVC）是用户存储的请求，PVC消耗PV的资
 
 <div class="post-preview">
 
-    <a href="/article/persistent-volume/">
+    <a href="/article/kubernetes-persistent-volume/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之存储-PersistentVolume
+            [Kubernetes] Kubernetes存储之PersistentVolume 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            [Kubernetes] kubernetes之存储-PersistentVolume
+            
+[Kubernetes] Kubernetes存储之PersistentVolume
+
 PersistentVolume
 1. PV概述
 PersistentVolume（简称PV） 是 Volume 之类的卷插件，也是集群中的资源，但独立于Pod的生命周期（即不会因Pod删除而被删除），不归属于某个Namespace。
 2. PV和PVC的生命周期
 2.1. 配置（Provision）
-有......
+......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-03-01
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -507,27 +382,29 @@ PersistentVolume（简称PV） 是 Volume 之类的卷插件，也是集群中�
 
 <div class="post-preview">
 
-    <a href="/article/quality-of-service/">
+    <a href="/article/kubernetes-quality-of-service/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之资源配额-资源服务质量QOS
+            [Kubernetes] Kubernetes资源配额之资源服务质量 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            [Kubernetes] kubernetes之资源配额-资源服务质量QOS
+            
+[Kubernetes] Kubernetes资源配额之资源服务质量
+
 Resource Quality of Service
 1. 资源QoS简介
 request值表示容器保证可被分配到资源。limit表示容器可允许使用的最大资源。Pod级别的request和limit是其所有容器的request和limit之和。
 2. Requests and Limits
-Pod可以指定requ......
+Pod可以指定reques......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-03-01
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -541,17 +418,17 @@ Pod可以指定requ......
 
 <div class="post-preview">
 
-    <a href="/article/resource-quota/">
+    <a href="/article/kubernetes-resource-quota/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之资源配额（ResourceQuota）
+            [Kubernetes] Kubernetes资源配额 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] kubernetes之资源配额（ResourceQuota）
+[Kubernetes] Kubernetes资源配额
 
 资源配额（ResourceQuota）
 ResourceQuota对象用来定义某个命名空间下所有资源的使用限额，其实包括：
@@ -561,13 +438,119 @@ ResourceQuota对象用来定义某个命名空间下所有资源的使用限额�
 对象数量的配额
 
 如果集群的总容量小于命名空间的配额总额，可能会产生资源竞争。这时会按照先到先得来处理。
-资源竞争和配额的更新都不会影响已经创建......
+资源竞争和配额的更新都不会影响已经创建好的资源。
+1. 启动资源配额
+......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-03-01
+            2017-08-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes-storage-class/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] Kubernetes存储之StorageClass 
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] Kubernetes存储之StorageClass
+
+StorageClass
+1. StorageClass概述
+StorageClass提供了一种描述存储类（class）的方法，不同的class可能会映射到不同的服务质量等级和备份策略或其他策略等。
+StorageClass 对象中包含 provisioner、parameters 和 reclaimPolic......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-08-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes-volume/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] Kubernetes存储之Volumes 
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] Kubernetes存储之Volumes
+
+Volumes
+1. volume概述
+
+容器上的文件生命周期同容器的生命周期一致，即容器挂掉之后，容器将会以最初镜像中的文件系统内容启动，之前容器运行时产生的文件将会丢失。
+Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时候，对应的volume才会被删除。即Pod中的容器重启时，之前的文件仍可以......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-08-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes-cadvisor-introduction/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubernetes之cAdvisor介绍
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] kubernetes之cAdvisor介绍
+
+1. cAdvisor简介
+​	cAdvisor对Node机器上的资源及容器进行实时监控和性能数据采集，包括CPU使用情况、内存使用情况、网络吞吐量及文件系统使用情况，cAdvisor集成在Kubelet中，当kubelet启动时会自动启动cAdvisor，即一个cAdvisor仅对一台Node机器进行监控。kubel......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -624,19 +607,17 @@ ResourceQuota对象用来定义某个命名空间下所有资源的使用限额�
     <div class="tags">
         
             
-            <a href="/tags/#Hexo" title="Hexo" rel="1">Hexo</a>
+            <a href="/tags/#Kubernetes" title="Kubernetes" rel="32">Kubernetes</a>
             
         
             
-            <a href="/tags/#Kubernetes" title="Kubernetes" rel="28">Kubernetes</a>
+        
+            
+            <a href="/tags/#Kubernetes devops" title="Kubernetes devops" rel="3">Kubernetes devops</a>
             
         
             
-            <a href="/tags/#git" title="git" rel="1">git</a>
-            
-        
-            
-            <a href="/tags/#Docker" title="Docker" rel="5">Docker</a>
+            <a href="/tags/#Docker系列" title="Docker系列" rel="5">Docker系列</a>
             
         
     </div>
@@ -692,23 +673,23 @@ ResourceQuota对象用来定义某个命名空间下所有资源的使用限额�
     <ul>
       
         <li>
-          <a href="/article/git命令/">[git] git命令</a>
+          <a href="/article/kubernetes-etcd-auth-and-security/">[Kubernetes] kubernetes之ETCD访问控制</a>
         </li>
       
         <li>
-          <a href="/article/storage-class/">[Kubernetes] kubernetes之存储-StorageClass</a>
+          <a href="/article/kubernetes-etcd-introduction/">[Kubernetes] kubernetes之ETCD介绍</a>
         </li>
       
         <li>
-          <a href="/article/client-go/">(no title)</a>
+          <a href="/article/kubernetes-etcd-setup-flags/">[Kubernetes] kubernetes之Etcd配置参数</a>
         </li>
       
         <li>
-          <a href="/article/csi-provisioner/">(no title)</a>
+          <a href="/article/kubernetes-etcdctl-v3/">[Kubernetes] kubernetes之etcdctl命令安装</a>
         </li>
       
         <li>
-          <a href="/article/etcd-introduction/">(no title)</a>
+          <a href="/article/kubernetes-etcdctl-v2/">[Kubernetes] kubernetes之etcdctl命令工具介绍</a>
         </li>
       
     </ul>
@@ -722,11 +703,11 @@ ResourceQuota对象用来定义某个命名空间下所有资源的使用限额�
 <ul class="list-inline">
 
     
-        <li><a href="http://blog.csdn.net/huwh_" target="_blank">CSDN Blog 黄国辉</a></li>
+        <li><a href="http://blog.sqlbtc.com" target="_blank">Blog 黄国辉</a></li>
     
-        <li><a href="http://dockone.io/people/黄国辉" target="_blank">DockOne 黄国辉</a></li>
+        <li><a href="http://www.liujiangblog.com/" target="_blank">Django2.2教程</a></li>
     
-        <li><a href="https://yq.aliyun.com/u/sqlbtc" target="_blank">阿里云栖社区 黄国辉</a></li>
+        <li><a href="https://www.kubernetes.org.cn/k8s" target="_blank">k8s中文社区 </a></li>
     
 </ul>
 
@@ -735,7 +716,7 @@ ResourceQuota对象用来定义某个命名空间下所有资源的使用限额�
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>
@@ -783,11 +764,11 @@ ResourceQuota对象用来定义某个命名空间下所有资源的使用限额�
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    re-Ported by <a href="http://www.sqlbtc.com">黄国辉</a> |
-                    <iframe
+                    re-Ported by <a href="http://blog.sqlbtc.com">黄国辉</a> |
+                    <!-- iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"
-                        src="https://ghbtns.com/github-btn.html?user=huweihuang&repo=hexo-theme-huweihuang&type=star&count=true" >
+                        src="https://ghbtns.com/github-btn.html?user=huweihuang&repo=hexo-theme-huweihuang&type=star&count=true" -->
                     </iframe>
                 </p>
             </div>
@@ -840,7 +821,7 @@ ResourceQuota对象用来定义某个命名空间下所有资源的使用限额�
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://www.sqlbtc.com/js/jquery.tagcloud.js",function(){
+        async("http://blog.sqlbtc.com/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
@@ -905,7 +886,7 @@ ResourceQuota对象用来定义某个命名空间下所有资源的使用限额�
 	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
     <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
 <!-- Image to hack wechat -->
-<img src="http://www.sqlbtc.com/img/icon_wechat.png" width="0" height="0" />
+<img src="http://blog.sqlbtc.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
 </body>

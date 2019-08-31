@@ -2,18 +2,18 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <sitemap>
-        <loc>http://www.sqlbtc.com/post-sitemap.xml</loc>
-        <lastmod>2019-08-30T00:52:40.000Z</lastmod>
+        <loc>http://blog.sqlbtc.com/post-sitemap.xml</loc>
+        <lastmod>2019-08-31T15:39:48.000Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>http://www.sqlbtc.com/page-sitemap.xml</loc>
-        <lastmod>2019-08-29T15:53:00.000Z</lastmod>
+        <loc>http://blog.sqlbtc.com/page-sitemap.xml</loc>
+        <lastmod>2019-08-31T14:08:03.000Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>http://www.sqlbtc.com/tag-sitemap.xml</loc>
-        <lastmod>2019-08-29T13:31:57.000Z</lastmod>
+        <loc>http://blog.sqlbtc.com/tag-sitemap.xml</loc>
+        <lastmod>2019-08-31T15:32:07.000Z</lastmod>
     </sitemap>
 
 </sitemapindex>
