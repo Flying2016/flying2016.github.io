@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://blog.sqlbtc.com/page/6/">
+    <link rel="canonical" href="http://blog.sqlbtc.com/archives/3/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -211,23 +211,27 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-kubelet/">
+    <a href="/article/kubernetes/etcd/kubernetes-etcdctl-v2/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes核心原理（四）之kubelet
+            [Kubernetes] kubernetes之etcdctl命令工具介绍
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. kubelet简介
-在kubernetes集群中，每个Node节点都会启动kubelet进程，用来处理Master节点下发到本节点的任务，管理Pod和其中的容器。kubelet会在API Server上注册节点信息，定期向Master汇报节点资源使用情况，并通过cAdvisor监控容器和节点资源。可以把kubelet理解成【Server-Agent】架构中的agent，是Node上的p......
+            
+[Kubernetes] kubernetes之etcdctl介绍
+
+1. etcdctl介绍
+etcdctl是一个命令行的客户端，它提供了一下简洁的命令，可理解为命令工具集，可以方便我们在对服务进行测试或者手动修改数据库内容。etcdctl与其他xxxctl的命令原理及操作类似（例如kubectl，systemctl）。
+用法：etcdctl [global options] comma......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-16
+            2018-09-11
         </p>
         <div class="tags">
             
@@ -241,23 +245,28 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-controller-manager/">
+    <a href="/article/kubernetes/operation/kubernetes-safely-drain-node/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes核心原理（二）之Controller Manager
+            [Kubernetes] Kubernetes安全迁移节点 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. Controller Manager简介
-Controller Manager作为集群内部的管理控制中心，负责集群内的Node、Pod副本、服务端点（Endpoint）、命名空间（Namespace）、服务账号（ServiceAccount）、资源定额（ResourceQuota）的管理，当某个Node意外宕机时，Controller Manager会及时发现并执行自动化修复流程，确保......
+            
+[Kubernetes] Kubernetes安全迁移节点
+
+1. 迁移Pod
+1.1. 设置节点是否可调度
+确定需要迁移和被迁移的节点，将不允许被迁移的节点设置为不可调度。
+12345678# 查看节点kubectl get nodes# 设置节点为不可调度kubectl cordon &lt;NodeName&gt;# 设置节点为可调度kubectl uncordon &lt;Node......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-15
+            2018-08-22
         </p>
         <div class="tags">
             
@@ -271,25 +280,35 @@ Controller Manager作为集群内部的管理控制中心，负责集群内的No
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-scheduler/">
+    <a href="/article/kubernetes/etcd/kubernetes-raft/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes核心原理（三）之Scheduler
+            [Kubernetes] Raft协议
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. Scheduler简介
-Scheduler负责Pod调度。在整个系统中起&quot;承上启下&quot;作用，承上：负责接收Controller Manager创建的新的Pod，为其选择一个合适的Node；启下：Node上的kubelet接管Pod的生命周期。
-Scheduler：
-1）通过调度算法为待调度Pod列表的每个Pod从Node列表中选择一个最适合的Node，并将信息写入et......
+            
+[Kubernetes] ETCD  Raft协议
+
+1. Raft协议[分布式一致性算法]
+
+raft算法中涉及三种角色，分别是：
+
+follower: 跟随者
+candidate: 候选者，选举过程中的中间状态角色
+leader: 领导者
+
+2. 过程
+2.1. 选举
+有两个timeout来控制选举，第一个是election timeout，该时间是节点从follower到成为cand......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-15
+            2018-08-20
         </p>
         <div class="tags">
             
@@ -303,29 +322,89 @@ Scheduler：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/resource/kubernetes-quality-of-service/">
+    <a href="/article/kubernetes/develop/kubernetes-nfs-client-provisioner/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes资源配额之资源服务质量 
+            [Kubernetes] kubernetes之 nfs-client-provisioner简介
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes资源配额之资源服务质量
+[Kubernetes] kubernetes之 nfs-client-provisioner简介
 
-Resource Quality of Service
-1. 资源QoS简介
-request值表示容器保证可被分配到资源。limit表示容器可允许使用的最大资源。Pod级别的request和limit是其所有容器的request和limit之和。
-2. Requests and Limits
-Pod可以指定reques......
+
+如果要开发一个Dynamic Provisioner，需要使用到the helper library。
+
+1. Dynamic Provisioner
+1.1. Provisioner Interface
+开发Dynamic Provisioner需要实现Provisioner接口，该接......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2018-08-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes devops" title="Kubernetes devops">Kubernetes devops</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/operation/kubernetes-install-k8s-by-kubespray/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubernetes install 
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] kubernetes install
+
+1. 环境准备
+1.1. 部署机器
+
+以下机器为虚拟机
+
+
+
+
+机器IP
+主机名
+角色
+系统版本
+备注
+
+
+
+
+172.16.94.140
+kube-master01
+k8s master
+Centos 4.17.14
+内存：3G
+
+
+172.16.94.141
+kube-node1
+k8s node
+Centos 4.17......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-08-13
         </p>
         <div class="tags">
             
@@ -339,72 +418,33 @@ Pod可以指定reques......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/resource/kubernetes-limit-range/">
+    <a href="/article/kubernetes/operation/kubernetes-kubectl-commands/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes资源配额之Pod限额 
+            [Kubernetes] kubernetes  kubectl命令介绍
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes资源配额之Pod限额
+[Kubernetes] kubernetes  kubectl命令介绍
 
-Pod限额（LimitRange）
+1. kubectl命令介绍
+kubectl的命令语法
+1kubectl [command] [TYPE] [NAME] [flags]
+其中command，TYPE，NAME，和flags分别是：
 
-ResourceQuota对象是限制某个namespace下所有Pod(容器)的资源限额
-LimitRange对象是限制某个namespace单个Pod(容器)的资源限额
 
-LimitRange对象用来定义某个命名空间下某种资源对象的使用限额，其中资源对象包括：Pod、Contain......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-08-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
+command: 指定要在一个或多个资源进行操作，例如create，get，describe，delete。
 
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/resource/kubernetes-resource-quota/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Kubernetes资源配额 
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] Kubernetes资源配额
-
-资源配额（ResourceQuota）
-ResourceQuota对象用来定义某个命名空间下所有资源的使用限额，其实包括：
-
-计算资源的配额
-存储资源的配额
-对象数量的配额
-
-如果集群的总容量小于命名空间的配额总额，可能会产生资源竞争。这时会按照先到先得来处理。
-资源竞争和配额的更新都不会影响已经创建好的资源。
-1. 启动资源配额
 ......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2018-08-13
         </p>
         <div class="tags">
             
@@ -418,28 +458,29 @@ ResourceQuota对象用来定义某个命名空间下所有资源的使用限额�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/storage/kubernetes-persistent-volume-claim/">
+    <a href="/article/kubernetes/operation/kubernetes-install-k8s-by-minikube/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes存储之PersistentVolumeClaim 
+            [Kubernetes] kubernetes install minikube 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes存储之PersistentVolumeClaim
+[Kubernetes] kubernetes install minikube
 
-PersistentVolumeClaim
-1. PVC概述
-PersistentVolumeClaim（简称PVC）是用户存储的请求，PVC消耗PV的资源，可以请求特定的大小和访问模式，需要指定归属于某个Namespace，在同一个Namespace的Pod才可以指定对应的PVC。
-当需要不......
+
+以下内容基于Linux系统，特别为Ubuntu系统
+
+1. 安装kubectl
+1curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kube......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2018-07-13
         </p>
         <div class="tags">
             
@@ -453,28 +494,40 @@ PersistentVolumeClaim（简称PVC）是用户存储的请求，PVC消耗PV的资
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/storage/kubernetes-storage-class/">
+    <a href="/article/kubernetes/operation/kubernetes-12-factor/">
         <h2 class="post-title">
+            
+                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
+                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
+                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
+                <font color=#F4711F>置顶</font>
+                <!-- <font color=#F89E8C>置顶</font>  -->
+                <!-- <font color=#1CB7ED>置顶</font>  -->
                                  
-            [Kubernetes] Kubernetes存储之StorageClass 
+            [Kubernetes] 12-Factor(要素)
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes存储之StorageClass
+[Kubernetes]  12-Factor(要素)
 
-StorageClass
-1. StorageClass概述
-StorageClass提供了一种描述存储类（class）的方法，不同的class可能会映射到不同的服务质量等级和备份策略或其他策略等。
-StorageClass 对象中包含 provisioner、parameters 和 reclaimPolic......
+
+以下主要介绍PaaS平台设计架构中使用到的方法论，统称为12-Factor(要素)
+
+简介
+软件通常会作为一种服务来交付，即软件即服务(SaaS)。12-Factor原则为构建SaaS应用提供了以下的方法论：
+
+使用标准化流程自动配置，减少开发者的学习成本。
+和操作系统解耦，使其可以在各个系统间提供最大的移植性。
+适合部署在现代的......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2018-06-23
         </p>
         <div class="tags">
             
@@ -488,30 +541,27 @@ StorageClass 对象中包含 provisioner、parameters 和 reclaimPolic......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/storage/kubernetes-persistent-volume/">
+    <a href="/article/kubernetes/operation/kubernetes-nodeselector-and-taint/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes存储之PersistentVolume 
+            [Kubernetes] kubernetes指定节点调度与隔离
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] Kubernetes存储之PersistentVolume
-
-PersistentVolume
-1. PV概述
-PersistentVolume（简称PV） 是 Volume 之类的卷插件，也是集群中的资源，但独立于Pod的生命周期（即不会因Pod删除而被删除），不归属于某个Namespace。
-2. PV和PVC的生命周期
-2.1. 配置（Provision）
-......
+            1. NodeSelector
+1.1. 概念
+如果需要限制Pod到指定的Node上运行，则可以给Node打标签并给Pod配置NodeSelector。
+1.2. 使用方式
+1.2.1. 给Node打标签
+12345678910111213# get node的namekubectl get nodes# 设置Labelkubectl label nodes &lt;node-name&gt......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2018-06-23
         </p>
         <div class="tags">
             
@@ -525,33 +575,29 @@ PersistentVolume（简称PV） 是 Volume 之类的卷插件，也是集群中�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/storage/kubernetes-volume/">
+    <a href="/article/kubernetes/develop/kubernetes-client-go/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes存储之Volumes 
+            [Kubernetes] kubernetes之 client-go简介
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] Kubernetes存储之Volumes
-
-Volumes
-1. volume概述
-
-容器上的文件生命周期同容器的生命周期一致，即容器挂掉之后，容器将会以最初镜像中的文件系统内容启动，之前容器运行时产生的文件将会丢失。
-Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时候，对应的volume才会被删除。即Pod中的容器重启时，之前的文件仍可以......
+            kubernetes之 client-go简介
+1. client-go简介
+1.1 client-go说明
+​	client-go是一个调用kubernetes集群资源对象API的客户端，即通过client-go实现对kubernetes集群中资源对象（包括deployment、service、ingress、replicaSet、pod、namespace、node等）的增删改查等操作。......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2018-06-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Kubernetes devops" title="Kubernetes devops">Kubernetes devops</a>
             
         </div>
     
@@ -566,12 +612,12 @@ Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时�
 <ul class="pager">
     
         <li class="previous">
-            <a href="/page/5/">&larr; Newer Posts</a>
+            <a href="/archives/2/">&larr; Newer Posts</a>
         </li>
     
     
         <li class="next">
-            <a href="/page/7/">Older Posts &rarr;</a>
+            <a href="/archives/4/">Older Posts &rarr;</a>
         </li>
     
 </ul>
@@ -604,9 +650,11 @@ Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时�
     <div class="tags">
         
             
-            <a href="/tags/#Kubernetes" title="Kubernetes" rel="62">Kubernetes</a>
+            <a href="/tags/#kubernetes" title="kubernetes" rel="1">kubernetes</a>
             
         
+            
+            <a href="/tags/#Kubernetes" title="Kubernetes" rel="62">Kubernetes</a>
             
         
             
@@ -618,13 +666,7 @@ Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时�
             
         
             
-        
-            
             <a href="/tags/#K8s系列" title="K8s系列" rel="1">K8s系列</a>
-            
-        
-            
-            <a href="/tags/#kubernetes" title="kubernetes" rel="1">kubernetes</a>
             
         
     </div>
@@ -692,11 +734,11 @@ Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时�
         </li>
       
         <li>
-          <a href="/article/kubernetes/kubelet/syncLoopIteration/">[Kubernetes] kubelet源码分析（四）之 syncLoopIteration</a>
+          <a href="/article/kubernetes/kubelet/startKubelet/">[Kubernetes] kubelet源码分析（三）之 startKubelet</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kubelet/syncPod/">[Kubernetes] kubelet源码分析（五）之 syncPod</a>
+          <a href="/article/kubernetes/kubelet/syncLoopIteration/">[Kubernetes] kubelet源码分析（四）之 syncLoopIteration</a>
         </li>
       
     </ul>

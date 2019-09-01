@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://blog.sqlbtc.com/page/8/">
+    <link rel="canonical" href="http://blog.sqlbtc.com/archives/8/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -284,21 +284,22 @@ Docker Client运行流程图如下：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/docker/code-analysis/code-analysis-of-docker-server/">
+    <a href="/article/kubernetes/docker/code-analysis/code-analysis-of-docker-daemon/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Docker Server
+            [Kubernetes] Docker Daemon
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Docker Server
+[Kubernetes] Docker Daemon
 
-1. Docker Server创建流程
-Docker Server是Daemon Server的重要组成部分，功能：接收Docker Client发送的请求，并按照相应的路由规则实现请求的路由分发，最终将请求处理的结果返回给Docker Client。
-Docker Daemon启动，在mainDaemon()运行的最后创建并运行s......
+1. Docker Daemon架构示意图
+
+Docker Daemon是Docker架构中运行在后台的守护进程，大致可以分为Docker Server、Engine和Job三部分。
+Docker Daemon可以认为是通过Docker Server模块接受Docker Client的请求，并在Engine中处理请求，然后根据请求类型......
         </div>
     </a>
     
@@ -318,22 +319,21 @@ Docker Daemon启动，在mainDaemon()运行的最后创建并运行s......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/docker/code-analysis/code-analysis-of-docker-daemon/">
+    <a href="/article/kubernetes/docker/code-analysis/code-analysis-of-docker-server/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Docker Daemon
+            [Kubernetes] Docker Server
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Docker Daemon
+[Kubernetes] Docker Server
 
-1. Docker Daemon架构示意图
-
-Docker Daemon是Docker架构中运行在后台的守护进程，大致可以分为Docker Server、Engine和Job三部分。
-Docker Daemon可以认为是通过Docker Server模块接受Docker Client的请求，并在Engine中处理请求，然后根据请求类型......
+1. Docker Server创建流程
+Docker Server是Daemon Server的重要组成部分，功能：接收Docker Client发送的请求，并按照相应的路由规则实现请求的路由分发，最终将请求处理的结果返回给Docker Client。
+Docker Daemon启动，在mainDaemon()运行的最后创建并运行s......
         </div>
     </a>
     
@@ -397,7 +397,7 @@ Docker安装
 <ul class="pager">
     
         <li class="previous">
-            <a href="/page/7/">&larr; Newer Posts</a>
+            <a href="/archives/7/">&larr; Newer Posts</a>
         </li>
     
     
@@ -431,9 +431,11 @@ Docker安装
     <div class="tags">
         
             
-            <a href="/tags/#Kubernetes" title="Kubernetes" rel="62">Kubernetes</a>
+            <a href="/tags/#kubernetes" title="kubernetes" rel="1">kubernetes</a>
             
         
+            
+            <a href="/tags/#Kubernetes" title="Kubernetes" rel="62">Kubernetes</a>
             
         
             
@@ -445,13 +447,7 @@ Docker安装
             
         
             
-        
-            
             <a href="/tags/#K8s系列" title="K8s系列" rel="1">K8s系列</a>
-            
-        
-            
-            <a href="/tags/#kubernetes" title="kubernetes" rel="1">kubernetes</a>
             
         
     </div>
@@ -519,11 +515,11 @@ Docker安装
         </li>
       
         <li>
-          <a href="/article/kubernetes/kubelet/syncLoopIteration/">[Kubernetes] kubelet源码分析（四）之 syncLoopIteration</a>
+          <a href="/article/kubernetes/kubelet/startKubelet/">[Kubernetes] kubelet源码分析（三）之 startKubelet</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kubelet/syncPod/">[Kubernetes] kubelet源码分析（五）之 syncPod</a>
+          <a href="/article/kubernetes/kubelet/syncLoopIteration/">[Kubernetes] kubelet源码分析（四）之 syncLoopIteration</a>
         </li>
       
     </ul>

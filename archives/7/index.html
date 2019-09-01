@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://blog.sqlbtc.com/page/4/">
+    <link rel="canonical" href="http://blog.sqlbtc.com/archives/7/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -211,27 +211,35 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-nodeselector-and-taint/">
+    <a href="/article/kubernetes/resource/kubernetes-resource-quota/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes指定节点调度与隔离
+            [Kubernetes] Kubernetes资源配额 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. NodeSelector
-1.1. 概念
-如果需要限制Pod到指定的Node上运行，则可以给Node打标签并给Pod配置NodeSelector。
-1.2. 使用方式
-1.2.1. 给Node打标签
-12345678910111213# get node的namekubectl get nodes# 设置Labelkubectl label nodes &lt;node-name&gt......
+            
+[Kubernetes] Kubernetes资源配额
+
+资源配额（ResourceQuota）
+ResourceQuota对象用来定义某个命名空间下所有资源的使用限额，其实包括：
+
+计算资源的配额
+存储资源的配额
+对象数量的配额
+
+如果集群的总容量小于命名空间的配额总额，可能会产生资源竞争。这时会按照先到先得来处理。
+资源竞争和配额的更新都不会影响已经创建好的资源。
+1. 启动资源配额
+......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-06-23
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -245,107 +253,29 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/develop/kubernetes-csi-provisioner/">
+    <a href="/article/kubernetes/resource/kubernetes-quality-of-service/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之Dynamic Provisioner
+            [Kubernetes] Kubernetes资源配额之资源服务质量 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-本文主要分析csi-provisioner的源码，关于开发一个Dynamic Provisioner，具体可参考nfs-client-provisioner的源码分析
+[Kubernetes] Kubernetes资源配额之资源服务质量
 
-1. Dynamic Provisioner
-1.1. Provisioner Interface
-开发Dynamic Provisioner需要实现Provisioner接口，该接口有两个方法，分别是：
-
-Provisi......
+Resource Quality of Service
+1. 资源QoS简介
+request值表示容器保证可被分配到资源。limit表示容器可允许使用的最大资源。Pod级别的request和limit是其所有容器的request和limit之和。
+2. Requests and Limits
+Pod可以指定reques......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-06-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes devops" title="Kubernetes devops">Kubernetes devops</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/develop/kubernetes-client-go/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes之 client-go简介
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            kubernetes之 client-go简介
-1. client-go简介
-1.1 client-go说明
-​	client-go是一个调用kubernetes集群资源对象API的客户端，即通过client-go实现对kubernetes集群中资源对象（包括deployment、service、ingress、replicaSet、pod、namespace、node等）的增删改查等操作。......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-06-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes devops" title="Kubernetes devops">Kubernetes devops</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/operation/kubernetes-kubectl-alias/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes kubectl的别名kubectl-aliases
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] kubernetes kubectl的别名kubectl-aliases
-
-1. kubectl-aliases
-kubectl-aliases开源工具是由脚本通过拼接各种kubectl相关元素组成的alias命令别名列表，其中命令别名拼接元素如下：
-
-
-
-base
-[system?]
-[operation]
-[resource]
-[flags]
-
-
-
-
-kube......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-06-13
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -359,28 +289,28 @@ kube......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/storage/kubernetes-dynamic-provisioning/">
+    <a href="/article/kubernetes/storage/kubernetes-persistent-volume-claim/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之存储 Dynamic Volume Provisioning
+            [Kubernetes] Kubernetes存储之PersistentVolumeClaim 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] kubernetes之存储Dynamic Volume Provisioning
+[Kubernetes] Kubernetes存储之PersistentVolumeClaim
 
-Dynamic Volume Provisioning
-Dynamic volume provisioning允许用户按需自动创建存储卷，这种方式可以让用户不需要关心存储的复杂性和差别，又可以选择不同的存储类型。
-1. 开启Dynamic Provisioning
-需要先提前创建S......
+PersistentVolumeClaim
+1. PVC概述
+PersistentVolumeClaim（简称PVC）是用户存储的请求，PVC消耗PV的资源，可以请求特定的大小和访问模式，需要指定归属于某个Namespace，在同一个Namespace的Pod才可以指定对应的PVC。
+当需要不......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-06-12
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -394,33 +324,30 @@ Dynamic volume provisioning允许用户按需自动创建存储卷，这种方�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-objects/">
+    <a href="/article/kubernetes/storage/kubernetes-persistent-volume/">
         <h2 class="post-title">
                                  
-            [Kubernetes] 理解kubernetes对象
+            [Kubernetes] Kubernetes存储之PersistentVolume 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] 理解kubernetes对象
+[Kubernetes] Kubernetes存储之PersistentVolume
 
-1. kubernetes对象概述
-kubernetes中的对象是一些持久化的实体，可以理解为是对集群状态的描述或期望。
-包括：
-
-集群中哪些node上运行了哪些容器化应用
-应用的资源是否满足使用
-应用的执行策略，例如重启策略、更新策略、容错策略等。
-
-kubernetes的对象是一种意图（期望）的记录，kubernetes会始终保......
+PersistentVolume
+1. PV概述
+PersistentVolume（简称PV） 是 Volume 之类的卷插件，也是集群中的资源，但独立于Pod的生命周期（即不会因Pod删除而被删除），不归属于某个Namespace。
+2. PV和PVC的生命周期
+2.1. 配置（Provision）
+......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-03-01
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -434,30 +361,28 @@ kubernetes的对象是一种意图（期望）的记录，kubernetes会始终保
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/csi/ceph/csi-cephfs-plugin/">
+    <a href="/article/kubernetes/storage/kubernetes-storage-class/">
         <h2 class="post-title">
                                  
-            [Kubernetes] 部署CSI CephFS plugin
+            [Kubernetes] Kubernetes存储之StorageClass 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] 部署CSI CephFS plugin
+[Kubernetes] Kubernetes存储之StorageClass
 
-1. 编译CSI CephFS plugin
-CSI CephFS plugin用来提供CephFS存储卷和挂载存储卷，源码参考：https://github.com/ceph/ceph-csi 。
-1.1. 编译二进制
-1$ make cephfsplugin
-1.2. 编译Docker镜像
-1$ make image-......
+StorageClass
+1. StorageClass概述
+StorageClass提供了一种描述存储类（class）的方法，不同的class可能会映射到不同的服务质量等级和备份策略或其他策略等。
+StorageClass 对象中包含 provisioner、parameters 和 reclaimPolic......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-01-13
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -471,27 +396,29 @@ CSI CephFS plugin用来提供CephFS存储卷和挂载存储卷，源码参考：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/csi/provisioner/cephfs-provisioner/">
+    <a href="/article/kubernetes/storage/kubernetes-volume/">
         <h2 class="post-title">
                                  
-            [Kubernetes] 部署cephfs-provisioner
+            [Kubernetes] Kubernetes存储之Volumes 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. 安装cephfs客户端
-所有node节点安装cephfs客户端，主要用来和ceph集群挂载使用。
-1yum install -y ceph-common
-2. 部署RBAC
-2.1. ClusterRole
-12345678910111213141516171819202122kind: ClusterRoleapiVersion: rbac.authorization.k8s.io/......
+            
+[Kubernetes] Kubernetes存储之Volumes
+
+Volumes
+1. volume概述
+
+容器上的文件生命周期同容器的生命周期一致，即容器挂掉之后，容器将会以最初镜像中的文件系统内容启动，之前容器运行时产生的文件将会丢失。
+Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时候，对应的volume才会被删除。即Pod中的容器重启时，之前的文件仍可以......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-01-13
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -505,28 +432,26 @@ CSI CephFS plugin用来提供CephFS存储卷和挂载存储卷，源码参考：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/csi/ceph/deploy-csi-cephfs/">
+    <a href="/article/kubernetes/operation/kubernetes-install-kubectl/">
         <h2 class="post-title">
                                  
-            [Kubernetes] 部署csi-cephfs
+            [Kubernetes] kubernetes kubectl的安装 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-部署csi-cephfs
+[Kubernetes] kubernetes kubectl的安装
 
-0. 说明
-要求Kubernetes的版本在1.11及以上，k8s集群必须允许特权Pod（privileged pods），即apiserver和kubelet需要设置--allow-privileged为true。节点的Docker daemon需要允许挂载共享卷。
-涉及镜像
-1234- quay.io/k8scsi/csi-provisioner:v0.3.......
+1. kubectl的安装
+1curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-01-13
+            2017-07-13
         </p>
         <div class="tags">
             
@@ -540,34 +465,108 @@ CSI CephFS plugin用来提供CephFS存储卷和挂载存储卷，源码参考：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-flannel-introduction/">
+    <a href="/article/kubernetes/docker/kubernetes-docker-network/">
         <h2 class="post-title">
                                  
-            [Kubernetes] [Flannel介绍] 
+            [Kubernetes] kubernetes之Docker的网络基础
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Flannel介绍]
+Docker简介 Docker的网络基础
 
-1. flannel是什么（what）
-1.1. 概述
-Flannel是CoreOS团队针对Kubernetes设计的一个网络规划服务，简单来说，它的功能是让集群中的不同节点主机创建的Docker容器都具有全集群唯一的虚拟IP地址。
-Flannel官网：https://github.com/coreos/flannel
-1.2. 补充知识点
-1、覆盖网络[over......
+1. Docker的网络基础
+1.1. Network Namespace
+不同的网络命名空间中，协议栈是独立的，完全隔离，彼此之间无法通信。同一个网络命名空间有独立的路由表和独立的Iptables/Netfilter来提供包的转发、NAT、IP包过滤等功能。
+1.1.1. 网络命名空间的实现
+将与网络协议栈相关的全局变量变成一个Net Name......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-11-13
+            2016-08-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/docker/kubernetes-docker-commands-principle/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubernetes之Docker简介
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+Docker简介
+
+1. 基本概念
+1.1. image layer（镜像层）
+镜像可以看成是由多个镜像层叠加起来的一个文件系统，镜像层也可以简单理解为一个基本的镜像，而每个镜像层之间通过指针的形式进行叠加。
+
+根据上图，镜像层的主要组成部分包括镜像层id，镜像层指针【指向父层】，元数据【layer metadata】包含了docker构建和运行的信息还有父层的层次信息。
+只读层和读写层【......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2016-08-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/docker/kubernetes-docker-architecture/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubernetes之Docker架构
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+Docker架构
+
+1. Docker的总架构图
+
+docker是一个C/S模式的架构，后端是一个松耦合架构，模块各司其职。
+
+用户是使用Docker Client与Docker Daemon建立通信，并发送请求给后者。
+Docker Daemon作为Docker架构中的主体部分，首先提供Server的功能使其可以接受Docker Client的请求；
+Engine执行Docker内部的一......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2016-08-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -582,12 +581,12 @@ Flannel官网：https://github.com/coreos/flannel
 <ul class="pager">
     
         <li class="previous">
-            <a href="/page/3/">&larr; Newer Posts</a>
+            <a href="/archives/6/">&larr; Newer Posts</a>
         </li>
     
     
         <li class="next">
-            <a href="/page/5/">Older Posts &rarr;</a>
+            <a href="/archives/8/">Older Posts &rarr;</a>
         </li>
     
 </ul>
@@ -620,9 +619,11 @@ Flannel官网：https://github.com/coreos/flannel
     <div class="tags">
         
             
-            <a href="/tags/#Kubernetes" title="Kubernetes" rel="62">Kubernetes</a>
+            <a href="/tags/#kubernetes" title="kubernetes" rel="1">kubernetes</a>
             
         
+            
+            <a href="/tags/#Kubernetes" title="Kubernetes" rel="62">Kubernetes</a>
             
         
             
@@ -634,13 +635,7 @@ Flannel官网：https://github.com/coreos/flannel
             
         
             
-        
-            
             <a href="/tags/#K8s系列" title="K8s系列" rel="1">K8s系列</a>
-            
-        
-            
-            <a href="/tags/#kubernetes" title="kubernetes" rel="1">kubernetes</a>
             
         
     </div>
@@ -708,11 +703,11 @@ Flannel官网：https://github.com/coreos/flannel
         </li>
       
         <li>
-          <a href="/article/kubernetes/kubelet/syncLoopIteration/">[Kubernetes] kubelet源码分析（四）之 syncLoopIteration</a>
+          <a href="/article/kubernetes/kubelet/startKubelet/">[Kubernetes] kubelet源码分析（三）之 startKubelet</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kubelet/syncPod/">[Kubernetes] kubelet源码分析（五）之 syncPod</a>
+          <a href="/article/kubernetes/kubelet/syncLoopIteration/">[Kubernetes] kubelet源码分析（四）之 syncLoopIteration</a>
         </li>
       
     </ul>

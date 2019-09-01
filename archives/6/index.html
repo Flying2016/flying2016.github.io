@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://blog.sqlbtc.com/page/2/">
+    <link rel="canonical" href="http://blog.sqlbtc.com/archives/6/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -211,28 +211,23 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-scheduler/scheduleOne/">
+    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-kubelet/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-scheduler源码分析（三）之 scheduleOne
+            [Kubernetes] Kubernetes核心原理（四）之kubelet
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            kube-scheduler源码分析（三）之 scheduleOne
-
-以下代码分析基于 kubernetes v1.12.0版本。
-
-本文主要分析/pkg/scheduler/中调度的基本流程。具体的预选调度逻辑、优选调度逻辑、节点抢占逻辑待后续再独立分析。
-scheduler的pkg代码目录结构如下：
-1234567891011121314151617181920212223242526......
+            1. kubelet简介
+在kubernetes集群中，每个Node节点都会启动kubelet进程，用来处理Master节点下发到本节点的任务，管理Pod和其中的容器。kubelet会在API Server上注册节点信息，定期向Master汇报节点资源使用情况，并通过cAdvisor监控容器和节点资源。可以把kubelet理解成【Server-Agent】架构中的agent，是Node上的p......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-08-23
+            2017-08-16
         </p>
         <div class="tags">
             
@@ -246,27 +241,23 @@ scheduler的pkg代码目录结构如下：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-scheduler/NewSchedulerCommand/">
+    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-controller-manager/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-scheduler源码分析（一）之 NewSchedulerCommand
+            [Kubernetes] Kubernetes核心原理（二）之Controller Manager
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            kube-scheduler源码分析（一）之 NewSchedulerCommand
-
-以下代码分析基于 kubernetes v1.12.0 版本。
-
-scheduler的cmd 代码目录结构如下：
-12345678910111213141516171819kube-scheduler├── BUILD├── OWNERS├── app            # app的目录下主要为运行s......
+            1. Controller Manager简介
+Controller Manager作为集群内部的管理控制中心，负责集群内的Node、Pod副本、服务端点（Endpoint）、命名空间（Namespace）、服务账号（ServiceAccount）、资源定额（ResourceQuota）的管理，当某个Node意外宕机时，Controller Manager会及时发现并执行自动化修复流程，确保......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-08-23
+            2017-08-15
         </p>
         <div class="tags">
             
@@ -280,27 +271,25 @@ scheduler的cmd 代码目录结构如下：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kubelet/NewKubeletCommand/">
+    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-scheduler/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubelet源码分析（一）之 NewKubeletCommand
+            [Kubernetes] Kubernetes核心原理（三）之Scheduler
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            kubelet源码分析（一）之 NewKubeletCommand
-
-以下代码分析基于 kubernetes v1.12.0 版本。
-本文主要分析 https://github.com/kubernetes/kubernetes/tree/v1.12.0/cmd/kubelet 部分的代码。
-
-1本文主要分析 kubernetes/cmd/kubelet部分，该部分主要涉及`kubelet`......
+            1. Scheduler简介
+Scheduler负责Pod调度。在整个系统中起&quot;承上启下&quot;作用，承上：负责接收Controller Manager创建的新的Pod，为其选择一个合适的Node；启下：Node上的kubelet接管Pod的生命周期。
+Scheduler：
+1）通过调度算法为待调度Pod列表的每个Pod从Node列表中选择一个最适合的Node，并将信息写入et......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-08-23
+            2017-08-15
         </p>
         <div class="tags">
             
@@ -314,30 +303,31 @@ scheduler的cmd 代码目录结构如下：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-scheduler/preempt/">
+    <a href="/article/kubernetes/operation/kubernetes-basic-concepts/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-scheduler源码分析（一）之 NewSchedulerCommand
+            [Kubernetes] Kubernetes基本概念
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-以下代码分析基于kubernetesv1.12.0版本。
+[Kubernetes] Kubernetes基本概念
 
-kube-scheduler源码分析（六）之 preempt
-本文主要分析调度中的抢占逻辑，当pod不适合任何节点的时候，可能pod会调度失败，这时候可能会发生抢占。抢占逻辑的具体实现函数为Scheduler.preempt。
-1. 调用入口
-当pod不适合任何节点的时候，可能pod会调度失败。这时候可能会发生抢占。
+1. Master
+集群的控制节点，负责整个集群的管理和控制，kubernetes的所有的命令基本都是发给Master，由它来负责具体的执行过程。
+1.1. Master的组件
 
-sched......
+kube-apiserver：资源增删改查的入口
+kube-controller-manager：资源对象的大总管
+kube-scheduler：负责资源......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-08-23
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -351,33 +341,26 @@ sched......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-scheduler/findNodesThatFit/">
+    <a href="/article/kubernetes/operation/kubernetes-cadvisor-introduction/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-scheduler源码分析（四）之 findNodesThatFit
+            [Kubernetes] kubernetes之cAdvisor介绍
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-以下代码分析基于 kubernetes v1.12.0 版本。
+[Kubernetes] kubernetes之cAdvisor介绍
 
-kube-scheduler源码分析（四）之 findNodesThatFit
-
-以下代码分析基于 kubernetes v1.15.0 版本。
-
-本文主要分析调度逻辑中的预选策略，即第一步筛选出符合pod调度条件的节点。
-1. 调用入口
-预选，通过预选函数来判断每个节点是否适合被该Pod调度。
-
-genericSchedu......
+1. cAdvisor简介
+​	cAdvisor对Node机器上的资源及容器进行实时监控和性能数据采集，包括CPU使用情况、内存使用情况、网络吞吐量及文件系统使用情况，cAdvisor集成在Kubelet中，当kubelet启动时会自动启动cAdvisor，即一个cAdvisor仅对一台Node机器进行监控。kubel......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-08-23
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -391,28 +374,24 @@ genericSchedu......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-scheduler/PrioritizeNodes/">
+    <a href="/article/kubernetes/operation/kubernetes-cluster-monitoring/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-scheduler源码分析（五）之 PrioritizeNodes
+            [Kubernetes] Kubernetes集群监控
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-以下代码分析基于 kubernetes v1.12.0 版本。
-
-kube-scheduler源码分析（五）之 PrioritizeNodes
-本文主要分析优选策略逻辑，即从预选的节点中选择出最优的节点。优选策略的具体实现函数为PrioritizeNodes。PrioritizeNodes最终返回是一个记录了各个节点分数的列表。
-1. 调用入口
-genericScheduler.Sched......
+            1. 概述
+1.1. cAdvisor
+cAdvisor对Node机器上的资源及容器进行实时监控和性能数据采集，包括CPU使用情况、内存使用情况、网络吞吐量及文件系统使用情况，cAdvisor集成在Kubelet中，当kubelet启动时会自动启动cAdvisor，即一个cAdvisor仅对一台Node机器进行监控。kubelet的启动参数–cadvisor-port可以定义cAdvisor......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-08-23
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -426,29 +405,26 @@ genericScheduler.Sched......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-controller-manager/deployment-controller/">
+    <a href="/article/kubernetes/operation/kubernetes-heapster-introduction/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-controller-manager源码分析（二）之 DeploymentController
+            [Kubernetes] Heapster介绍
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-以下代码分析基于 kubernetes v1.12.0 版本。
-
-kube-controller-manager源码分析（二）之 DeploymentController
-
-以下代码分析基于 kubernetes v1.12.0 版本。
-
-本文主要以deployment controller为例，分析该类controller的运行逻辑。此部分代码主要为位于pkg/controller/de......
+            1. heapster简介
+Heapster是容器集群监控和性能分析工具，天然的支持Kubernetes和CoreOS。
+Kubernetes有个出名的监控agent—cAdvisor。在每个kubernetes Node上都会运行cAdvisor，它会收集本机以及容器的监控数据(cpu,memory,filesystem,network,uptime)。
+2. heapster部署与配置
+......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-12-23
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -462,27 +438,30 @@ kube-controller-manager源码分析（二）之 DeploymentController
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">
+    <a href="/article/kubernetes/operation/kubernetes-influxdb-introduction/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-controller-manager源码分析（三）之 Informer机制
+            [Kubernetes] Influxdb介绍
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-以下代码分析基于 kubernetes v1.12.0 版本。
-
-kube-controller-manager源码分析（三）之 Informer机制
-本文主要分析k8s中各个核心组件经常使用到的Informer机制(即List-Watch)。该部分的代码主要位于client-go这个第三方包中。
-此部分的逻辑主要位于/vendor/k8s.io/client-go/tools/cache......
+            1. InfluxDB简介
+InfluxDB是一个当下比较流行的时序数据库，InfluxDB使用 Go 语言编写，无需外部依赖，安装配置非常方便，适合构建大型分布式系统的监控系统。
+主要特色功能：
+1）基于时间序列，支持与时间有关的相关函数（如最大，最小，求和等）
+2）可度量性：你可以实时对大量数据进行计算
+3）基于事件：它支持任意的事件数据
+2. InfluxDB安装
+1）安装
+wget ......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-12-23
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -496,28 +475,30 @@ kube-controller-manager源码分析（三）之 Informer机制
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">
+    <a href="/article/kubernetes/operation/kubernetes-network/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand
+            [Kubernetes] Kubernetes网络模型
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-以下代码分析基于 kubernetes v1.12.0 版本。
+[Kubernetes] K8s网络模型
 
-kube-apiserver源码分析（一）之 NewAPIServerCommand
-本文主要分析kube-apiserver中cmd部分的代码，即NewAPIServerCommand相关的代码。更多具体的逻辑待后续文章分析。
-kube-apiserver的cmd部分目录代码结构如下：
-12345678910kube-ap......
+1. kubernetes网络模型
+1.1. 基础原则
+
+每个Pod都拥有一个独立的IP地址，而且假定所有Pod都在一个可以直接连通的、扁平的网络空间中，不管是否运行在同一Node上都可以通过Pod的IP来访问。
+k8s中Pod的IP是最小粒度IP。同一个Pod内所有的容器共享一个网络堆栈，该模型称为IP-per-Pod模型。
+Pod由docke......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-12-23
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -531,29 +512,30 @@ kube-apiserver的cmd部分目录代码结构如下：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/etcd/kubernetes-etcd-auth-and-security/">
+    <a href="/article/kubernetes/resource/kubernetes-limit-range/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之ETCD访问控制
+            [Kubernetes] Kubernetes资源配额之Pod限额 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] kubernetes之ETCD访问控制
+[Kubernetes] Kubernetes资源配额之Pod限额
 
-1. ETCD资源类型
-There are three types of resources in etcd
+Pod限额（LimitRange）
 
-permission resources: users and roles in the user store
-key-value resources: key-value pairs in the key-va......
+ResourceQuota对象是限制某个namespace下所有Pod(容器)的资源限额
+LimitRange对象是限制某个namespace单个Pod(容器)的资源限额
+
+LimitRange对象用来定义某个命名空间下某种资源对象的使用限额，其中资源对象包括：Pod、Contain......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-09-18
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -572,12 +554,12 @@ key-value resources: key-value pairs in the key-va......
 <ul class="pager">
     
         <li class="previous">
-            <a href="/">&larr; Newer Posts</a>
+            <a href="/archives/5/">&larr; Newer Posts</a>
         </li>
     
     
         <li class="next">
-            <a href="/page/3/">Older Posts &rarr;</a>
+            <a href="/archives/7/">Older Posts &rarr;</a>
         </li>
     
 </ul>
@@ -610,9 +592,11 @@ key-value resources: key-value pairs in the key-va......
     <div class="tags">
         
             
-            <a href="/tags/#Kubernetes" title="Kubernetes" rel="62">Kubernetes</a>
+            <a href="/tags/#kubernetes" title="kubernetes" rel="1">kubernetes</a>
             
         
+            
+            <a href="/tags/#Kubernetes" title="Kubernetes" rel="62">Kubernetes</a>
             
         
             
@@ -624,13 +608,7 @@ key-value resources: key-value pairs in the key-va......
             
         
             
-        
-            
             <a href="/tags/#K8s系列" title="K8s系列" rel="1">K8s系列</a>
-            
-        
-            
-            <a href="/tags/#kubernetes" title="kubernetes" rel="1">kubernetes</a>
             
         
     </div>
@@ -698,11 +676,11 @@ key-value resources: key-value pairs in the key-va......
         </li>
       
         <li>
-          <a href="/article/kubernetes/kubelet/syncLoopIteration/">[Kubernetes] kubelet源码分析（四）之 syncLoopIteration</a>
+          <a href="/article/kubernetes/kubelet/startKubelet/">[Kubernetes] kubelet源码分析（三）之 startKubelet</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kubelet/syncPod/">[Kubernetes] kubelet源码分析（五）之 syncPod</a>
+          <a href="/article/kubernetes/kubelet/syncLoopIteration/">[Kubernetes] kubelet源码分析（四）之 syncLoopIteration</a>
         </li>
       
     </ul>

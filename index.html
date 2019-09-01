@@ -275,137 +275,6 @@ k......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-12-factor/">
-        <h2 class="post-title">
-            
-                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
-                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
-                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
-                <font color=#F4711F>置顶</font>
-                <!-- <font color=#F89E8C>置顶</font>  -->
-                <!-- <font color=#1CB7ED>置顶</font>  -->
-                                 
-            [Kubernetes] 12-Factor(要素)
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes]  12-Factor(要素)
-
-
-以下主要介绍PaaS平台设计架构中使用到的方法论，统称为12-Factor(要素)
-
-简介
-软件通常会作为一种服务来交付，即软件即服务(SaaS)。12-Factor原则为构建SaaS应用提供了以下的方法论：
-
-使用标准化流程自动配置，减少开发者的学习成本。
-和操作系统解耦，使其可以在各个系统间提供最大的移植性。
-适合部署在现代的......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-06-23
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/operation/kubernetes-architecture/">
-        <h2 class="post-title">
-            
-                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
-                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
-                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
-                <font color=#F4711F>置顶</font>
-                <!-- <font color=#F89E8C>置顶</font>  -->
-                <!-- <font color=#1CB7ED>置顶</font>  -->
-                                 
-            [Kubernetes] Kubernetes总架构图
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1. Kubernetes的总架构图
-
-2. Kubernetes各个组件介绍
-2.1 kube-master[控制节点]
-master的工作流程图
-
-
-Kubecfg将特定的请求，比如创建Pod，发送给Kubernetes Client。
-Kubernetes Client将请求发送给API server。
-API Server根据请求的类型，比如创建Pod时storage类型是pods，......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-09-20
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/docker/kubernetes-paas-based-on-docker-and-kubernetes/">
-        <h2 class="post-title">
-            
-                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
-                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
-                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
-                <font color=#F4711F>置顶</font>
-                <!-- <font color=#F89E8C>置顶</font>  -->
-                <!-- <font color=#1CB7ED>置顶</font>  -->
-                                 
-            [Kubernetes] 基于Docker及Kubernetes技术构建容器云（PaaS）平台
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            [编者的话]
-目前很多的容器云平台通过Docker及Kubernetes等技术提供应用运行平台，从而实现运维自动化，快速部署应用、弹性伸缩和动态调整应用环境资源，提高研发运营效率。
-从宏观到微观（从抽象到具体）的思路来理解：云计算→PaaS→ App Engine→XAE[XXX App Engine] （XAE泛指一类应用运行平台，例如GAE、SAE、BAE等）。
-本文简要介绍了与容器云相......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-09-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/article/kubernetes/operation/2.k8s-Docker-info/">
         <h2 class="post-title">
                                  
@@ -465,6 +334,40 @@ Docker的英文翻译是“搬运工”的意思，他搬运的东西就是我�
 本文主要分析kubelet中的NewMainKubelet部分。
 1. NewMainKubelet
 N......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2019-08-24
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/kubelet/startKubelet/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubelet源码分析（三）之 startKubelet
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            kubelet源码分析（三）之 startKubelet
+
+以下代码分析基于 kubernetes v1.12.0 版本。
+
+本文主要分析startKubelet，其中主要是kubelet.Run部分，该部分的内容主要是初始化并运行一些manager。对于kubelet所包含的各种manager的执行逻辑和pod的生命周期管理逻辑待后续文章分析。
+后续的文章主要会分类分析pkg/kubele......
         </div>
     </a>
     
@@ -554,27 +457,27 @@ managePodLoop通过读取podUpdateschannel的信息，执行syncPodFn函数，�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kubelet/startKubelet/">
+    <a href="/article/kubernetes/kube-scheduler/NewSchedulerCommand/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubelet源码分析（三）之 startKubelet
+            [Kubernetes] kube-scheduler源码分析（一）之 NewSchedulerCommand
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            kubelet源码分析（三）之 startKubelet
+            kube-scheduler源码分析（一）之 NewSchedulerCommand
 
 以下代码分析基于 kubernetes v1.12.0 版本。
 
-本文主要分析startKubelet，其中主要是kubelet.Run部分，该部分的内容主要是初始化并运行一些manager。对于kubelet所包含的各种manager的执行逻辑和pod的生命周期管理逻辑待后续文章分析。
-后续的文章主要会分类分析pkg/kubele......
+scheduler的cmd 代码目录结构如下：
+12345678910111213141516171819kube-scheduler├── BUILD├── OWNERS├── app            # app的目录下主要为运行s......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-08-24
+            2019-08-23
         </p>
         <div class="tags">
             
@@ -588,20 +491,99 @@ managePodLoop通过读取podUpdateschannel的信息，执行syncPodFn函数，�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-scheduler/registerAlgorithmProvider/">
+    <a href="/article/kubernetes/kube-scheduler/PrioritizeNodes/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-scheduler源码分析（二）之 registerAlgorithmProvider
+            [Kubernetes] kube-scheduler源码分析（五）之 PrioritizeNodes
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            kube-scheduler源码分析（二）之 registerAlgorithmProvider
-
+            
 以下代码分析基于 kubernetes v1.12.0 版本。
 
-此部分主要介绍调度中使用的各种调度算法，包括调度算法的注册部分。注册部分的代码主要在/pkg/scheduler/algorithmprovider中，具体的预选策略和优选策略的算法实现在/pkg/scheduler/algor......
+kube-scheduler源码分析（五）之 PrioritizeNodes
+本文主要分析优选策略逻辑，即从预选的节点中选择出最优的节点。优选策略的具体实现函数为PrioritizeNodes。PrioritizeNodes最终返回是一个记录了各个节点分数的列表。
+1. 调用入口
+genericScheduler.Sched......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2019-08-23
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/kube-scheduler/preempt/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kube-scheduler源码分析（一）之 NewSchedulerCommand
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+以下代码分析基于kubernetesv1.12.0版本。
+
+kube-scheduler源码分析（六）之 preempt
+本文主要分析调度中的抢占逻辑，当pod不适合任何节点的时候，可能pod会调度失败，这时候可能会发生抢占。抢占逻辑的具体实现函数为Scheduler.preempt。
+1. 调用入口
+当pod不适合任何节点的时候，可能pod会调度失败。这时候可能会发生抢占。
+
+sched......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2019-08-23
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/kube-scheduler/findNodesThatFit/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kube-scheduler源码分析（四）之 findNodesThatFit
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+以下代码分析基于 kubernetes v1.12.0 版本。
+
+kube-scheduler源码分析（四）之 findNodesThatFit
+
+以下代码分析基于 kubernetes v1.15.0 版本。
+
+本文主要分析调度逻辑中的预选策略，即第一步筛选出符合pod调度条件的节点。
+1. 调用入口
+预选，通过预选函数来判断每个节点是否适合被该Pod调度。
+
+genericSchedu......
         </div>
     </a>
     
@@ -627,7 +609,7 @@ managePodLoop通过读取podUpdateschannel的信息，执行syncPodFn函数，�
     
     
         <li class="next">
-            <a href="/page/2/">Older Posts &rarr;</a>
+            <a href="/archives/2/">Older Posts &rarr;</a>
         </li>
     
 </ul>
@@ -660,9 +642,11 @@ managePodLoop通过读取podUpdateschannel的信息，执行syncPodFn函数，�
     <div class="tags">
         
             
-            <a href="/tags/#Kubernetes" title="Kubernetes" rel="62">Kubernetes</a>
+            <a href="/tags/#kubernetes" title="kubernetes" rel="1">kubernetes</a>
             
         
+            
+            <a href="/tags/#Kubernetes" title="Kubernetes" rel="62">Kubernetes</a>
             
         
             
@@ -674,13 +658,7 @@ managePodLoop通过读取podUpdateschannel的信息，执行syncPodFn函数，�
             
         
             
-        
-            
             <a href="/tags/#K8s系列" title="K8s系列" rel="1">K8s系列</a>
-            
-        
-            
-            <a href="/tags/#kubernetes" title="kubernetes" rel="1">kubernetes</a>
             
         
     </div>
@@ -748,11 +726,11 @@ managePodLoop通过读取podUpdateschannel的信息，执行syncPodFn函数，�
         </li>
       
         <li>
-          <a href="/article/kubernetes/kubelet/syncLoopIteration/">[Kubernetes] kubelet源码分析（四）之 syncLoopIteration</a>
+          <a href="/article/kubernetes/kubelet/startKubelet/">[Kubernetes] kubelet源码分析（三）之 startKubelet</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kubelet/syncPod/">[Kubernetes] kubelet源码分析（五）之 syncPod</a>
+          <a href="/article/kubernetes/kubelet/syncLoopIteration/">[Kubernetes] kubelet源码分析（四）之 syncLoopIteration</a>
         </li>
       
     </ul>
