@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://blog.sqlbtc.com/article/kubernetes/kubernetes-SUMMARY/</loc>
+        <lastmod>2019-09-01T08:36:34.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://blog.sqlbtc.com/article/kubernetes/operation/kubernetes-install-k8s-by-kubespray/</loc>
         <lastmod>2019-09-01T08:32:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -17,14 +25,6 @@
     <url>
         <loc>http://blog.sqlbtc.com/article/kubernetes/operation/kubernetes-install-k8s-by-minikube/</loc>
         <lastmod>2019-09-01T08:32:26.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://blog.sqlbtc.com/article/kubernetes/kubernetes-SUMMARY/</loc>
-        <lastmod>2019-09-01T08:30:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

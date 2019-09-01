@@ -351,14 +351,6 @@
 </ul>
 </li>
 </ul>
-<h2 id="监控体系">监控体系</h2>
-<ul>
-<li><a href="https://blog.sqlbtc.com/article/kubernetes/monitor/kubernetes-cluster-monitoring">监控体系介绍</a></li>
-<li><a href="https://blog.sqlbtc.com/article/kubernetes/monitor/cadvisor-introduction">cAdvisor介绍</a></li>
-<li><a href="https://blog.sqlbtc.com/article/kubernetes/monitor/heapster-introduction">Heapster介绍</a></li>
-<li><a href="https://blog.sqlbtc.com/article/kubernetes/monitor/influxdb-introduction">Influxdb介绍</a></li>
-<li><a href="https://blog.sqlbtc.com/article/kubernetes/monitor/Prometheus">Prometheus介绍</a></li>
-</ul>
 <hr>
 <h2 id="etcd">Etcd</h2>
 <ul>
@@ -368,6 +360,14 @@
 <li><a href="https://blog.sqlbtc.com/article/kubernetes/etcd/kubernetes-etcd-auth-and-security">Etcd访问控制</a></li>
 <li><a href="https://blog.sqlbtc.com/article/kubernetes/etcd/kubernetes-etcdctl-v2">etcdctl命令工具-V2</a></li>
 <li><a href="https://blog.sqlbtc.com/article/kubernetes/etcd/kubernetes-etcdctl-v3">etcdctl命令工具-V3</a></li>
+</ul>
+<h2 id="监控体系">监控体系</h2>
+<ul>
+<li><a href="https://blog.sqlbtc.com/article/kubernetes/monitor/kubernetes-cluster-monitoring">监控体系介绍</a></li>
+<li><a href="https://blog.sqlbtc.com/article/kubernetes/monitor/kubernetes-cadvisor-introduction">cAdvisor介绍</a></li>
+<li><a href="https://blog.sqlbtc.com/article/kubernetes/monitor/kubernetes-heapster-introduction">Heapster介绍</a></li>
+<li><a href="https://blog.sqlbtc.com/article/kubernetes/monitor/kubernetes-influxdb-introduction">Influxdb介绍</a></li>
+<li><a href="https://blog.sqlbtc.com/article/kubernetes/monitor/Prometheus">Prometheus介绍</a></li>
 </ul>
 
                 
@@ -434,7 +434,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#paas"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">PaaS</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#docker"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Docker</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#安装与配置"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x5B89;&#x88C5;&#x4E0E;&#x914D;&#x7F6E;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#基本概念"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">&#x57FA;&#x672C;&#x6982;&#x5FF5;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#核心原理"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">&#x6838;&#x5FC3;&#x539F;&#x7406;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#网络"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">&#x7F51;&#x7EDC;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#存储"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">&#x5B58;&#x50A8;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#资源配额"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">&#x8D44;&#x6E90;&#x914D;&#x989D;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#运维指南-operation"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">&#x8FD0;&#x7EF4;&#x6307;&#x5357; operation</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#csi"><span class="toc-nav-number">10.</span> <span class="toc-nav-text">CSI</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#开发指南-devops"><span class="toc-nav-number">11.</span> <span class="toc-nav-text">&#x5F00;&#x53D1;&#x6307;&#x5357; devops</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#源码分析-code-analysis"><span class="toc-nav-number">12.</span> <span class="toc-nav-text">&#x6E90;&#x7801;&#x5206;&#x6790;  code-analysis</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#监控体系"><span class="toc-nav-number">13.</span> <span class="toc-nav-text">&#x76D1;&#x63A7;&#x4F53;&#x7CFB;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#etcd"><span class="toc-nav-number">14.</span> <span class="toc-nav-text">Etcd</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#paas"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">PaaS</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#docker"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Docker</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#安装与配置"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x5B89;&#x88C5;&#x4E0E;&#x914D;&#x7F6E;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#基本概念"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">&#x57FA;&#x672C;&#x6982;&#x5FF5;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#核心原理"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">&#x6838;&#x5FC3;&#x539F;&#x7406;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#网络"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">&#x7F51;&#x7EDC;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#存储"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">&#x5B58;&#x50A8;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#资源配额"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">&#x8D44;&#x6E90;&#x914D;&#x989D;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#运维指南-operation"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">&#x8FD0;&#x7EF4;&#x6307;&#x5357; operation</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#csi"><span class="toc-nav-number">10.</span> <span class="toc-nav-text">CSI</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#开发指南-devops"><span class="toc-nav-number">11.</span> <span class="toc-nav-text">&#x5F00;&#x53D1;&#x6307;&#x5357; devops</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#源码分析-code-analysis"><span class="toc-nav-number">12.</span> <span class="toc-nav-text">&#x6E90;&#x7801;&#x5206;&#x6790;  code-analysis</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#etcd"><span class="toc-nav-number">13.</span> <span class="toc-nav-text">Etcd</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#监控体系"><span class="toc-nav-number">14.</span> <span class="toc-nav-text">&#x76D1;&#x63A7;&#x4F53;&#x7CFB;</span></a></li></ol>
         
         </div>
       </aside>
