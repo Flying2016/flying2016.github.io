@@ -16,13 +16,6 @@
     </url>
 
     <url>
-        <loc>http://blog.sqlbtc.com/tags/Kubernetes/</loc>
-        <lastmod>2019-09-01T07:58:17.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://blog.sqlbtc.com/tags/Docker%E7%B3%BB%E5%88%97/</loc>
         <lastmod>2019-09-01T08:14:32.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -31,7 +24,14 @@
 
     <url>
         <loc>http://blog.sqlbtc.com/tags/kubernetes/</loc>
-        <lastmod>2019-09-01T08:21:13.000Z</lastmod>
+        <lastmod>2019-09-01T08:30:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/tags/Kubernetes/</loc>
+        <lastmod>2019-09-01T08:32:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
