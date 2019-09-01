@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://blog.sqlbtc.com/archives/6/">
+    <link rel="canonical" href="http://blog.sqlbtc.com/page/5/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -211,220 +211,30 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-kubelet/">
+    <a href="/article/kubernetes/pod/kubernetes-pod/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes核心原理（四）之kubelet
+            [Kubernetes] Pod简介 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. kubelet简介
-在kubernetes集群中，每个Node节点都会启动kubelet进程，用来处理Master节点下发到本节点的任务，管理Pod和其中的容器。kubelet会在API Server上注册节点信息，定期向Master汇报节点资源使用情况，并通过cAdvisor监控容器和节点资源。可以把kubelet理解成【Server-Agent】架构中的agent，是Node上的p......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-08-16
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
+            1. Pod是什么（what）
+1.1. Pod概念
 
-</div>
-<hr>
+Pod是kubernetes集群中最小的部署和管理的基本单元，协同寻址，协同调度。
+Pod是一个或多个容器的集合，是一个或一组服务（进程）的抽象集合。
+Pod中可以共享网络和存储（可以简单理解为一个逻辑上的虚拟机，但并不是虚拟机）。
+Pod被创建后用一个UID来唯一标识，当Pod生命周期结束，被一个等价Pod替代，UID将重新生成。
 
-<div class="post-preview">
-
-    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-controller-manager/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Kubernetes核心原理（二）之Controller Manager
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1. Controller Manager简介
-Controller Manager作为集群内部的管理控制中心，负责集群内的Node、Pod副本、服务端点（Endpoint）、命名空间（Namespace）、服务账号（ServiceAccount）、资源定额（ResourceQuota）的管理，当某个Node意外宕机时，Controller Manager会及时发现并执行自动化修复流程，确保......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-08-15
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-scheduler/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Kubernetes核心原理（三）之Scheduler
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1. Scheduler简介
-Scheduler负责Pod调度。在整个系统中起&quot;承上启下&quot;作用，承上：负责接收Controller Manager创建的新的Pod，为其选择一个合适的Node；启下：Node上的kubelet接管Pod的生命周期。
-Scheduler：
-1）通过调度算法为待调度Pod列表的每个Pod从Node列表中选择一个最适合的Node，并将信息写入et......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-08-15
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/operation/kubernetes-basic-concepts/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Kubernetes基本概念
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] Kubernetes基本概念
-
-1. Master
-集群的控制节点，负责整个集群的管理和控制，kubernetes的所有的命令基本都是发给Master，由它来负责具体的执行过程。
-1.1. Master的组件
-
-kube-apiserver：资源增删改查的入口
-kube-controller-manager：资源对象的大总管
-kube-scheduler：负责资源......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-08-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/operation/kubernetes-cadvisor-introduction/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes之cAdvisor介绍
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] kubernetes之cAdvisor介绍
-
-1. cAdvisor简介
-​	cAdvisor对Node机器上的资源及容器进行实时监控和性能数据采集，包括CPU使用情况、内存使用情况、网络吞吐量及文件系统使用情况，cAdvisor集成在Kubelet中，当kubelet启动时会自动启动cAdvisor，即一个cAdvisor仅对一台Node机器进行监控。kubel......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-08-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/operation/kubernetes-cluster-monitoring/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Kubernetes集群监控
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1. 概述
-1.1. cAdvisor
-cAdvisor对Node机器上的资源及容器进行实时监控和性能数据采集，包括CPU使用情况、内存使用情况、网络吞吐量及文件系统使用情况，cAdvisor集成在Kubelet中，当kubelet启动时会自动启动cAdvisor，即一个cAdvisor仅对一台Node机器进行监控。kubelet的启动参数–cadvisor-port可以定义cAdvisor......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-08-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/operation/kubernetes-heapster-introduction/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Heapster介绍
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1. heapster简介
-Heapster是容器集群监控和性能分析工具，天然的支持Kubernetes和CoreOS。
-Kubernetes有个出名的监控agent—cAdvisor。在每个kubernetes Node上都会运行cAdvisor，它会收集本机以及容器的监控数据(cpu,memory,filesystem,network,uptime)。
-2. heapster部署与配置
 ......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2017-10-13
         </p>
         <div class="tags">
             
@@ -438,30 +248,34 @@ Kubernetes有个出名的监控agent—cAdvisor。在每个kubernetes Node上都
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-influxdb-introduction/">
+    <a href="/article/kubernetes/pod/kubernetes-pod-configmap/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Influxdb介绍
+            [Kubernetes] Kubernetes之Pod的配置管理 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. InfluxDB简介
-InfluxDB是一个当下比较流行的时序数据库，InfluxDB使用 Go 语言编写，无需外部依赖，安装配置非常方便，适合构建大型分布式系统的监控系统。
-主要特色功能：
-1）基于时间序列，支持与时间有关的相关函数（如最大，最小，求和等）
-2）可度量性：你可以实时对大量数据进行计算
-3）基于事件：它支持任意的事件数据
-2. InfluxDB安装
-1）安装
-wget ......
+            
+[Kubernetes] Kubernetes之Pod的配置管理
+
+Pod的配置管理
+Kubernetes v1.2的版本提供统一的集群配置管理方案–ConfigMap。
+1. ConfigMap：容器应用的配置管理
+使用场景：
+
+生成为容器内的环境变量。
+设置容器启动命令的启动参数（需设置为环境变量）。
+以Volume的形式挂载为容器内部的文件或目录。
+
+ConfigMap以一个或多个k......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2017-10-13
         </p>
         <div class="tags">
             
@@ -475,30 +289,28 @@ wget ......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-network/">
+    <a href="/article/kubernetes/pod/kubernetes-pod-definition/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes网络模型
+            [Kubernetes] Pod的基本用法 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] K8s网络模型
+[Kubernetes] Pod的基本用法
 
-1. kubernetes网络模型
-1.1. 基础原则
+1. Pod的基本用法
+1.1. 说明
 
-每个Pod都拥有一个独立的IP地址，而且假定所有Pod都在一个可以直接连通的、扁平的网络空间中，不管是否运行在同一Node上都可以通过Pod的IP来访问。
-k8s中Pod的IP是最小粒度IP。同一个Pod内所有的容器共享一个网络堆栈，该模型称为IP-per-Pod模型。
-Pod由docke......
+Pod实际上是容器的集合，在k8s中对运行容器的要求为：容器的主程序需要一直在前台运行，而不是后台运行。应用可以改造成前台运行的方式，例如Go语言的程序，直接运行二进制文件；java语言则运行主类；tomcat程序可以写个运行脚本。或者通过supervisor的进程管理工具，即supervisor在前台......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2017-10-13
         </p>
         <div class="tags">
             
@@ -512,30 +324,259 @@ Pod由docke......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/resource/kubernetes-limit-range/">
+    <a href="/article/kubernetes/pod/kubernetes-pod-lifecycle/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes资源配额之Pod限额 
+            [Kubernetes] Pod生命周期 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes资源配额之Pod限额
+[Kubernetes] Pod生命周期
 
-Pod限额（LimitRange）
+1. Pod phase
+Pod的phase是Pod生命周期中的简单宏观描述，定义在Pod的PodStatus对象的phase 字段中。
+phase有以下几种值：
 
-ResourceQuota对象是限制某个namespace下所有Pod(容器)的资源限额
-LimitRange对象是限制某个namespace单个Pod(容器)的资源限额
 
-LimitRange对象用来定义某个命名空间下某种资源对象的使用限额，其中资源对象包括：Pod、Contain......
+
+状态值
+说明
+
+
+
+
+挂起（Pending）
+Pod 已被 Kubernetes 系统接受，但有一个或者多个容器镜像尚未创建。等待时间包括调度 Pod 的时间和通过网络下载镜像的......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2017-10-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/pod/kubernetes-pod-operation/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] Pod操作 
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] Pod操作
+
+1. Pod伸缩
+k8s中RC的用来保持集群中始终运行指定数目的实例，通过RC的scale机制可以完成Pod的扩容和缩容（伸缩）。
+1.1. 手动伸缩（scale）
+1kubectl scale rc redis-slave --replicas=3
+1.2. 自动伸缩（HPA）
+Horizontal Pod Autoscaler（HPA）控制器用于......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-10-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/pod/kubernetes-pod-probe/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] Pod健康检查 
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] Pod健康检查
+
+Pod健康检查
+Pod的健康状态由两类探针来检查：LivenessProbe和ReadinessProbe。
+1. 探针类型
+1. livenessProbe(存活探针)
+
+表明容器是否正在运行。
+如果存活探测失败，则 kubelet 会杀死容器，并且容器将受到其 重启策略的影响。
+如果容器不提供存活探针，则默认状态为 Success。
+
+2. ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-10-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/pod/kubernetes-pod-volume/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] Pod存储卷Volume 
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] Pod存储卷Volume
+
+Pod Volume
+同一个Pod中的多个容器可以共享Pod级别的存储卷Volume,Volume可以定义为各种类型，多个容器各自进行挂载，将Pod的Volume挂载为容器内部需要的目录。
+例如：Pod级别的Volume:“app-logs”,用于tomcat向其中写日志文件，busybox读日志文件。
+
+pod-volumes-app......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-10-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/pod/kubernetes-pod-scheduler/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] Pod调度 
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] Pod调度
+
+Pod调度
+在kubernetes集群中，Pod（container）是应用的载体，一般通过RC、Deployment、DaemonSet、Job等对象来完成Pod的调度与自愈功能。
+1. RC、Deployment:全自动调度
+RC的功能即保持集群中始终运行着指定个数的Pod。
+在调度策略上主要有：
+
+系统内置调度算法[最优Node]
+NodeSe......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-10-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/operation/kubernetes-troubleshooting/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] Kubernetes集群问题排查
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. 查看系统Event事件
+ 1kubectl describe pod &lt;PodName&gt; --namespace=&lt;NAMESPACE&gt;
+该命令可以显示Pod创建时的配置定义、状态等信息和最近的Event事件，事件信息可用于排错。例如当Pod状态为Pending，可通过查看Event事件确认原因，一般原因有几种：
+
+没有可用的Node可调度
+开启了资源配额管理并......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-09-20
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-api-server/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] Kubernetes核心原理（一）之API Server
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. API Server简介
+k8s API Server提供了k8s各类资源对象（pod,RC,Service等）的增删改查及watch等HTTP Rest接口，是整个系统的数据总线和数据中心。
+kubernetes API Server的功能：
+
+提供了集群管理的REST API接口(包括认证授权、数据校验以及集群状态变更)；
+提供其他模块之间的数据交互和通信的枢纽（其他模块通过API......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-09-18
         </p>
         <div class="tags">
             
@@ -554,12 +595,12 @@ LimitRange对象用来定义某个命名空间下某种资源对象的使用限�
 <ul class="pager">
     
         <li class="previous">
-            <a href="/archives/5/">&larr; Newer Posts</a>
+            <a href="/page/4/">&larr; Newer Posts</a>
         </li>
     
     
         <li class="next">
-            <a href="/archives/7/">Older Posts &rarr;</a>
+            <a href="/page/6/">Older Posts &rarr;</a>
         </li>
     
 </ul>

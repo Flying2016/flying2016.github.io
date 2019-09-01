@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://blog.sqlbtc.com/archives/3/">
+    <link rel="canonical" href="http://blog.sqlbtc.com/page/7/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -211,27 +211,29 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/etcd/kubernetes-etcdctl-v2/">
+    <a href="/article/kubernetes/resource/kubernetes-quality-of-service/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之etcdctl命令工具介绍
+            [Kubernetes] Kubernetes资源配额之资源服务质量 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] kubernetes之etcdctl介绍
+[Kubernetes] Kubernetes资源配额之资源服务质量
 
-1. etcdctl介绍
-etcdctl是一个命令行的客户端，它提供了一下简洁的命令，可理解为命令工具集，可以方便我们在对服务进行测试或者手动修改数据库内容。etcdctl与其他xxxctl的命令原理及操作类似（例如kubectl，systemctl）。
-用法：etcdctl [global options] comma......
+Resource Quality of Service
+1. 资源QoS简介
+request值表示容器保证可被分配到资源。limit表示容器可允许使用的最大资源。Pod级别的request和limit是其所有容器的request和limit之和。
+2. Requests and Limits
+Pod可以指定reques......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-09-11
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -245,206 +247,35 @@ etcdctl是一个命令行的客户端，它提供了一下简洁的命令，可�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-safely-drain-node/">
+    <a href="/article/kubernetes/resource/kubernetes-resource-quota/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes安全迁移节点 
+            [Kubernetes] Kubernetes资源配额 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes安全迁移节点
+[Kubernetes] Kubernetes资源配额
 
-1. 迁移Pod
-1.1. 设置节点是否可调度
-确定需要迁移和被迁移的节点，将不允许被迁移的节点设置为不可调度。
-12345678# 查看节点kubectl get nodes# 设置节点为不可调度kubectl cordon &lt;NodeName&gt;# 设置节点为可调度kubectl uncordon &lt;Node......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-08-22
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
+资源配额（ResourceQuota）
+ResourceQuota对象用来定义某个命名空间下所有资源的使用限额，其实包括：
 
-</div>
-<hr>
+计算资源的配额
+存储资源的配额
+对象数量的配额
 
-<div class="post-preview">
-
-    <a href="/article/kubernetes/etcd/kubernetes-raft/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Raft协议
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] ETCD  Raft协议
-
-1. Raft协议[分布式一致性算法]
-
-raft算法中涉及三种角色，分别是：
-
-follower: 跟随者
-candidate: 候选者，选举过程中的中间状态角色
-leader: 领导者
-
-2. 过程
-2.1. 选举
-有两个timeout来控制选举，第一个是election timeout，该时间是节点从follower到成为cand......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-08-20
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/develop/kubernetes-nfs-client-provisioner/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes之 nfs-client-provisioner简介
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] kubernetes之 nfs-client-provisioner简介
-
-
-如果要开发一个Dynamic Provisioner，需要使用到the helper library。
-
-1. Dynamic Provisioner
-1.1. Provisioner Interface
-开发Dynamic Provisioner需要实现Provisioner接口，该接......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-08-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes devops" title="Kubernetes devops">Kubernetes devops</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/operation/kubernetes-install-k8s-by-kubespray/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes install 
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] kubernetes install
-
-1. 环境准备
-1.1. 部署机器
-
-以下机器为虚拟机
-
-
-
-
-机器IP
-主机名
-角色
-系统版本
-备注
-
-
-
-
-172.16.94.140
-kube-master01
-k8s master
-Centos 4.17.14
-内存：3G
-
-
-172.16.94.141
-kube-node1
-k8s node
-Centos 4.17......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-08-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/operation/kubernetes-kubectl-commands/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes  kubectl命令介绍
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] kubernetes  kubectl命令介绍
-
-1. kubectl命令介绍
-kubectl的命令语法
-1kubectl [command] [TYPE] [NAME] [flags]
-其中command，TYPE，NAME，和flags分别是：
-
-
-command: 指定要在一个或多个资源进行操作，例如create，get，describe，delete。
-
+如果集群的总容量小于命名空间的配额总额，可能会产生资源竞争。这时会按照先到先得来处理。
+资源竞争和配额的更新都不会影响已经创建好的资源。
+1. 启动资源配额
 ......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-08-13
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -458,29 +289,28 @@ command: 指定要在一个或多个资源进行操作，例如create，get，de
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-install-k8s-by-minikube/">
+    <a href="/article/kubernetes/storage/kubernetes-persistent-volume-claim/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes install minikube 
+            [Kubernetes] Kubernetes存储之PersistentVolumeClaim 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] kubernetes install minikube
+[Kubernetes] Kubernetes存储之PersistentVolumeClaim
 
-
-以下内容基于Linux系统，特别为Ubuntu系统
-
-1. 安装kubectl
-1curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kube......
+PersistentVolumeClaim
+1. PVC概述
+PersistentVolumeClaim（简称PVC）是用户存储的请求，PVC消耗PV的资源，可以请求特定的大小和访问模式，需要指定归属于某个Namespace，在同一个Namespace的Pod才可以指定对应的PVC。
+当需要不......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-07-13
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -494,40 +324,30 @@ command: 指定要在一个或多个资源进行操作，例如create，get，de
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-12-factor/">
+    <a href="/article/kubernetes/storage/kubernetes-persistent-volume/">
         <h2 class="post-title">
-            
-                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
-                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
-                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
-                <font color=#F4711F>置顶</font>
-                <!-- <font color=#F89E8C>置顶</font>  -->
-                <!-- <font color=#1CB7ED>置顶</font>  -->
                                  
-            [Kubernetes] 12-Factor(要素)
+            [Kubernetes] Kubernetes存储之PersistentVolume 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes]  12-Factor(要素)
+[Kubernetes] Kubernetes存储之PersistentVolume
 
-
-以下主要介绍PaaS平台设计架构中使用到的方法论，统称为12-Factor(要素)
-
-简介
-软件通常会作为一种服务来交付，即软件即服务(SaaS)。12-Factor原则为构建SaaS应用提供了以下的方法论：
-
-使用标准化流程自动配置，减少开发者的学习成本。
-和操作系统解耦，使其可以在各个系统间提供最大的移植性。
-适合部署在现代的......
+PersistentVolume
+1. PV概述
+PersistentVolume（简称PV） 是 Volume 之类的卷插件，也是集群中的资源，但独立于Pod的生命周期（即不会因Pod删除而被删除），不归属于某个Namespace。
+2. PV和PVC的生命周期
+2.1. 配置（Provision）
+......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-06-23
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -541,27 +361,28 @@ command: 指定要在一个或多个资源进行操作，例如create，get，de
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-nodeselector-and-taint/">
+    <a href="/article/kubernetes/storage/kubernetes-storage-class/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes指定节点调度与隔离
+            [Kubernetes] Kubernetes存储之StorageClass 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. NodeSelector
-1.1. 概念
-如果需要限制Pod到指定的Node上运行，则可以给Node打标签并给Pod配置NodeSelector。
-1.2. 使用方式
-1.2.1. 给Node打标签
-12345678910111213# get node的namekubectl get nodes# 设置Labelkubectl label nodes &lt;node-name&gt......
+            
+[Kubernetes] Kubernetes存储之StorageClass
+
+StorageClass
+1. StorageClass概述
+StorageClass提供了一种描述存储类（class）的方法，不同的class可能会映射到不同的服务质量等级和备份策略或其他策略等。
+StorageClass 对象中包含 provisioner、parameters 和 reclaimPolic......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-06-23
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -575,29 +396,177 @@ command: 指定要在一个或多个资源进行操作，例如create，get，de
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/develop/kubernetes-client-go/">
+    <a href="/article/kubernetes/storage/kubernetes-volume/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之 client-go简介
+            [Kubernetes] Kubernetes存储之Volumes 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            kubernetes之 client-go简介
-1. client-go简介
-1.1 client-go说明
-​	client-go是一个调用kubernetes集群资源对象API的客户端，即通过client-go实现对kubernetes集群中资源对象（包括deployment、service、ingress、replicaSet、pod、namespace、node等）的增删改查等操作。......
+            
+[Kubernetes] Kubernetes存储之Volumes
+
+Volumes
+1. volume概述
+
+容器上的文件生命周期同容器的生命周期一致，即容器挂掉之后，容器将会以最初镜像中的文件系统内容启动，之前容器运行时产生的文件将会丢失。
+Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时候，对应的volume才会被删除。即Pod中的容器重启时，之前的文件仍可以......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-06-13
+            2017-08-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes devops" title="Kubernetes devops">Kubernetes devops</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/operation/kubernetes-install-kubectl/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubernetes kubectl的安装 
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] kubernetes kubectl的安装
+
+1. kubectl的安装
+1curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-07-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/docker/kubernetes-docker-network/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubernetes之Docker的网络基础
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+Docker简介 Docker的网络基础
+
+1. Docker的网络基础
+1.1. Network Namespace
+不同的网络命名空间中，协议栈是独立的，完全隔离，彼此之间无法通信。同一个网络命名空间有独立的路由表和独立的Iptables/Netfilter来提供包的转发、NAT、IP包过滤等功能。
+1.1.1. 网络命名空间的实现
+将与网络协议栈相关的全局变量变成一个Net Name......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2016-08-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/docker/kubernetes-docker-commands-principle/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubernetes之Docker简介
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+Docker简介
+
+1. 基本概念
+1.1. image layer（镜像层）
+镜像可以看成是由多个镜像层叠加起来的一个文件系统，镜像层也可以简单理解为一个基本的镜像，而每个镜像层之间通过指针的形式进行叠加。
+
+根据上图，镜像层的主要组成部分包括镜像层id，镜像层指针【指向父层】，元数据【layer metadata】包含了docker构建和运行的信息还有父层的层次信息。
+只读层和读写层【......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2016-08-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/docker/kubernetes-docker-architecture/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubernetes之Docker架构
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+Docker架构
+
+1. Docker的总架构图
+
+docker是一个C/S模式的架构，后端是一个松耦合架构，模块各司其职。
+
+用户是使用Docker Client与Docker Daemon建立通信，并发送请求给后者。
+Docker Daemon作为Docker架构中的主体部分，首先提供Server的功能使其可以接受Docker Client的请求；
+Engine执行Docker内部的一......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2016-08-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -612,12 +581,12 @@ command: 指定要在一个或多个资源进行操作，例如create，get，de
 <ul class="pager">
     
         <li class="previous">
-            <a href="/archives/2/">&larr; Newer Posts</a>
+            <a href="/page/6/">&larr; Newer Posts</a>
         </li>
     
     
         <li class="next">
-            <a href="/archives/4/">Older Posts &rarr;</a>
+            <a href="/page/8/">Older Posts &rarr;</a>
         </li>
     
 </ul>

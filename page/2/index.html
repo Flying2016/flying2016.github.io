@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://blog.sqlbtc.com/archives/7/">
+    <link rel="canonical" href="http://blog.sqlbtc.com/page/2/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -211,35 +211,27 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/resource/kubernetes-resource-quota/">
+    <a href="/article/kubernetes/kube-scheduler/NewSchedulerCommand/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes资源配额 
+            [Kubernetes] kube-scheduler源码分析（一）之 NewSchedulerCommand
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] Kubernetes资源配额
+            kube-scheduler源码分析（一）之 NewSchedulerCommand
 
-资源配额（ResourceQuota）
-ResourceQuota对象用来定义某个命名空间下所有资源的使用限额，其实包括：
+以下代码分析基于 kubernetes v1.12.0 版本。
 
-计算资源的配额
-存储资源的配额
-对象数量的配额
-
-如果集群的总容量小于命名空间的配额总额，可能会产生资源竞争。这时会按照先到先得来处理。
-资源竞争和配额的更新都不会影响已经创建好的资源。
-1. 启动资源配额
-......
+scheduler的cmd 代码目录结构如下：
+12345678910111213141516171819kube-scheduler├── BUILD├── OWNERS├── app            # app的目录下主要为运行s......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2019-08-23
         </p>
         <div class="tags">
             
@@ -253,29 +245,33 @@ ResourceQuota对象用来定义某个命名空间下所有资源的使用限额�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/resource/kubernetes-quality-of-service/">
+    <a href="/article/kubernetes/kube-scheduler/findNodesThatFit/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes资源配额之资源服务质量 
+            [Kubernetes] kube-scheduler源码分析（四）之 findNodesThatFit
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes资源配额之资源服务质量
+以下代码分析基于 kubernetes v1.12.0 版本。
 
-Resource Quality of Service
-1. 资源QoS简介
-request值表示容器保证可被分配到资源。limit表示容器可允许使用的最大资源。Pod级别的request和limit是其所有容器的request和limit之和。
-2. Requests and Limits
-Pod可以指定reques......
+kube-scheduler源码分析（四）之 findNodesThatFit
+
+以下代码分析基于 kubernetes v1.15.0 版本。
+
+本文主要分析调度逻辑中的预选策略，即第一步筛选出符合pod调度条件的节点。
+1. 调用入口
+预选，通过预选函数来判断每个节点是否适合被该Pod调度。
+
+genericSchedu......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2019-08-23
         </p>
         <div class="tags">
             
@@ -289,28 +285,30 @@ Pod可以指定reques......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/storage/kubernetes-persistent-volume-claim/">
+    <a href="/article/kubernetes/kube-scheduler/preempt/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes存储之PersistentVolumeClaim 
+            [Kubernetes] kube-scheduler源码分析（一）之 NewSchedulerCommand
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes存储之PersistentVolumeClaim
+以下代码分析基于kubernetesv1.12.0版本。
 
-PersistentVolumeClaim
-1. PVC概述
-PersistentVolumeClaim（简称PVC）是用户存储的请求，PVC消耗PV的资源，可以请求特定的大小和访问模式，需要指定归属于某个Namespace，在同一个Namespace的Pod才可以指定对应的PVC。
-当需要不......
+kube-scheduler源码分析（六）之 preempt
+本文主要分析调度中的抢占逻辑，当pod不适合任何节点的时候，可能pod会调度失败，这时候可能会发生抢占。抢占逻辑的具体实现函数为Scheduler.preempt。
+1. 调用入口
+当pod不适合任何节点的时候，可能pod会调度失败。这时候可能会发生抢占。
+
+sched......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2019-08-23
         </p>
         <div class="tags">
             
@@ -324,30 +322,26 @@ PersistentVolumeClaim（简称PVC）是用户存储的请求，PVC消耗PV的资
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/storage/kubernetes-persistent-volume/">
+    <a href="/article/kubernetes/kube-scheduler/registerAlgorithmProvider/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes存储之PersistentVolume 
+            [Kubernetes] kube-scheduler源码分析（二）之 registerAlgorithmProvider
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] Kubernetes存储之PersistentVolume
+            kube-scheduler源码分析（二）之 registerAlgorithmProvider
 
-PersistentVolume
-1. PV概述
-PersistentVolume（简称PV） 是 Volume 之类的卷插件，也是集群中的资源，但独立于Pod的生命周期（即不会因Pod删除而被删除），不归属于某个Namespace。
-2. PV和PVC的生命周期
-2.1. 配置（Provision）
-......
+以下代码分析基于 kubernetes v1.12.0 版本。
+
+此部分主要介绍调度中使用的各种调度算法，包括调度算法的注册部分。注册部分的代码主要在/pkg/scheduler/algorithmprovider中，具体的预选策略和优选策略的算法实现在/pkg/scheduler/algor......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2019-08-23
         </p>
         <div class="tags">
             
@@ -361,28 +355,28 @@ PersistentVolume（简称PV） 是 Volume 之类的卷插件，也是集群中�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/storage/kubernetes-storage-class/">
+    <a href="/article/kubernetes/kube-scheduler/scheduleOne/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes存储之StorageClass 
+            [Kubernetes] kube-scheduler源码分析（三）之 scheduleOne
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] Kubernetes存储之StorageClass
+            kube-scheduler源码分析（三）之 scheduleOne
 
-StorageClass
-1. StorageClass概述
-StorageClass提供了一种描述存储类（class）的方法，不同的class可能会映射到不同的服务质量等级和备份策略或其他策略等。
-StorageClass 对象中包含 provisioner、parameters 和 reclaimPolic......
+以下代码分析基于 kubernetes v1.12.0版本。
+
+本文主要分析/pkg/scheduler/中调度的基本流程。具体的预选调度逻辑、优选调度逻辑、节点抢占逻辑待后续再独立分析。
+scheduler的pkg代码目录结构如下：
+1234567891011121314151617181920212223242526......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2019-08-23
         </p>
         <div class="tags">
             
@@ -396,29 +390,27 @@ StorageClass 对象中包含 provisioner、parameters 和 reclaimPolic......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/storage/kubernetes-volume/">
+    <a href="/article/kubernetes/kubelet/NewKubeletCommand/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes存储之Volumes 
+            [Kubernetes] kubelet源码分析（一）之 NewKubeletCommand
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] Kubernetes存储之Volumes
+            kubelet源码分析（一）之 NewKubeletCommand
 
-Volumes
-1. volume概述
+以下代码分析基于 kubernetes v1.12.0 版本。
+本文主要分析 https://github.com/kubernetes/kubernetes/tree/v1.12.0/cmd/kubelet 部分的代码。
 
-容器上的文件生命周期同容器的生命周期一致，即容器挂掉之后，容器将会以最初镜像中的文件系统内容启动，之前容器运行时产生的文件将会丢失。
-Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时候，对应的volume才会被删除。即Pod中的容器重启时，之前的文件仍可以......
+1本文主要分析 kubernetes/cmd/kubelet部分，该部分主要涉及`kubelet`......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2019-08-23
         </p>
         <div class="tags">
             
@@ -432,26 +424,28 @@ Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-install-kubectl/">
+    <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes kubectl的安装 
+            [Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] kubernetes kubectl的安装
+以下代码分析基于 kubernetes v1.12.0 版本。
 
-1. kubectl的安装
-1curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt......
+kube-apiserver源码分析（一）之 NewAPIServerCommand
+本文主要分析kube-apiserver中cmd部分的代码，即NewAPIServerCommand相关的代码。更多具体的逻辑待后续文章分析。
+kube-apiserver的cmd部分目录代码结构如下：
+12345678910kube-ap......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-07-13
+            2018-12-23
         </p>
         <div class="tags">
             
@@ -465,33 +459,31 @@ Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/docker/kubernetes-docker-network/">
+    <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之Docker的网络基础
+            [Kubernetes] kube-controller-manager源码分析（三）之 Informer机制
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-Docker简介 Docker的网络基础
+以下代码分析基于 kubernetes v1.12.0 版本。
 
-1. Docker的网络基础
-1.1. Network Namespace
-不同的网络命名空间中，协议栈是独立的，完全隔离，彼此之间无法通信。同一个网络命名空间有独立的路由表和独立的Iptables/Netfilter来提供包的转发、NAT、IP包过滤等功能。
-1.1.1. 网络命名空间的实现
-将与网络协议栈相关的全局变量变成一个Net Name......
+kube-controller-manager源码分析（三）之 Informer机制
+本文主要分析k8s中各个核心组件经常使用到的Informer机制(即List-Watch)。该部分的代码主要位于client-go这个第三方包中。
+此部分的逻辑主要位于/vendor/k8s.io/client-go/tools/cache......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-08-13
+            2018-12-23
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -501,34 +493,33 @@ Docker简介 Docker的网络基础
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/docker/kubernetes-docker-commands-principle/">
+    <a href="/article/kubernetes/kube-controller-manager/deployment-controller/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之Docker简介
+            [Kubernetes] kube-controller-manager源码分析（二）之 DeploymentController
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-Docker简介
+以下代码分析基于 kubernetes v1.12.0 版本。
 
-1. 基本概念
-1.1. image layer（镜像层）
-镜像可以看成是由多个镜像层叠加起来的一个文件系统，镜像层也可以简单理解为一个基本的镜像，而每个镜像层之间通过指针的形式进行叠加。
+kube-controller-manager源码分析（二）之 DeploymentController
 
-根据上图，镜像层的主要组成部分包括镜像层id，镜像层指针【指向父层】，元数据【layer metadata】包含了docker构建和运行的信息还有父层的层次信息。
-只读层和读写层【......
+以下代码分析基于 kubernetes v1.12.0 版本。
+
+本文主要以deployment controller为例，分析该类controller的运行逻辑。此部分代码主要为位于pkg/controller/de......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-08-13
+            2018-12-23
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -538,35 +529,33 @@ Docker简介
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/docker/kubernetes-docker-architecture/">
+    <a href="/article/kubernetes/etcd/kubernetes-etcd-auth-and-security/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之Docker架构
+            [Kubernetes] kubernetes之ETCD访问控制
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-Docker架构
+[Kubernetes] kubernetes之ETCD访问控制
 
-1. Docker的总架构图
+1. ETCD资源类型
+There are three types of resources in etcd
 
-docker是一个C/S模式的架构，后端是一个松耦合架构，模块各司其职。
-
-用户是使用Docker Client与Docker Daemon建立通信，并发送请求给后者。
-Docker Daemon作为Docker架构中的主体部分，首先提供Server的功能使其可以接受Docker Client的请求；
-Engine执行Docker内部的一......
+permission resources: users and roles in the user store
+key-value resources: key-value pairs in the key-va......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-08-13
+            2018-09-18
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -581,12 +570,12 @@ Engine执行Docker内部的一......
 <ul class="pager">
     
         <li class="previous">
-            <a href="/archives/6/">&larr; Newer Posts</a>
+            <a href="/">&larr; Newer Posts</a>
         </li>
     
     
         <li class="next">
-            <a href="/archives/8/">Older Posts &rarr;</a>
+            <a href="/page/3/">Older Posts &rarr;</a>
         </li>
     
 </ul>
