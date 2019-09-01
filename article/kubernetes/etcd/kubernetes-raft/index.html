@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          [kubernetes系列]  - 黄国辉 | Blog
+          [Kubernetes] Raft协议 - 黄国辉 | Blog
         
     </title>
 
-    <link rel="canonical" href="http://blog.sqlbtc.com/article/kubernetes/operation/kubernetes-SUMMARY/">
+    <link rel="canonical" href="http://blog.sqlbtc.com/article/kubernetes/etcd/kubernetes-raft/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -88,14 +88,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
+                              <a class="tag" href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
                             
                         </div>
-                        <h1>[kubernetes系列] </h1>
+                        <h1>[Kubernetes] Raft协议</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by 黄国辉 on
-                            2019-09-13
+                            2018-08-20
                         </span>
                     </div>
                 
@@ -213,160 +213,42 @@
                 post-container">
 
                 <blockquote>
-<p>前言</p>
+<p>[Kubernetes] ETCD  Raft协议</p>
 </blockquote>
-<h2 id="paas">PaaS</h2>
+<h1 id="1-raft协议分布式一致性算法">1. Raft协议[分布式一致性算法]</h1>
+<p><img src="https://res.cloudinary.com/dqxtn0ick/image/upload/v1510578532/article/etcd/raft.png" alt="raft"></p>
+<p>raft算法中涉及三种角色，分别是：</p>
 <ul>
-<li><a href="https://blog.sqlbtc.com/article/kubernetes-12-factor/">12-Factor</a></li>
+<li><code>follower</code>: 跟随者</li>
+<li><code>candidate</code>: 候选者，选举过程中的中间状态角色</li>
+<li><code>leader</code>: 领导者</li>
 </ul>
-<h2 id="安装与配置">安装与配置</h2>
+<h1 id="2-过程">2. 过程</h1>
+<h2 id="21-选举">2.1. 选举</h2>
+<p>有两个timeout来控制选举，第一个是<code>election timeout</code>，该时间是节点从follower到成为candidate的时间，该时间是150到300毫秒之间的随机值。另一个是<code>heartbeat timeout</code>。</p>
 <ul>
-<li><a href="https://blog.sqlbtc.com/article/kubernetes-install-k8s-by-kubespray/">使用kubespray安装kubernetes</a></li>
-<li><a href="https://blog.sqlbtc.com/article/kubernetes-install-k8s-by-minikube/">使用minikube安装kubernetes</a></li>
+<li>当某个节点经历完<code>election timeout</code>成为candidate后，开启新的一个选举周期，他向其他节点发起投票请求（Request Vote），如果接收到消息的节点在该周期内还没投过票则给这个candidate投票，然后节点重置他的election timeout。</li>
+<li>当该candidate获得大部分的选票，则可以当选为leader。</li>
+<li>leader就开始发送<code>append entries</code>给其他follower节点，这个消息会在内部指定的<code>heartbeat timeout</code>时间内发出，follower收到该信息则响应给leader。</li>
+<li>这个选举周期会继续，直到某个follower没有收到心跳，并成为candidate。</li>
+<li>如果某个选举周期内，有两个candidate同时获得相同多的选票，则会等待一个新的周期重新选举。</li>
 </ul>
-<h2 id="基本概念">基本概念</h2>
+<h2 id="22-同步">2.2. 同步</h2>
+<p>当选举过程结束，选出了leader，则leader需要把所有的变更同步的系统中的其他节点，该同步也是通过发送<code>Append Entries</code>的消息的方式。</p>
 <ul>
-<li><a href="">kubernetes架构</a>
-<ul>
-<li><a href="https://blog.sqlbtc.com/article/kubernetes-architecture">Kubernetes总架构图</a></li>
-<li><a href="https://blog.sqlbtc.com/article/kubernetes-paas-based-on-docker-and-kubernetes">基于Docker及Kubernetes技术构建容器云（PaaS）平台概述</a></li>
+<li>首先一个客户端发送一个更新给leader，这个更新会添加到leader的日志中。</li>
+<li>然后leader会在给follower的下次心跳探测中发送该更新。</li>
+<li>一旦大多数follower收到这个更新并返回给leader，leader提交这个更新，然后返回给客户端。</li>
 </ul>
-</li>
-<li><a href="">kubernetes对象</a>
+<h2 id="23-网络分区">2.3. 网络分区</h2>
 <ul>
-<li><a href="https://blog.sqlbtc.com/kubernetes-objects">理解kubernetes对象</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-basic-concepts">kubernetes常用对象说明</a></li>
+<li>当发生网络分区的时候，在不同分区的节点接收不到leader的心跳，则会开启一轮选举，形成不同leader的多个分区集群。</li>
+<li>当客户端给不同leader的发送更新消息时，不同分区集群中的节点个数小于原先集群的一半时，更新不会被提交，而节点个数大于集群数一半时，更新会被提交。</li>
+<li>当网络分区恢复后，被提交的更新会同步到其他的节点上，其他节点未提交的日志会被回滚并匹配新leader的日志，保证全局的数据是一致的。</li>
 </ul>
-</li>
-<li><a href="">Pod</a>
+<p>参考：</p>
 <ul>
-<li><a href="https://blog.sqlbtc.com/kubernetes-pod">Pod介绍</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-pod-definition">Pod定义文件</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-pod-lifecycle">Pod生命周期</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-pod-probe">Pod健康检查</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-pod-volume">Pod存储卷</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-pod-configmap">Pod配置管理</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-pod-scheduler">Pod调度</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-pod-operation">Pod操作</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="核心原理">核心原理</h2>
-<ul>
-<li><a href="https://blog.sqlbtc.com/kubernetes-core-principle-api-server">Api Server</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-core-principle-controller-manager">Controller Manager</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-core-principle-scheduler">Scheduler</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-core-principle-kubelet">Kubelet</a></li>
-</ul>
-<h2 id="网络">网络</h2>
-<ul>
-<li><a href="https://blog.sqlbtc.com/kubernetes-docker-network">Docker网络</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-network">k8s网络</a></li>
-<li><a href="">Flannel</a>
-<ul>
-<li><a href="https://blog.sqlbtc.com/kubernetes-flannel-introduction">Flannel介绍</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="存储">存储</h2>
-<ul>
-<li><a href="https://blog.sqlbtc.com/kubernetes-volume">Volume</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-persistent-volume">Persistent Volume</a></li>
-<li><a href="shttps://blog.sqlbtc.com/kubernetes-persistent-volume-claim">Persistent Volume Claim</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-storage-class">Storage Class</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-dynamic-provisioning">Dynamic Volume Provisioning</a></li>
-</ul>
-<h2 id="csi">CSI</h2>
-<ul>
-<li><a href="https://blog.sqlbtc.com/kubernetes-csi-cephfs-plugin">csi-cephfs-plugin</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-deploy-csi-cephfs">部署csi-cephfs</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-provisioner/cephfs-provisioner">部署cephfs-provisioner</a></li>
-</ul>
-<h2 id="资源配额">资源配额</h2>
-<ul>
-<li><a href="https://blog.sqlbtc.com/kubernetes-resource-quota">资源配额</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-limit-range">Pod限额</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-quality-of-service">资源服务质量</a></li>
-</ul>
-<h2 id="运维指南-operation">运维指南 operation</h2>
-<ul>
-<li><a href="https://blog.sqlbtc.com/kubernetes-install-kubectl">kubectl安装与配置</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-kubectl-commands">kubectl命令说明</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-kubectl-alias">kubectl命令别名</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-safely-drain-node">安全迁移节点</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-troubleshooting">kubernetes集群问题排查</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-nodeselector-and-taint">指定Node调度与隔离</a></li>
-</ul>
-<h2 id="开发指南-devops">开发指南 devops</h2>
-<ul>
-<li><a href="https://blog.sqlbtc.com/kubernetes-client-go">client-go的使用及源码分析</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-nfs-client-provisioner">nfs-client-provisioner源码分析</a></li>
-<li><a href="https://blog.sqlbtc.com/kubernetes-csi-provisioner">csi-provisioner源码分析</a></li>
-</ul>
-<h2 id="源码分析-code-analysis">源码分析  code-analysis</h2>
-<ul>
-<li><a href="">kubelet</a>
-<ul>
-<li><a href="code-analysis/kubelet/NewKubeletCommand.md">NewKubeletCommand</a></li>
-<li><a href="code-analysis/kubelet/NewMainKubelet.md">NewMainKubelet</a></li>
-<li><a href="code-analysis/kubelet/startKubelet.md">startKubelet</a></li>
-<li><a href="code-analysis/kubelet/syncLoopIteration.md">syncLoopIteration</a></li>
-<li><a href="code-analysis/kubelet/syncPod.md">syncPod</a></li>
-</ul>
-</li>
-<li><a href="">kube-controller-manager</a>
-<ul>
-<li><a href="code-analysis/kube-controller-manager/NewControllerManagerCommand.md">NewControllerManagerCommand</a></li>
-<li><a href="code-analysis/kube-controller-manager/deployment-controller.md">DeploymentController</a></li>
-<li><a href="code-analysis/kube-controller-manager/sharedIndexInformer.md">Informer机制</a></li>
-</ul>
-</li>
-<li><a href="">kube-scheduler</a>
-<ul>
-<li><a href="code-analysis/kube-scheduler/NewSchedulerCommand.md">NewSchedulerCommand</a></li>
-<li><a href="code-analysis/kube-scheduler/registerAlgorithmProvider.md">registerAlgorithmProvider</a></li>
-<li><a href="code-analysis/kube-scheduler/scheduleOne.md">scheduleOne</a></li>
-<li><a href="code-analysis/kube-scheduler/findNodesThatFit.md">findNodesThatFit</a></li>
-<li><a href="code-analysis/kube-scheduler/PrioritizeNodes.md">PrioritizeNodes</a></li>
-<li><a href="code-analysis/kube-scheduler/preempt.md">preempt</a></li>
-</ul>
-</li>
-<li><a href="">kube-apiserver</a>
-<ul>
-<li><a href="code-analysis/kube-apiserver/NewAPIServerCommand.md">NewAPIServerCommand</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="监控体系">监控体系</h2>
-<ul>
-<li><a href="monitor/kubernetes-cluster-monitoring.md">监控体系介绍</a></li>
-<li><a href="monitor/cadvisor-introduction.md">cAdvisor介绍</a></li>
-<li><a href="monitor/heapster-introduction.md">Heapster介绍</a></li>
-<li><a href="monitor/influxdb-introduction.md">Influxdb介绍</a></li>
-</ul>
-<hr>
-<h2 id="docker">Docker</h2>
-<ul>
-<li><a href="docker/install-docker.md">安装Docker</a></li>
-<li><a href="docker/docker-architecture.md">Docker架构图</a></li>
-<li><a href="docker/docker-commands-principle.md">Docker常用命令原理图</a></li>
-<li><a href="docker/dockerfile-usage.md">Dockerfile使用说明</a></li>
-<li><a href="">Docker源码分析</a>
-<ul>
-<li><a href="docker/code-analysis/code-analysis-of-docker-client.md">Docker Client</a></li>
-<li><a href="docker/code-analysis/code-analysis-of-docker-daemon.md">Docker Daemon</a></li>
-<li><a href="docker/code-analysis/code-analysis-of-docker-server.md">Docker Server</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="etcd">Etcd</h2>
-<ul>
-<li><a href="etcd/etcd-introduction.md">Etcd介绍</a></li>
-<li><a href="etcd/raft.md">Raft算法</a></li>
-<li><a href="etcd/etcd-setup-flags.md">Etcd启动配置参数</a></li>
-<li><a href="etcd/etcd-auth-and-security.md">Etcd访问控制</a></li>
-<li><a href="etcd/etcdctl-v2.md">etcdctl命令工具-V2</a></li>
-<li><a href="etcd/etcdctl-v3.md">etcdctl命令工具-V3</a></li>
+<li><a href="http://thesecretlivesofdata.com/raft/" target="_blank" rel="noopener">http://thesecretlivesofdata.com/raft/</a></li>
 </ul>
 
                 
@@ -375,9 +257,13 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
+                        <li class="previous">
+                            <a href="/article/kubernetes/operation/kubernetes-safely-drain-node/" data-toggle="tooltip" data-placement="top" title="[Kubernetes] Kubernetes安全迁移节点 ">&larr; Previous Post</a>
+                        </li>
+                    
                     
                         <li class="next">
-                            <a href="/article/kubernetes/operation/2.k8s-Docker-info/" data-toggle="tooltip" data-placement="top" title="[k8s系列]  Docker简介">Next Post &rarr;</a>
+                            <a href="/article/kubernetes/develop/kubernetes-nfs-client-provisioner/" data-toggle="tooltip" data-placement="top" title="[Kubernetes] kubernetes之 nfs-client-provisioner简介">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -433,7 +319,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#paas"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">PaaS</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#安装与配置"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x5B89;&#x88C5;&#x4E0E;&#x914D;&#x7F6E;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#基本概念"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x57FA;&#x672C;&#x6982;&#x5FF5;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#核心原理"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">&#x6838;&#x5FC3;&#x539F;&#x7406;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#网络"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">&#x7F51;&#x7EDC;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#存储"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">&#x5B58;&#x50A8;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#csi"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">CSI</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#资源配额"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">&#x8D44;&#x6E90;&#x914D;&#x989D;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#运维指南-operation"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">&#x8FD0;&#x7EF4;&#x6307;&#x5357; operation</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#开发指南-devops"><span class="toc-nav-number">10.</span> <span class="toc-nav-text">&#x5F00;&#x53D1;&#x6307;&#x5357; devops</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#源码分析-code-analysis"><span class="toc-nav-number">11.</span> <span class="toc-nav-text">&#x6E90;&#x7801;&#x5206;&#x6790;  code-analysis</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#监控体系"><span class="toc-nav-number">12.</span> <span class="toc-nav-text">&#x76D1;&#x63A7;&#x4F53;&#x7CFB;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#docker"><span class="toc-nav-number">13.</span> <span class="toc-nav-text">Docker</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#etcd"><span class="toc-nav-number">14.</span> <span class="toc-nav-text">Etcd</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#1-raft协议分布式一致性算法"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">1. Raft&#x534F;&#x8BAE;[&#x5206;&#x5E03;&#x5F0F;&#x4E00;&#x81F4;&#x6027;&#x7B97;&#x6CD5;]</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#2-过程"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">2. &#x8FC7;&#x7A0B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#21-选举"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">2.1. &#x9009;&#x4E3E;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#22-同步"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">2.2. &#x540C;&#x6B65;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#23-网络分区"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">2.3. &#x7F51;&#x7EDC;&#x5206;&#x533A;</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -453,7 +339,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
+                          <a class="tag" href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
                         
                     </div>
                 </section>

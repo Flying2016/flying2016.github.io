@@ -211,42 +211,6 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-install-k8s-by-minikube/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes install minikube 
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] kubernetes install minikube
-
-
-以下内容基于Linux系统，特别为Ubuntu系统
-
-1. 安装kubectl
-1curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kube......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-07-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/article/kubernetes/operation/kubernetes-nodeselector-and-taint/">
         <h2 class="post-title">
                                  
@@ -470,6 +434,112 @@ kubernetes的对象是一种意图（期望）的记录，kubernetes会始终保
 
 <div class="post-preview">
 
+    <a href="/article/kubernetes/csi/ceph/csi-cephfs-plugin/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] 部署CSI CephFS plugin
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] 部署CSI CephFS plugin
+
+1. 编译CSI CephFS plugin
+CSI CephFS plugin用来提供CephFS存储卷和挂载存储卷，源码参考：https://github.com/ceph/ceph-csi 。
+1.1. 编译二进制
+1$ make cephfsplugin
+1.2. 编译Docker镜像
+1$ make image-......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-01-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/csi/provisioner/cephfs-provisioner/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] 部署cephfs-provisioner
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. 安装cephfs客户端
+所有node节点安装cephfs客户端，主要用来和ceph集群挂载使用。
+1yum install -y ceph-common
+2. 部署RBAC
+2.1. ClusterRole
+12345678910111213141516171819202122kind: ClusterRoleapiVersion: rbac.authorization.k8s.io/......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-01-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/csi/ceph/deploy-csi-cephfs/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] 部署csi-cephfs
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+部署csi-cephfs
+
+0. 说明
+要求Kubernetes的版本在1.11及以上，k8s集群必须允许特权Pod（privileged pods），即apiserver和kubelet需要设置--allow-privileged为true。节点的Docker daemon需要允许挂载共享卷。
+涉及镜像
+1234- quay.io/k8scsi/csi-provisioner:v0.3.......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-01-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/article/kubernetes/operation/kubernetes-flannel-introduction/">
         <h2 class="post-title">
                                  
@@ -494,78 +564,6 @@ Flannel官网：https://github.com/coreos/flannel
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
             2017-11-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/pod/kubernetes-pod/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Pod简介 
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1. Pod是什么（what）
-1.1. Pod概念
-
-Pod是kubernetes集群中最小的部署和管理的基本单元，协同寻址，协同调度。
-Pod是一个或多个容器的集合，是一个或一组服务（进程）的抽象集合。
-Pod中可以共享网络和存储（可以简单理解为一个逻辑上的虚拟机，但并不是虚拟机）。
-Pod被创建后用一个UID来唯一标识，当Pod生命周期结束，被一个等价Pod替代，UID将重新生成。
-
-......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-10-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/pod/kubernetes-pod-definition/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Pod的基本用法 
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] Pod的基本用法
-
-1. Pod的基本用法
-1.1. 说明
-
-Pod实际上是容器的集合，在k8s中对运行容器的要求为：容器的主程序需要一直在前台运行，而不是后台运行。应用可以改造成前台运行的方式，例如Go语言的程序，直接运行二进制文件；java语言则运行主类；tomcat程序可以写个运行脚本。或者通过supervisor的进程管理工具，即supervisor在前台......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-10-13
         </p>
         <div class="tags">
             
@@ -622,7 +620,7 @@ Pod实际上是容器的集合，在k8s中对运行容器的要求为：容器�
     <div class="tags">
         
             
-            <a href="/tags/#Kubernetes" title="Kubernetes" rel="59">Kubernetes</a>
+            <a href="/tags/#Kubernetes" title="Kubernetes" rel="62">Kubernetes</a>
             
         
             
@@ -632,7 +630,7 @@ Pod实际上是容器的集合，在k8s中对运行容器的要求为：容器�
             
         
             
-            <a href="/tags/#Docker系列" title="Docker系列" rel="5">Docker系列</a>
+            <a href="/tags/#Docker系列" title="Docker系列" rel="8">Docker系列</a>
             
         
             
@@ -642,7 +640,7 @@ Pod实际上是容器的集合，在k8s中对运行容器的要求为：容器�
             
         
             
-            <a href="/tags/#kubernetes" title="kubernetes" rel="2">kubernetes</a>
+            <a href="/tags/#kubernetes" title="kubernetes" rel="1">kubernetes</a>
             
         
     </div>
@@ -702,10 +700,6 @@ Pod实际上是容器的集合，在k8s中对运行容器的要求为：容器�
         </li>
       
         <li>
-          <a href="/article/kubernetes/operation/kubernetes-SUMMARY/">[kubernetes系列] </a>
-        </li>
-      
-        <li>
           <a href="/article/kubernetes/operation/2.k8s-Docker-info/">[k8s系列]  Docker简介</a>
         </li>
       
@@ -715,6 +709,10 @@ Pod实际上是容器的集合，在k8s中对运行容器的要求为：容器�
       
         <li>
           <a href="/article/kubernetes/kubelet/syncLoopIteration/">[Kubernetes] kubelet源码分析（四）之 syncLoopIteration</a>
+        </li>
+      
+        <li>
+          <a href="/article/kubernetes/kubelet/syncPod/">[Kubernetes] kubelet源码分析（五）之 syncPod</a>
         </li>
       
     </ul>
@@ -741,7 +739,7 @@ Pod实际上是容器的集合，在k8s中对运行容器的要求为：容器�
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>

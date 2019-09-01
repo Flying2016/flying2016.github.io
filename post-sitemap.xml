@@ -7,6 +7,62 @@
     </url>
 
     <url>
+        <loc>http://blog.sqlbtc.com/article/kubernetes/kubernetes-SUMMARY/</loc>
+        <lastmod>2019-09-01T08:21:13.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/kubernetes/docker/code-analysis/code-analysis-of-docker-client/</loc>
+        <lastmod>2019-09-01T08:14:32.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/kubernetes/docker/code-analysis/code-analysis-of-docker-server/</loc>
+        <lastmod>2019-09-01T08:14:32.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/kubernetes/docker/code-analysis/code-analysis-of-docker-daemon/</loc>
+        <lastmod>2019-09-01T08:14:32.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/kubernetes/csi/ceph/csi-cephfs-plugin/</loc>
+        <lastmod>2019-09-01T07:58:17.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/kubernetes/csi/provisioner/cephfs-provisioner/</loc>
+        <lastmod>2019-09-01T07:58:17.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/kubernetes/csi/ceph/deploy-csi-cephfs/</loc>
+        <lastmod>2019-09-01T07:58:17.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://blog.sqlbtc.com/article/kubernetes/kube-scheduler/findNodesThatFit/</loc>
         <lastmod>2019-09-01T07:25:50.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -113,22 +169,6 @@
     <url>
         <loc>http://blog.sqlbtc.com/article/kubernetes/kube-scheduler/preempt/</loc>
         <lastmod>2019-09-01T07:22:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://blog.sqlbtc.com/article/kubernetes/operation/kubernetes-SUMMARY/</loc>
-        <lastmod>2019-09-01T07:20:03.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://blog.sqlbtc.com/article/kubernetes/kubernetes-SUMMARY/</loc>
-        <lastmod>2019-09-01T06:45:45.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -271,7 +311,7 @@
     </url>
 
     <url>
-        <loc>http://blog.sqlbtc.com/article/kubernetes/operation/kubernetes-raft/</loc>
+        <loc>http://blog.sqlbtc.com/article/kubernetes/etcd/kubernetes-raft/</loc>
         <lastmod>2019-08-31T15:38:56.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

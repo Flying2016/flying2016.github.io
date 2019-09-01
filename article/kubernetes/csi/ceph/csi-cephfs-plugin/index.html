@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          [Kubernetes] Raft协议 - 黄国辉 | Blog
+          [Kubernetes] 部署CSI CephFS plugin - 黄国辉 | Blog
         
     </title>
 
-    <link rel="canonical" href="http://blog.sqlbtc.com/article/kubernetes/operation/kubernetes-raft/">
+    <link rel="canonical" href="http://blog.sqlbtc.com/article/kubernetes/csi/ceph/csi-cephfs-plugin/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -91,11 +91,11 @@
                               <a class="tag" href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
                             
                         </div>
-                        <h1>[Kubernetes] Raft协议</h1>
+                        <h1>[Kubernetes] 部署CSI CephFS plugin</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by 黄国辉 on
-                            2018-08-20
+                            2018-01-13
                         </span>
                     </div>
                 
@@ -213,42 +213,110 @@
                 post-container">
 
                 <blockquote>
-<p>[Kubernetes] ETCD  Raft协议</p>
+<p>[Kubernetes] 部署CSI CephFS plugin</p>
 </blockquote>
-<h1 id="1-raft协议分布式一致性算法">1. Raft协议[分布式一致性算法]</h1>
-<p><img src="https://res.cloudinary.com/dqxtn0ick/image/upload/v1510578532/article/etcd/raft.png" alt="raft"></p>
-<p>raft算法中涉及三种角色，分别是：</p>
+<h1 id="1-编译csi-cephfs-plugin">1. 编译CSI CephFS plugin</h1>
+<p>CSI CephFS plugin用来提供CephFS存储卷和挂载存储卷，源码参考：<a href="https://github.com/ceph/ceph-csi" target="_blank" rel="noopener">https://github.com/ceph/ceph-csi</a> 。</p>
+<h2 id="11-编译二进制">1.1. 编译二进制</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make cephfsplugin</span><br></pre></td></tr></table></figure>
+<h2 id="12-编译docker镜像">1.2. 编译Docker镜像</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make image-cephfsplugin</span><br></pre></td></tr></table></figure>
+<h1 id="2-配置项">2. 配置项</h1>
+<h2 id="21-命令行参数">2.1. 命令行参数</h2>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--endpoint</code></td>
+<td><code>unix://tmp/csi.sock</code></td>
+<td>CSI endpoint, must be a UNIX socket</td>
+</tr>
+<tr>
+<td><code>--drivername</code></td>
+<td><code>csi-cephfsplugin</code></td>
+<td>name of the driver (Kubernetes: <code>provisioner</code> field in StorageClass must correspond to this value)</td>
+</tr>
+<tr>
+<td><code>--nodeid</code></td>
+<td><em>empty</em></td>
+<td>This node’s ID</td>
+</tr>
+<tr>
+<td><code>--volumemounter</code></td>
+<td><em>empty</em></td>
+<td>default volume mounter. Available options are <code>kernel</code> and <code>fuse</code>. This is the mount method used if volume parameters don’t specify otherwise. If left unspecified, the driver will first probe for <code>ceph-fuse</code> in system’s path and will choose Ceph kernel client if probing failed.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="22-volume参数">2.2. volume参数</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>monitors</code></td>
+<td>yes</td>
+<td>Comma separated list of Ceph monitors (e.g. <code>192.168.100.1:6789,192.168.100.2:6789,192.168.100.3:6789</code>)</td>
+</tr>
+<tr>
+<td><code>mounter</code></td>
+<td>no</td>
+<td>Mount method to be used for this volume. Available options are <code>kernel</code> for Ceph kernel client and <code>fuse</code> for Ceph FUSE driver. Defaults to “default mounter”, see command line arguments.</td>
+</tr>
+<tr>
+<td><code>provisionVolume</code></td>
+<td>yes</td>
+<td>Mode of operation. BOOL value. If <code>true</code>, a new CephFS volume will be provisioned. If <code>false</code>, an existing CephFS will be used.</td>
+</tr>
+<tr>
+<td><code>pool</code></td>
+<td>for <code>provisionVolume=true</code></td>
+<td>Ceph pool into which the volume shall be created</td>
+</tr>
+<tr>
+<td><code>rootPath</code></td>
+<td>for <code>provisionVolume=false</code></td>
+<td>Root path of an existing CephFS volume</td>
+</tr>
+<tr>
+<td><code>csiProvisionerSecretName</code>, <code>csiNodeStageSecretName</code></td>
+<td>for Kubernetes</td>
+<td>name of the Kubernetes Secret object containing Ceph client credentials. Both parameters should have the same value</td>
+</tr>
+<tr>
+<td><code>csiProvisionerSecretNamespace</code>, <code>csiNodeStageSecretNamespace</code></td>
+<td>for Kubernetes</td>
+<td>namespaces of the above Secret objects</td>
+</tr>
+</tbody>
+</table>
+<h2 id="23-provisionvolume">2.3. provisionVolume</h2>
+<h3 id="231-管理员密钥认证">2.3.1. 管理员密钥认证</h3>
+<p>当<strong>provisionVolume=true</strong>时，必要的管理员认证参数如下：</p>
 <ul>
-<li><code>follower</code>: 跟随者</li>
-<li><code>candidate</code>: 候选者，选举过程中的中间状态角色</li>
-<li><code>leader</code>: 领导者</li>
+<li><code>adminID</code>: ID of an admin client</li>
+<li><code>adminKey</code>: key of the admin client</li>
 </ul>
-<h1 id="2-过程">2. 过程</h1>
-<h2 id="21-选举">2.1. 选举</h2>
-<p>有两个timeout来控制选举，第一个是<code>election timeout</code>，该时间是节点从follower到成为candidate的时间，该时间是150到300毫秒之间的随机值。另一个是<code>heartbeat timeout</code>。</p>
+<h3 id="232-普通用户密钥认证">2.3.2. 普通用户密钥认证</h3>
+<p>当<strong>provisionVolume=false</strong>时，必要的用户认证参数如下：</p>
 <ul>
-<li>当某个节点经历完<code>election timeout</code>成为candidate后，开启新的一个选举周期，他向其他节点发起投票请求（Request Vote），如果接收到消息的节点在该周期内还没投过票则给这个candidate投票，然后节点重置他的election timeout。</li>
-<li>当该candidate获得大部分的选票，则可以当选为leader。</li>
-<li>leader就开始发送<code>append entries</code>给其他follower节点，这个消息会在内部指定的<code>heartbeat timeout</code>时间内发出，follower收到该信息则响应给leader。</li>
-<li>这个选举周期会继续，直到某个follower没有收到心跳，并成为candidate。</li>
-<li>如果某个选举周期内，有两个candidate同时获得相同多的选票，则会等待一个新的周期重新选举。</li>
+<li><code>userID</code>: ID of a user client</li>
+<li><code>userKey</code>: key of a user client</li>
 </ul>
-<h2 id="22-同步">2.2. 同步</h2>
-<p>当选举过程结束，选出了leader，则leader需要把所有的变更同步的系统中的其他节点，该同步也是通过发送<code>Append Entries</code>的消息的方式。</p>
+<p>参考文章：</p>
 <ul>
-<li>首先一个客户端发送一个更新给leader，这个更新会添加到leader的日志中。</li>
-<li>然后leader会在给follower的下次心跳探测中发送该更新。</li>
-<li>一旦大多数follower收到这个更新并返回给leader，leader提交这个更新，然后返回给客户端。</li>
-</ul>
-<h2 id="23-网络分区">2.3. 网络分区</h2>
-<ul>
-<li>当发生网络分区的时候，在不同分区的节点接收不到leader的心跳，则会开启一轮选举，形成不同leader的多个分区集群。</li>
-<li>当客户端给不同leader的发送更新消息时，不同分区集群中的节点个数小于原先集群的一半时，更新不会被提交，而节点个数大于集群数一半时，更新会被提交。</li>
-<li>当网络分区恢复后，被提交的更新会同步到其他的节点上，其他节点未提交的日志会被回滚并匹配新leader的日志，保证全局的数据是一致的。</li>
-</ul>
-<p>参考：</p>
-<ul>
-<li><a href="http://thesecretlivesofdata.com/raft/" target="_blank" rel="noopener">http://thesecretlivesofdata.com/raft/</a></li>
+<li><a href="https://github.com/ceph/ceph-csi/blob/master/docs/deploy-cephfs.md" target="_blank" rel="noopener">https://github.com/ceph/ceph-csi/blob/master/docs/deploy-cephfs.md</a></li>
 </ul>
 
                 
@@ -258,12 +326,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/article/kubernetes/operation/kubernetes-safely-drain-node/" data-toggle="tooltip" data-placement="top" title="[Kubernetes] Kubernetes安全迁移节点 ">&larr; Previous Post</a>
+                            <a href="/article/kubernetes/operation/kubernetes-objects/" data-toggle="tooltip" data-placement="top" title="[Kubernetes] 理解kubernetes对象">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/article/kubernetes/develop/kubernetes-nfs-client-provisioner/" data-toggle="tooltip" data-placement="top" title="[Kubernetes] kubernetes之 nfs-client-provisioner简介">Next Post &rarr;</a>
+                            <a href="/article/kubernetes/csi/provisioner/cephfs-provisioner/" data-toggle="tooltip" data-placement="top" title="[Kubernetes] 部署cephfs-provisioner">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -319,7 +387,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#1-raft协议分布式一致性算法"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">1. Raft&#x534F;&#x8BAE;[&#x5206;&#x5E03;&#x5F0F;&#x4E00;&#x81F4;&#x6027;&#x7B97;&#x6CD5;]</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#2-过程"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">2. &#x8FC7;&#x7A0B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#21-选举"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">2.1. &#x9009;&#x4E3E;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#22-同步"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">2.2. &#x540C;&#x6B65;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#23-网络分区"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">2.3. &#x7F51;&#x7EDC;&#x5206;&#x533A;</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#1-编译csi-cephfs-plugin"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">1. &#x7F16;&#x8BD1;CSI CephFS plugin</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#11-编译二进制"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">1.1. &#x7F16;&#x8BD1;&#x4E8C;&#x8FDB;&#x5236;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#12-编译docker镜像"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">1.2. &#x7F16;&#x8BD1;Docker&#x955C;&#x50CF;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#2-配置项"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">2. &#x914D;&#x7F6E;&#x9879;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#21-命令行参数"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">2.1. &#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#22-volume参数"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">2.2. volume&#x53C2;&#x6570;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#23-provisionvolume"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">2.3. provisionVolume</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#231-管理员密钥认证"><span class="toc-nav-number">2.3.1.</span> <span class="toc-nav-text">2.3.1. &#x7BA1;&#x7406;&#x5458;&#x5BC6;&#x94A5;&#x8BA4;&#x8BC1;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#232-普通用户密钥认证"><span class="toc-nav-number">2.3.2.</span> <span class="toc-nav-text">2.3.2. &#x666E;&#x901A;&#x7528;&#x6237;&#x5BC6;&#x94A5;&#x8BA4;&#x8BC1;</span></a></li></ol></li></ol></li></ol>
         
         </div>
       </aside>
