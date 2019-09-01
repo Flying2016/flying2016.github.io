@@ -211,23 +211,29 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes-kubernetes-core-principle-controller-manager/">
+    <a href="/article/kubernetes/etcd/kubernetes-etcd-auth-and-security/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes核心原理（二）之Controller Manager
+            [Kubernetes] kubernetes之ETCD访问控制
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. Controller Manager简介
-Controller Manager作为集群内部的管理控制中心，负责集群内的Node、Pod副本、服务端点（Endpoint）、命名空间（Namespace）、服务账号（ServiceAccount）、资源定额（ResourceQuota）的管理，当某个Node意外宕机时，Controller Manager会及时发现并执行自动化修复流程，确保......
+            
+[Kubernetes] kubernetes之ETCD访问控制
+
+1. ETCD资源类型
+There are three types of resources in etcd
+
+permission resources: users and roles in the user store
+key-value resources: key-value pairs in the key-va......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-15
+            2018-09-18
         </p>
         <div class="tags">
             
@@ -241,25 +247,28 @@ Controller Manager作为集群内部的管理控制中心，负责集群内的No
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes-kubernetes-core-principle-scheduler/">
+    <a href="/article/kubernetes/etcd/kubernetes-etcd-introduction/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes核心原理（三）之Scheduler
+            [Kubernetes] kubernetes之ETCD介绍
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. Scheduler简介
-Scheduler负责Pod调度。在整个系统中起&quot;承上启下&quot;作用，承上：负责接收Controller Manager创建的新的Pod，为其选择一个合适的Node；启下：Node上的kubelet接管Pod的生命周期。
-Scheduler：
-1）通过调度算法为待调度Pod列表的每个Pod从Node列表中选择一个最适合的Node，并将信息写入et......
+            
+[Kubernetes] kubernetes之ETCD介绍
+
+1. Etcd是什么（what）
+etcd is a distributed, consistent key-value store for shared configuration and service discovery, with a focus on being:
+
+Secure: automatic TLS wit......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-15
+            2018-09-16
         </p>
         <div class="tags">
             
@@ -273,30 +282,26 @@ Scheduler：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes-limit-range/">
+    <a href="/article/kubernetes/etcd/kubernetes-etcd-setup-flags/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes资源配额之Pod限额 
+            [Kubernetes] kubernetes之Etcd配置参数
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes资源配额之Pod限额
+[Kubernetes] kubernetes之ETCD配置参数
 
-Pod限额（LimitRange）
-
-ResourceQuota对象是限制某个namespace下所有Pod(容器)的资源限额
-LimitRange对象是限制某个namespace单个Pod(容器)的资源限额
-
-LimitRange对象用来定义某个命名空间下某种资源对象的使用限额，其中资源对象包括：Pod、Contain......
+1. Etcd配置参数
+123456789101112131415161718/ # etcd --helpusage: etcd [flags]       start an etcd server       etcd --version       show the version of etcd       etc......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2018-09-13
         </p>
         <div class="tags">
             
@@ -310,28 +315,29 @@ LimitRange对象用来定义某个命名空间下某种资源对象的使用限�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes-persistent-volume-claim/">
+    <a href="/article/kubernetes/etcd/kubernetes-etcdctl-v3/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes存储之PersistentVolumeClaim 
+            [Kubernetes] kubernetes之etcdctl命令安装
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes存储之PersistentVolumeClaim
+[Kubernetes] kubernetes之etcdctl安装
 
-PersistentVolumeClaim
-1. PVC概述
-PersistentVolumeClaim（简称PVC）是用户存储的请求，PVC消耗PV的资源，可以请求特定的大小和访问模式，需要指定归属于某个Namespace，在同一个Namespace的Pod才可以指定对应的PVC。
-当需要不......
+
+etcdctl的v3版本与v2版本使用命令有所不同，本文介绍etcdctl v3版本的命令工具的使用方式。
+
+1. etcdctl的安装
+etcdctl的二进制文件可以在 github.com/coreos/etcd/releases 选择对应的版本下载，例如可以执行以下install_etcdctl.sh的脚本，修改......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2018-09-12
         </p>
         <div class="tags">
             
@@ -345,212 +351,240 @@ PersistentVolumeClaim（简称PVC）是用户存储的请求，PVC消耗PV的资
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes-persistent-volume/">
+    <a href="/article/kubernetes/etcd/kubernetes-etcdctl-v2/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes存储之PersistentVolume 
+            [Kubernetes] kubernetes之etcdctl命令工具介绍
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes存储之PersistentVolume
+[Kubernetes] kubernetes之etcdctl介绍
 
-PersistentVolume
-1. PV概述
-PersistentVolume（简称PV） 是 Volume 之类的卷插件，也是集群中的资源，但独立于Pod的生命周期（即不会因Pod删除而被删除），不归属于某个Namespace。
-2. PV和PVC的生命周期
-2.1. 配置（Provision）
+1. etcdctl介绍
+etcdctl是一个命令行的客户端，它提供了一下简洁的命令，可理解为命令工具集，可以方便我们在对服务进行测试或者手动修改数据库内容。etcdctl与其他xxxctl的命令原理及操作类似（例如kubectl，systemctl）。
+用法：etcdctl [global options] comma......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-09-11
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/operation/kubernetes-safely-drain-node/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] Kubernetes安全迁移节点 
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] Kubernetes安全迁移节点
+
+1. 迁移Pod
+1.1. 设置节点是否可调度
+确定需要迁移和被迁移的节点，将不允许被迁移的节点设置为不可调度。
+12345678# 查看节点kubectl get nodes# 设置节点为不可调度kubectl cordon &lt;NodeName&gt;# 设置节点为可调度kubectl uncordon &lt;Node......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-08-22
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/operation/kubernetes-raft/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] Raft协议
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] ETCD  Raft协议
+
+1. Raft协议[分布式一致性算法]
+
+raft算法中涉及三种角色，分别是：
+
+follower: 跟随者
+candidate: 候选者，选举过程中的中间状态角色
+leader: 领导者
+
+2. 过程
+2.1. 选举
+有两个timeout来控制选举，第一个是election timeout，该时间是节点从follower到成为cand......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-08-20
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/develop/kubernetes-nfs-client-provisioner/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubernetes之 nfs-client-provisioner简介
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] kubernetes之 nfs-client-provisioner简介
+
+
+如果要开发一个Dynamic Provisioner，需要使用到the helper library。
+
+1. Dynamic Provisioner
+1.1. Provisioner Interface
+开发Dynamic Provisioner需要实现Provisioner接口，该接......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-08-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes devops" title="Kubernetes devops">Kubernetes devops</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/operation/kubernetes-install-k8s-by-kubespray/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubernetes install 
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] kubernetes install
+
+1. 环境准备
+1.1. 部署机器
+
+以下机器为虚拟机
+
+
+
+
+机器IP
+主机名
+角色
+系统版本
+备注
+
+
+
+
+172.16.94.140
+kube-master01
+k8s master
+Centos 4.17.14
+内存：3G
+
+
+172.16.94.141
+kube-node1
+k8s node
+Centos 4.17......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-08-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/operation/kubernetes-kubectl-commands/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubernetes  kubectl命令介绍
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] kubernetes  kubectl命令介绍
+
+1. kubectl命令介绍
+kubectl的命令语法
+1kubectl [command] [TYPE] [NAME] [flags]
+其中command，TYPE，NAME，和flags分别是：
+
+
+command: 指定要在一个或多个资源进行操作，例如create，get，describe，delete。
+
 ......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-quality-of-service/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Kubernetes资源配额之资源服务质量 
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] Kubernetes资源配额之资源服务质量
-
-Resource Quality of Service
-1. 资源QoS简介
-request值表示容器保证可被分配到资源。limit表示容器可允许使用的最大资源。Pod级别的request和limit是其所有容器的request和limit之和。
-2. Requests and Limits
-Pod可以指定reques......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-08-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-resource-quota/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Kubernetes资源配额 
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] Kubernetes资源配额
-
-资源配额（ResourceQuota）
-ResourceQuota对象用来定义某个命名空间下所有资源的使用限额，其实包括：
-
-计算资源的配额
-存储资源的配额
-对象数量的配额
-
-如果集群的总容量小于命名空间的配额总额，可能会产生资源竞争。这时会按照先到先得来处理。
-资源竞争和配额的更新都不会影响已经创建好的资源。
-1. 启动资源配额
-......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-08-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-storage-class/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Kubernetes存储之StorageClass 
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] Kubernetes存储之StorageClass
-
-StorageClass
-1. StorageClass概述
-StorageClass提供了一种描述存储类（class）的方法，不同的class可能会映射到不同的服务质量等级和备份策略或其他策略等。
-StorageClass 对象中包含 provisioner、parameters 和 reclaimPolic......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-08-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-volume/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Kubernetes存储之Volumes 
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] Kubernetes存储之Volumes
-
-Volumes
-1. volume概述
-
-容器上的文件生命周期同容器的生命周期一致，即容器挂掉之后，容器将会以最初镜像中的文件系统内容启动，之前容器运行时产生的文件将会丢失。
-Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时候，对应的volume才会被删除。即Pod中的容器重启时，之前的文件仍可以......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-08-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-cadvisor-introduction/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes之cAdvisor介绍
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] kubernetes之cAdvisor介绍
-
-1. cAdvisor简介
-​	cAdvisor对Node机器上的资源及容器进行实时监控和性能数据采集，包括CPU使用情况、内存使用情况、网络吞吐量及文件系统使用情况，cAdvisor集成在Kubelet中，当kubelet启动时会自动启动cAdvisor，即一个cAdvisor仅对一台Node机器进行监控。kubel......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-08-13
+            2018-08-13
         </p>
         <div class="tags">
             
@@ -607,7 +641,7 @@ Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时�
     <div class="tags">
         
             
-            <a href="/tags/#Kubernetes" title="Kubernetes" rel="32">Kubernetes</a>
+            <a href="/tags/#Kubernetes" title="Kubernetes" rel="59">Kubernetes</a>
             
         
             
@@ -618,6 +652,16 @@ Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时�
         
             
             <a href="/tags/#Docker系列" title="Docker系列" rel="5">Docker系列</a>
+            
+        
+            
+        
+            
+            <a href="/tags/#K8s系列" title="K8s系列" rel="1">K8s系列</a>
+            
+        
+            
+            <a href="/tags/#kubernetes" title="kubernetes" rel="2">kubernetes</a>
             
         
     </div>
@@ -673,23 +717,23 @@ Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时�
     <ul>
       
         <li>
-          <a href="/article/kubernetes-etcd-auth-and-security/">[Kubernetes] kubernetes之ETCD访问控制</a>
+          <a href="/article/kubernetes/kubernetes-SUMMARY/">[kubernetes系列] </a>
         </li>
       
         <li>
-          <a href="/article/kubernetes-etcd-introduction/">[Kubernetes] kubernetes之ETCD介绍</a>
+          <a href="/article/kubernetes/operation/kubernetes-SUMMARY/">[kubernetes系列] </a>
         </li>
       
         <li>
-          <a href="/article/kubernetes-etcd-setup-flags/">[Kubernetes] kubernetes之Etcd配置参数</a>
+          <a href="/article/kubernetes/operation/2.k8s-Docker-info/">[k8s系列]  Docker简介</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes-etcdctl-v3/">[Kubernetes] kubernetes之etcdctl命令安装</a>
+          <a href="/article/kubernetes/kubelet/NewMainKubelet/">[Kubernetes] kubelet源码分析（二）之 NewMainKubelet</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes-etcdctl-v2/">[Kubernetes] kubernetes之etcdctl命令工具介绍</a>
+          <a href="/article/kubernetes/kubelet/syncLoopIteration/">[Kubernetes] kubelet源码分析（四）之 syncLoopIteration</a>
         </li>
       
     </ul>
@@ -716,7 +760,7 @@ Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时�
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>

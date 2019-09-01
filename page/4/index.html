@@ -211,26 +211,326 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes-heapster-introduction/">
+    <a href="/article/kubernetes/operation/kubernetes-install-k8s-by-minikube/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Heapster介绍
+            [Kubernetes] kubernetes install minikube 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. heapster简介
-Heapster是容器集群监控和性能分析工具，天然的支持Kubernetes和CoreOS。
-Kubernetes有个出名的监控agent—cAdvisor。在每个kubernetes Node上都会运行cAdvisor，它会收集本机以及容器的监控数据(cpu,memory,filesystem,network,uptime)。
-2. heapster部署与配置
+            
+[Kubernetes] kubernetes install minikube
+
+
+以下内容基于Linux系统，特别为Ubuntu系统
+
+1. 安装kubectl
+1curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kube......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-07-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/operation/kubernetes-nodeselector-and-taint/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubernetes指定节点调度与隔离
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. NodeSelector
+1.1. 概念
+如果需要限制Pod到指定的Node上运行，则可以给Node打标签并给Pod配置NodeSelector。
+1.2. 使用方式
+1.2.1. 给Node打标签
+12345678910111213# get node的namekubectl get nodes# 设置Labelkubectl label nodes &lt;node-name&gt......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-06-23
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/develop/kubernetes-csi-provisioner/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubernetes之Dynamic Provisioner
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+本文主要分析csi-provisioner的源码，关于开发一个Dynamic Provisioner，具体可参考nfs-client-provisioner的源码分析
+
+1. Dynamic Provisioner
+1.1. Provisioner Interface
+开发Dynamic Provisioner需要实现Provisioner接口，该接口有两个方法，分别是：
+
+Provisi......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-06-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes devops" title="Kubernetes devops">Kubernetes devops</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/develop/kubernetes-client-go/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubernetes之 client-go简介
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            kubernetes之 client-go简介
+1. client-go简介
+1.1 client-go说明
+​	client-go是一个调用kubernetes集群资源对象API的客户端，即通过client-go实现对kubernetes集群中资源对象（包括deployment、service、ingress、replicaSet、pod、namespace、node等）的增删改查等操作。......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-06-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes devops" title="Kubernetes devops">Kubernetes devops</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/operation/kubernetes-kubectl-alias/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubernetes kubectl的别名kubectl-aliases
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] kubernetes kubectl的别名kubectl-aliases
+
+1. kubectl-aliases
+kubectl-aliases开源工具是由脚本通过拼接各种kubectl相关元素组成的alias命令别名列表，其中命令别名拼接元素如下：
+
+
+
+base
+[system?]
+[operation]
+[resource]
+[flags]
+
+
+
+
+kube......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-06-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/storage/kubernetes-dynamic-provisioning/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubernetes之存储 Dynamic Volume Provisioning
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] kubernetes之存储Dynamic Volume Provisioning
+
+Dynamic Volume Provisioning
+Dynamic volume provisioning允许用户按需自动创建存储卷，这种方式可以让用户不需要关心存储的复杂性和差别，又可以选择不同的存储类型。
+1. 开启Dynamic Provisioning
+需要先提前创建S......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-06-12
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/operation/kubernetes-objects/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] 理解kubernetes对象
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] 理解kubernetes对象
+
+1. kubernetes对象概述
+kubernetes中的对象是一些持久化的实体，可以理解为是对集群状态的描述或期望。
+包括：
+
+集群中哪些node上运行了哪些容器化应用
+应用的资源是否满足使用
+应用的执行策略，例如重启策略、更新策略、容错策略等。
+
+kubernetes的对象是一种意图（期望）的记录，kubernetes会始终保......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-03-01
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/operation/kubernetes-flannel-introduction/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] [Flannel介绍] 
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Flannel介绍]
+
+1. flannel是什么（what）
+1.1. 概述
+Flannel是CoreOS团队针对Kubernetes设计的一个网络规划服务，简单来说，它的功能是让集群中的不同节点主机创建的Docker容器都具有全集群唯一的虚拟IP地址。
+Flannel官网：https://github.com/coreos/flannel
+1.2. 补充知识点
+1、覆盖网络[over......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-11-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/pod/kubernetes-pod/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] Pod简介 
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. Pod是什么（what）
+1.1. Pod概念
+
+Pod是kubernetes集群中最小的部署和管理的基本单元，协同寻址，协同调度。
+Pod是一个或多个容器的集合，是一个或一组服务（进程）的抽象集合。
+Pod中可以共享网络和存储（可以简单理解为一个逻辑上的虚拟机，但并不是虚拟机）。
+Pod被创建后用一个UID来唯一标识，当Pod生命周期结束，被一个等价Pod替代，UID将重新生成。
+
 ......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2017-10-13
         </p>
         <div class="tags">
             
@@ -244,322 +544,32 @@ Kubernetes有个出名的监控agent—cAdvisor。在每个kubernetes Node上都
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes-influxdb-introduction/">
+    <a href="/article/kubernetes/pod/kubernetes-pod-definition/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Influxdb介绍
+            [Kubernetes] Pod的基本用法 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. InfluxDB简介
-InfluxDB是一个当下比较流行的时序数据库，InfluxDB使用 Go 语言编写，无需外部依赖，安装配置非常方便，适合构建大型分布式系统的监控系统。
-主要特色功能：
-1）基于时间序列，支持与时间有关的相关函数（如最大，最小，求和等）
-2）可度量性：你可以实时对大量数据进行计算
-3）基于事件：它支持任意的事件数据
-2. InfluxDB安装
-1）安装
-wget ......
+            
+[Kubernetes] Pod的基本用法
+
+1. Pod的基本用法
+1.1. 说明
+
+Pod实际上是容器的集合，在k8s中对运行容器的要求为：容器的主程序需要一直在前台运行，而不是后台运行。应用可以改造成前台运行的方式，例如Go语言的程序，直接运行二进制文件；java语言则运行主类；tomcat程序可以写个运行脚本。或者通过supervisor的进程管理工具，即supervisor在前台......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2017-10-13
         </p>
         <div class="tags">
             
               <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-kubernetes-cluster-monitoring/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Kubernetes集群监控
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1. 概述
-1.1. cAdvisor
-cAdvisor对Node机器上的资源及容器进行实时监控和性能数据采集，包括CPU使用情况、内存使用情况、网络吞吐量及文件系统使用情况，cAdvisor集成在Kubelet中，当kubelet启动时会自动启动cAdvisor，即一个cAdvisor仅对一台Node机器进行监控。kubelet的启动参数–cadvisor-port可以定义cAdvisor......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-08-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-kubernetes-network/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Kubernetes网络模型
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] K8s网络模型
-
-1. kubernetes网络模型
-1.1. 基础原则
-
-每个Pod都拥有一个独立的IP地址，而且假定所有Pod都在一个可以直接连通的、扁平的网络空间中，不管是否运行在同一Node上都可以通过Pod的IP来访问。
-k8s中Pod的IP是最小粒度IP。同一个Pod内所有的容器共享一个网络堆栈，该模型称为IP-per-Pod模型。
-Pod由docke......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-08-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-install-kubectl/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes kubectl的安装 
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] kubernetes kubectl的安装
-
-1. kubectl的安装
-1curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-07-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-docker-network/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes之Docker的网络基础
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-Docker简介 Docker的网络基础
-
-1. Docker的网络基础
-1.1. Network Namespace
-不同的网络命名空间中，协议栈是独立的，完全隔离，彼此之间无法通信。同一个网络命名空间有独立的路由表和独立的Iptables/Netfilter来提供包的转发、NAT、IP包过滤等功能。
-1.1.1. 网络命名空间的实现
-将与网络协议栈相关的全局变量变成一个Net Name......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2016-08-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-docker-commands-principle/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes之Docker简介
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-Docker简介
-
-1. 基本概念
-1.1. image layer（镜像层）
-镜像可以看成是由多个镜像层叠加起来的一个文件系统，镜像层也可以简单理解为一个基本的镜像，而每个镜像层之间通过指针的形式进行叠加。
-
-根据上图，镜像层的主要组成部分包括镜像层id，镜像层指针【指向父层】，元数据【layer metadata】包含了docker构建和运行的信息还有父层的层次信息。
-只读层和读写层【......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2016-08-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-docker-architecture/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes之Docker架构
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-Docker架构
-
-1. Docker的总架构图
-
-docker是一个C/S模式的架构，后端是一个松耦合架构，模块各司其职。
-
-用户是使用Docker Client与Docker Daemon建立通信，并发送请求给后者。
-Docker Daemon作为Docker架构中的主体部分，首先提供Server的功能使其可以接受Docker Client的请求；
-Engine执行Docker内部的一......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2016-08-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-dockerfile-usage/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes之Dockerfile的说明
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-Docker简介 Dockerfile的说明
-
-1. Dockerfile的说明
-dockerfile指令忽略大小写，建议大写，#作为注释，每行只支持一条指令，指令可以带多个参数。
-dockerfile指令分为构建指令和设置指令。
-
-构建指令：用于构建image，其指定的操作不会在运行image的容器中执行。
-设置指令：用于设置image的属性，其指定的操作会在运行image的容器中执行。......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2016-08-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-install-docker/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes之Docker安装
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-Docker安装
-
-1. CentOS 安装Docker
-
-建议使用centos7
-
-1.1. 安装Docker
-1.1.1. 卸载旧版本
-旧版本的Docker命名为docker或docker-engine，如果有安装旧版本，先卸载旧版本
-12345678910$ sudo yum remove -y docker \                  docker-client \   ......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2016-01-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -577,6 +587,10 @@ Docker安装
             <a href="/page/3/">&larr; Newer Posts</a>
         </li>
     
+    
+        <li class="next">
+            <a href="/page/5/">Older Posts &rarr;</a>
+        </li>
     
 </ul>
 
@@ -608,7 +622,7 @@ Docker安装
     <div class="tags">
         
             
-            <a href="/tags/#Kubernetes" title="Kubernetes" rel="32">Kubernetes</a>
+            <a href="/tags/#Kubernetes" title="Kubernetes" rel="59">Kubernetes</a>
             
         
             
@@ -619,6 +633,16 @@ Docker安装
         
             
             <a href="/tags/#Docker系列" title="Docker系列" rel="5">Docker系列</a>
+            
+        
+            
+        
+            
+            <a href="/tags/#K8s系列" title="K8s系列" rel="1">K8s系列</a>
+            
+        
+            
+            <a href="/tags/#kubernetes" title="kubernetes" rel="2">kubernetes</a>
             
         
     </div>
@@ -674,23 +698,23 @@ Docker安装
     <ul>
       
         <li>
-          <a href="/article/kubernetes-etcd-auth-and-security/">[Kubernetes] kubernetes之ETCD访问控制</a>
+          <a href="/article/kubernetes/kubernetes-SUMMARY/">[kubernetes系列] </a>
         </li>
       
         <li>
-          <a href="/article/kubernetes-etcd-introduction/">[Kubernetes] kubernetes之ETCD介绍</a>
+          <a href="/article/kubernetes/operation/kubernetes-SUMMARY/">[kubernetes系列] </a>
         </li>
       
         <li>
-          <a href="/article/kubernetes-etcd-setup-flags/">[Kubernetes] kubernetes之Etcd配置参数</a>
+          <a href="/article/kubernetes/operation/2.k8s-Docker-info/">[k8s系列]  Docker简介</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes-etcdctl-v3/">[Kubernetes] kubernetes之etcdctl命令安装</a>
+          <a href="/article/kubernetes/kubelet/NewMainKubelet/">[Kubernetes] kubelet源码分析（二）之 NewMainKubelet</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes-etcdctl-v2/">[Kubernetes] kubernetes之etcdctl命令工具介绍</a>
+          <a href="/article/kubernetes/kubelet/syncLoopIteration/">[Kubernetes] kubelet源码分析（四）之 syncLoopIteration</a>
         </li>
       
     </ul>
@@ -717,7 +741,7 @@ Docker安装
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>

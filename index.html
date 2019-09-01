@@ -211,321 +211,100 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes-etcd-auth-and-security/">
+    <a href="/article/kubernetes/kubernetes-SUMMARY/">
         <h2 class="post-title">
+            
+                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
+                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
+                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
+                <font color=#F4711F>置顶</font>
+                <!-- <font color=#F89E8C>置顶</font>  -->
+                <!-- <font color=#1CB7ED>置顶</font>  -->
                                  
-            [Kubernetes] kubernetes之ETCD访问控制
+            [kubernetes系列] 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] kubernetes之ETCD访问控制
+前言
 
-1. ETCD资源类型
-There are three types of resources in etcd
+PaaS
 
-permission resources: users and roles in the user store
-key-value resources: key-value pairs in the key-va......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-09-18
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
+12-Factor
 
-</div>
-<hr>
+安装与配置
 
-<div class="post-preview">
+使用kubespray安装kubernetes
+使用minikube安装kubernetes
 
-    <a href="/article/kubernetes-etcd-introduction/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes之ETCD介绍
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] kubernetes之ETCD介绍
+基本概念
 
-1. Etcd是什么（what）
-etcd is a distributed, consistent key-value store for shared configuration and service discovery, with a focus on being:
+kubernetes架构
 
-Secure: automatic TLS wit......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-09-16
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-etcd-setup-flags/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes之Etcd配置参数
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] kubernetes之ETCD配置参数
-
-1. Etcd配置参数
-123456789101112131415161718/ # etcd --helpusage: etcd [flags]       start an etcd server       etcd --version       show the version of etcd       etc......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-09-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-etcdctl-v3/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes之etcdctl命令安装
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] kubernetes之etcdctl安装
+Kubernetes总架构图
+基于Docker及Kubernetes技术构建容器云（PaaS）平台概述
 
 
-etcdctl的v3版本与v2版本使用命令有所不同，本文介绍etcdctl v3版本的命令工具的使用方式。
+kubernetes对象
 
-1. etcdctl的安装
-etcdctl的二进制文件可以在 github.com/coreos/etcd/releases 选择对应的版本下载，例如可以执行以下install_etcdctl.sh的脚本，修改......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-09-12
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-etcdctl-v2/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes之etcdctl命令工具介绍
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] kubernetes之etcdctl介绍
-
-1. etcdctl介绍
-etcdctl是一个命令行的客户端，它提供了一下简洁的命令，可理解为命令工具集，可以方便我们在对服务进行测试或者手动修改数据库内容。etcdctl与其他xxxctl的命令原理及操作类似（例如kubectl，systemctl）。
-用法：etcdctl [global options] comma......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-09-11
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-safely-drain-node/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Kubernetes安全迁移节点 
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] Kubernetes安全迁移节点
-
-1. 迁移Pod
-1.1. 设置节点是否可调度
-确定需要迁移和被迁移的节点，将不允许被迁移的节点设置为不可调度。
-12345678# 查看节点kubectl get nodes# 设置节点为不可调度kubectl cordon &lt;NodeName&gt;# 设置节点为可调度kubectl uncordon &lt;Node......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-08-22
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-raft/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Raft协议
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] ETCD  Raft协议
-
-1. Raft协议[分布式一致性算法]
-
-raft算法中涉及三种角色，分别是：
-
-follower: 跟随者
-candidate: 候选者，选举过程中的中间状态角色
-leader: 领导者
-
-2. 过程
-2.1. 选举
-有两个timeout来控制选举，第一个是election timeout，该时间是节点从follower到成为cand......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-08-20
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-nfs-client-provisioner/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes之 nfs-client-provisioner简介
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] kubernetes之 nfs-client-provisioner简介
-
-
-如果要开发一个Dynamic Provisioner，需要使用到the helper library。
-
-1. Dynamic Provisioner
-1.1. Provisioner Interface
-开发Dynamic Provisioner需要实现Provisioner接口，该接......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-08-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes devops" title="Kubernetes devops">Kubernetes devops</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes-kubectl-commands/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes  kubectl命令介绍
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] kubernetes  kubectl命令介绍
-
-1. kubectl命令介绍
-kubectl的命令语法
-1kubectl [command] [TYPE] [NAME] [flags]
-其中command，TYPE，NAME，和flags分别是：
-
-
-command: 指定要在一个或多个资源进行操作，例如create，get，describe，delete。
-
+理解kubernetes对象
+kubernetes常用对象说明
 ......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-08-13
+            2019-09-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/operation/kubernetes-12-factor/">
+        <h2 class="post-title">
+            
+                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
+                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
+                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
+                <font color=#F4711F>置顶</font>
+                <!-- <font color=#F89E8C>置顶</font>  -->
+                <!-- <font color=#1CB7ED>置顶</font>  -->
+                                 
+            [Kubernetes] 12-Factor(要素)
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes]  12-Factor(要素)
+
+
+以下主要介绍PaaS平台设计架构中使用到的方法论，统称为12-Factor(要素)
+
+简介
+软件通常会作为一种服务来交付，即软件即服务(SaaS)。12-Factor原则为构建SaaS应用提供了以下的方法论：
+
+使用标准化流程自动配置，减少开发者的学习成本。
+和操作系统解耦，使其可以在各个系统间提供最大的移植性。
+适合部署在现代的......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-06-23
         </p>
         <div class="tags">
             
@@ -539,52 +318,312 @@ command: 指定要在一个或多个资源进行操作，例如create，get，de
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes-install-k8s-by-kubespray/">
+    <a href="/article/kubernetes/operation/kubernetes-architecture/">
+        <h2 class="post-title">
+            
+                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
+                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
+                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
+                <font color=#F4711F>置顶</font>
+                <!-- <font color=#F89E8C>置顶</font>  -->
+                <!-- <font color=#1CB7ED>置顶</font>  -->
+                                 
+            [Kubernetes] Kubernetes总架构图
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. Kubernetes的总架构图
+
+2. Kubernetes各个组件介绍
+2.1 kube-master[控制节点]
+master的工作流程图
+
+
+Kubecfg将特定的请求，比如创建Pod，发送给Kubernetes Client。
+Kubernetes Client将请求发送给API server。
+API Server根据请求的类型，比如创建Pod时storage类型是pods，......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-09-20
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/docker/kubernetes-paas-based-on-docker-and-kubernetes/">
+        <h2 class="post-title">
+            
+                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
+                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
+                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
+                <font color=#F4711F>置顶</font>
+                <!-- <font color=#F89E8C>置顶</font>  -->
+                <!-- <font color=#1CB7ED>置顶</font>  -->
+                                 
+            [Kubernetes] 基于Docker及Kubernetes技术构建容器云（PaaS）平台
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            [编者的话]
+目前很多的容器云平台通过Docker及Kubernetes等技术提供应用运行平台，从而实现运维自动化，快速部署应用、弹性伸缩和动态调整应用环境资源，提高研发运营效率。
+从宏观到微观（从抽象到具体）的思路来理解：云计算→PaaS→ App Engine→XAE[XXX App Engine] （XAE泛指一类应用运行平台，例如GAE、SAE、BAE等）。
+本文简要介绍了与容器云相......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-09-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/operation/kubernetes-SUMMARY/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes install 
+            [kubernetes系列] 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] kubernetes install
+前言
 
-1. 环境准备
-1.1. 部署机器
+PaaS
 
-以下机器为虚拟机
+12-Factor
 
+安装与配置
 
+使用kubespray安装kubernetes
+使用minikube安装kubernetes
 
+基本概念
 
-机器IP
-主机名
-角色
-系统版本
-备注
+kubernetes架构
 
-
-
-
-172.16.94.140
-kube-master01
-k8s master
-Centos 4.17.14
-内存：3G
+Kubernetes总架构图
+基于Docker及Kubernetes技术构建容器云（PaaS）平台概述
 
 
-172.16.94.141
-kube-node1
-k8s node
-Centos 4.17......
+kubernetes对象
+
+理解kubernetes对象
+kubernetes常用对象说明
+......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-08-13
+            2019-09-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/operation/2.k8s-Docker-info/">
+        <h2 class="post-title">
+                                 
+            [k8s系列]  Docker简介
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[k8s系列]   Docker简介
+
+2. Docker 简介
+什么是 Docker？
+
+
+Docker的英文翻译是“搬运工”的意思，他搬运的东西就是我们常说的集装箱Container，Container里面装的是任意类型的 App，
+
+
+我们的开发人员可以通过 Docker 将App 变成一种标准化的、可移植的、自管理的组件，我们可以在任何主流的操作系统中开发、调试和运行。
+
+
+从概念......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2019-09-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#K8s系列" title="K8s系列">K8s系列</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/kubelet/NewMainKubelet/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubelet源码分析（二）之 NewMainKubelet
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            kubelet源码分析（二）之 NewMainKubelet
+
+以下代码分析基于 kubernetes v1.12.0 版本。
+本文主要分析 https://github.com/kubernetes/kubernetes/tree/v1.12.0/pkg/kubelet 部分的代码。
+
+本文主要分析kubelet中的NewMainKubelet部分。
+1. NewMainKubelet
+N......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2019-08-24
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/kubelet/syncLoopIteration/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubelet源码分析（四）之 syncLoopIteration
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            kubelet源码分析（四）之 syncLoopIteration
+
+以下代码分析基于 kubernetes v1.12.0 版本。
+
+本文主要分析kubelet中syncLoopIteration部分。syncLoopIteration通过几种channel来对不同类型的事件进行监听并做增删改查的处理。
+1. syncLoop
+syncLoop是处理变更的循环。 它监听来自三种channe......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2019-08-24
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/kubelet/syncPod/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubelet源码分析（五）之 syncPod
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+以下代码分析基于 kubernetes v1.12.0 版本。
+
+kubelet源码分析（五）之 syncPod
+本文主要分析kubelet中syncPod的部分。
+1. managePodLoop
+managePodLoop通过读取podUpdateschannel的信息，执行syncPodFn函数，而syncPodFn函数在newPodWorkers的时候赋值了，即kubelet.sy......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2019-08-24
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/kubelet/startKubelet/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kubelet源码分析（三）之 startKubelet
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            kubelet源码分析（三）之 startKubelet
+
+以下代码分析基于 kubernetes v1.12.0 版本。
+
+本文主要分析startKubelet，其中主要是kubelet.Run部分，该部分的内容主要是初始化并运行一些manager。对于kubelet所包含的各种manager的执行逻辑和pod的生命周期管理逻辑待后续文章分析。
+后续的文章主要会分类分析pkg/kubele......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2019-08-24
         </p>
         <div class="tags">
             
@@ -637,7 +676,7 @@ Centos 4.17......
     <div class="tags">
         
             
-            <a href="/tags/#Kubernetes" title="Kubernetes" rel="32">Kubernetes</a>
+            <a href="/tags/#Kubernetes" title="Kubernetes" rel="59">Kubernetes</a>
             
         
             
@@ -648,6 +687,16 @@ Centos 4.17......
         
             
             <a href="/tags/#Docker系列" title="Docker系列" rel="5">Docker系列</a>
+            
+        
+            
+        
+            
+            <a href="/tags/#K8s系列" title="K8s系列" rel="1">K8s系列</a>
+            
+        
+            
+            <a href="/tags/#kubernetes" title="kubernetes" rel="2">kubernetes</a>
             
         
     </div>
@@ -703,23 +752,23 @@ Centos 4.17......
     <ul>
       
         <li>
-          <a href="/article/kubernetes-etcd-auth-and-security/">[Kubernetes] kubernetes之ETCD访问控制</a>
+          <a href="/article/kubernetes/kubernetes-SUMMARY/">[kubernetes系列] </a>
         </li>
       
         <li>
-          <a href="/article/kubernetes-etcd-introduction/">[Kubernetes] kubernetes之ETCD介绍</a>
+          <a href="/article/kubernetes/operation/kubernetes-SUMMARY/">[kubernetes系列] </a>
         </li>
       
         <li>
-          <a href="/article/kubernetes-etcd-setup-flags/">[Kubernetes] kubernetes之Etcd配置参数</a>
+          <a href="/article/kubernetes/operation/2.k8s-Docker-info/">[k8s系列]  Docker简介</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes-etcdctl-v3/">[Kubernetes] kubernetes之etcdctl命令安装</a>
+          <a href="/article/kubernetes/kubelet/NewMainKubelet/">[Kubernetes] kubelet源码分析（二）之 NewMainKubelet</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes-etcdctl-v2/">[Kubernetes] kubernetes之etcdctl命令工具介绍</a>
+          <a href="/article/kubernetes/kubelet/syncLoopIteration/">[Kubernetes] kubelet源码分析（四）之 syncLoopIteration</a>
         </li>
       
     </ul>
@@ -746,7 +795,7 @@ Centos 4.17......
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>
