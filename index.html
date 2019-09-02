@@ -274,6 +274,171 @@ Docker Server
 
 <div class="post-preview">
 
+    <a href="/article/kubernetes/operation/kubernetes-12-factor/">
+        <h2 class="post-title">
+            
+                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
+                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
+                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
+                <font color=#F4711F>置顶</font>
+                <!-- <font color=#F89E8C>置顶</font>  -->
+                <!-- <font color=#1CB7ED>置顶</font>  -->
+                                 
+            [Kubernetes] 12-Factor(要素)
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes]  12-Factor(要素)
+
+
+以下主要介绍PaaS平台设计架构中使用到的方法论，统称为12-Factor(要素)
+
+简介
+软件通常会作为一种服务来交付，即软件即服务(SaaS)。12-Factor原则为构建SaaS应用提供了以下的方法论：
+
+使用标准化流程自动配置，减少开发者的学习成本。
+和操作系统解耦，使其可以在各个系统间提供最大的移植性。
+适合部署在现代的......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-06-23
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/operation/kubernetes-architecture/">
+        <h2 class="post-title">
+            
+                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
+                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
+                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
+                <font color=#F4711F>置顶</font>
+                <!-- <font color=#F89E8C>置顶</font>  -->
+                <!-- <font color=#1CB7ED>置顶</font>  -->
+                                 
+            [Kubernetes] Kubernetes总架构图
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. Kubernetes的总架构图
+
+2. Kubernetes各个组件介绍
+2.1 kube-master[控制节点]
+master的工作流程图
+
+
+Kubecfg将特定的请求，比如创建Pod，发送给Kubernetes Client。
+Kubernetes Client将请求发送给API server。
+API Server根据请求的类型，比如创建Pod时storage类型是pods，......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-01-20
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/docker/kubernetes-paas-based-on-docker-and-kubernetes/">
+        <h2 class="post-title">
+            
+                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
+                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
+                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
+                <font color=#F4711F>置顶</font>
+                <!-- <font color=#F89E8C>置顶</font>  -->
+                <!-- <font color=#1CB7ED>置顶</font>  -->
+                                 
+            [Kubernetes] 基于Docker及Kubernetes技术构建容器云（PaaS）平台
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            [编者的话]
+目前很多的容器云平台通过Docker及Kubernetes等技术提供应用运行平台，从而实现运维自动化，快速部署应用、弹性伸缩和动态调整应用环境资源，提高研发运营效率。
+从宏观到微观（从抽象到具体）的思路来理解：云计算→PaaS→ App Engine→XAE[XXX App Engine] （XAE泛指一类应用运行平台，例如GAE、SAE、BAE等）。
+本文简要介绍了与容器云相......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-01-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kube-controller-manager源码分析（三）之 Informer机制
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+以下代码分析基于 kubernetes v1.12.0 版本。
+
+kube-controller-manager源码分析（三）之 Informer机制
+本文主要分析k8s中各个核心组件经常使用到的Informer机制(即List-Watch)。该部分的代码主要位于client-go这个第三方包中。
+此部分的逻辑主要位于/vendor/k8s.io/client-go/tools/cache......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-12-23
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">
         <h2 class="post-title">
                                  
@@ -326,40 +491,6 @@ kube-controller-manager源码分析（二）之 DeploymentController
 以下代码分析基于 kubernetes v1.12.0 版本。
 
 本文主要以deployment controller为例，分析该类controller的运行逻辑。此部分代码主要为位于pkg/controller/de......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-12-23
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kube-controller-manager源码分析（三）之 Informer机制
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-以下代码分析基于 kubernetes v1.12.0 版本。
-
-kube-controller-manager源码分析（三）之 Informer机制
-本文主要分析k8s中各个核心组件经常使用到的Informer机制(即List-Watch)。该部分的代码主要位于client-go这个第三方包中。
-此部分的逻辑主要位于/vendor/k8s.io/client-go/tools/cache......
         </div>
     </a>
     
@@ -482,112 +613,6 @@ syncLoop是处理变更的循环。 它监听来自三种channe......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/article/kubernetes/kubelet/syncPod/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubelet源码分析（五）之 syncPod
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-以下代码分析基于 kubernetes v1.12.0 版本。
-
-kubelet源码分析（五）之 syncPod
-本文主要分析kubelet中syncPod的部分。
-1. managePodLoop
-managePodLoop通过读取podUpdateschannel的信息，执行syncPodFn函数，而syncPodFn函数在newPodWorkers的时候赋值了，即kubelet.sy......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-11-24
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/kubelet/NewKubeletCommand/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubelet源码分析（一）之 NewKubeletCommand
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            kubelet源码分析（一）之 NewKubeletCommand
-
-以下代码分析基于 kubernetes v1.12.0 版本。
-本文主要分析 https://github.com/kubernetes/kubernetes/tree/v1.12.0/cmd/kubelet 部分的代码。
-
-1本文主要分析 kubernetes/cmd/kubelet部分，该部分主要涉及`kubelet`......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-11-24
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/kube-scheduler/preempt/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kube-scheduler源码分析（六）之 preempt
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-以下代码分析基于kubernetesv1.12.0版本。
-
-kube-scheduler源码分析（六）之 preempt
-本文主要分析调度中的抢占逻辑，当pod不适合任何节点的时候，可能pod会调度失败，这时候可能会发生抢占。抢占逻辑的具体实现函数为Scheduler.preempt。
-1. 调用入口
-当pod不适合任何节点的时候，可能pod会调度失败。这时候可能会发生抢占。
-
-sched......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-11-23
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -596,7 +621,7 @@ sched......
     
     
         <li class="next">
-            <a href="/archives/2/">Older Posts &rarr;</a>
+            <a href="/page/2/">Older Posts &rarr;</a>
         </li>
     
 </ul>
@@ -629,13 +654,11 @@ sched......
     <div class="tags">
         
             
+            <a href="/tags/#Kubernetes" title="Kubernetes" rel="66">Kubernetes</a>
+            
         
             
             <a href="/tags/#Docker系列" title="Docker系列" rel="20">Docker系列</a>
-            
-        
-            
-            <a href="/tags/#Kubernetes" title="Kubernetes" rel="66">Kubernetes</a>
             
         
     </div>
@@ -695,15 +718,15 @@ sched......
         </li>
       
         <li>
+          <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">[Kubernetes] kube-controller-manager源码分析（三）之 Informer机制</a>
+        </li>
+      
+        <li>
           <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">[Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand</a>
         </li>
       
         <li>
           <a href="/article/kubernetes/kube-controller-manager/deployment-controller/">[Kubernetes] kube-controller-manager源码分析（二）之 DeploymentController</a>
-        </li>
-      
-        <li>
-          <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">[Kubernetes] kube-controller-manager源码分析（三）之 Informer机制</a>
         </li>
       
         <li>

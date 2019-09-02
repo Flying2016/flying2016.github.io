@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://blog.sqlbtc.com/archives/2/">
+    <link rel="canonical" href="http://blog.sqlbtc.com/page/7/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -211,28 +211,30 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-scheduler/PrioritizeNodes/">
+    <a href="/article/kubernetes/storage/kubernetes-persistent-volume/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-scheduler源码分析（五）之 PrioritizeNodes
+            [Kubernetes] Kubernetes存储之PersistentVolume 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-以下代码分析基于 kubernetes v1.12.0 版本。
+[Kubernetes] Kubernetes存储之PersistentVolume
 
-kube-scheduler源码分析（五）之 PrioritizeNodes
-本文主要分析优选策略逻辑，即从预选的节点中选择出最优的节点。优选策略的具体实现函数为PrioritizeNodes。PrioritizeNodes最终返回是一个记录了各个节点分数的列表。
-1. 调用入口
-genericScheduler.Sched......
+PersistentVolume
+1. PV概述
+PersistentVolume（简称PV） 是 Volume 之类的卷插件，也是集群中的资源，但独立于Pod的生命周期（即不会因Pod删除而被删除），不归属于某个Namespace。
+2. PV和PVC的生命周期
+2.1. 配置（Provision）
+......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-23
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -246,33 +248,29 @@ genericScheduler.Sched......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-scheduler/findNodesThatFit/">
+    <a href="/article/kubernetes/resource/kubernetes-quality-of-service/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-scheduler源码分析（四）之 findNodesThatFit
+            [Kubernetes] Kubernetes资源配额之资源服务质量 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-以下代码分析基于 kubernetes v1.12.0 版本。
+[Kubernetes] Kubernetes资源配额之资源服务质量
 
-kube-scheduler源码分析（四）之 findNodesThatFit
-
-以下代码分析基于 kubernetes v1.15.0 版本。
-
-本文主要分析调度逻辑中的预选策略，即第一步筛选出符合pod调度条件的节点。
-1. 调用入口
-预选，通过预选函数来判断每个节点是否适合被该Pod调度。
-
-genericSchedu......
+Resource Quality of Service
+1. 资源QoS简介
+request值表示容器保证可被分配到资源。limit表示容器可允许使用的最大资源。Pod级别的request和limit是其所有容器的request和limit之和。
+2. Requests and Limits
+Pod可以指定reques......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-23
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -286,28 +284,29 @@ genericSchedu......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-scheduler/scheduleOne/">
+    <a href="/article/kubernetes/storage/kubernetes-volume/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-scheduler源码分析（三）之 scheduleOne
+            [Kubernetes] Kubernetes存储之Volumes 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            kube-scheduler源码分析（三）之 scheduleOne
+            
+[Kubernetes] Kubernetes存储之Volumes
 
-以下代码分析基于 kubernetes v1.12.0版本。
+Volumes
+1. volume概述
 
-本文主要分析/pkg/scheduler/中调度的基本流程。具体的预选调度逻辑、优选调度逻辑、节点抢占逻辑待后续再独立分析。
-scheduler的pkg代码目录结构如下：
-1234567891011121314151617181920212223242526......
+容器上的文件生命周期同容器的生命周期一致，即容器挂掉之后，容器将会以最初镜像中的文件系统内容启动，之前容器运行时产生的文件将会丢失。
+Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时候，对应的volume才会被删除。即Pod中的容器重启时，之前的文件仍可以......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-23
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -321,26 +320,28 @@ scheduler的pkg代码目录结构如下：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-scheduler/registerAlgorithmProvider/">
+    <a href="/article/kubernetes/storage/kubernetes-storage-class/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-scheduler源码分析（二）之 registerAlgorithmProvider
+            [Kubernetes] Kubernetes存储之StorageClass 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            kube-scheduler源码分析（二）之 registerAlgorithmProvider
+            
+[Kubernetes] Kubernetes存储之StorageClass
 
-以下代码分析基于 kubernetes v1.12.0 版本。
-
-此部分主要介绍调度中使用的各种调度算法，包括调度算法的注册部分。注册部分的代码主要在/pkg/scheduler/algorithmprovider中，具体的预选策略和优选策略的算法实现在/pkg/scheduler/algor......
+StorageClass
+1. StorageClass概述
+StorageClass提供了一种描述存储类（class）的方法，不同的class可能会映射到不同的服务质量等级和备份策略或其他策略等。
+StorageClass 对象中包含 provisioner、parameters 和 reclaimPolic......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-23
+            2017-08-13
         </p>
         <div class="tags">
             
@@ -354,27 +355,26 @@ scheduler的pkg代码目录结构如下：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-scheduler/NewSchedulerCommand/">
+    <a href="/article/kubernetes/operation/kubernetes-install-kubectl/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-scheduler源码分析（一）之 NewSchedulerCommand
+            [Kubernetes]  kubectl的安装 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            kube-scheduler源码分析（一）之 NewSchedulerCommand
+            
+[Kubernetes] kubernetes kubectl的安装
 
-以下代码分析基于 kubernetes v1.12.0 版本。
-
-scheduler的cmd 代码目录结构如下：
-12345678910111213141516171819kube-scheduler├── BUILD├── OWNERS├── app            # app的目录下主要为运行s......
+1. kubectl的安装
+1curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-23
+            2017-07-13
         </p>
         <div class="tags">
             
@@ -388,25 +388,31 @@ scheduler的cmd 代码目录结构如下：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/develop/kubernetes-client-go/">
+    <a href="/article/kubernetes/operation/kubernetes-basic-concepts/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之 client-go简介
+            [Kubernetes] Kubernetes基本概念
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            kubernetes之 client-go简介
-1. client-go简介
-1.1 client-go说明
-​	client-go是一个调用kubernetes集群资源对象API的客户端，即通过client-go实现对kubernetes集群中资源对象（包括deployment、service、ingress、replicaSet、pod、namespace、node等）的增删改查等操作。......
+            
+[Kubernetes] Kubernetes基本概念
+
+1. Master
+集群的控制节点，负责整个集群的管理和控制，kubernetes的所有的命令基本都是发给Master，由它来负责具体的执行过程。
+1.1. Master的组件
+
+kube-apiserver：资源增删改查的入口
+kube-controller-manager：资源对象的大总管
+kube-scheduler：负责资源......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-03
+            2017-01-13
         </p>
         <div class="tags">
             
@@ -420,33 +426,33 @@ scheduler的cmd 代码目录结构如下：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/develop/kubernetes-csi-provisioner/">
+    <a href="/article/kubernetes/docker/kubernetes-docker-network/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之Dynamic Provisioner
+            [Kubernetes] Docker的网络基础
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-本文主要分析csi-provisioner的源码，关于开发一个Dynamic Provisioner，具体可参考nfs-client-provisioner的源码分析
+Docker简介 Docker的网络基础
 
-1. Dynamic Provisioner
-1.1. Provisioner Interface
-开发Dynamic Provisioner需要实现Provisioner接口，该接口有两个方法，分别是：
-
-Provisi......
+1. Docker的网络基础
+1.1. Network Namespace
+不同的网络命名空间中，协议栈是独立的，完全隔离，彼此之间无法通信。同一个网络命名空间有独立的路由表和独立的Iptables/Netfilter来提供包的转发、NAT、IP包过滤等功能。
+1.1.1. 网络命名空间的实现
+将与网络协议栈相关的全局变量变成一个Net Name......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-03
+            2016-08-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -456,34 +462,34 @@ Provisi......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/develop/kubernetes-nfs-client-provisioner/">
+    <a href="/article/kubernetes/docker/kubernetes-docker-commands-principle/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之 nfs-client-provisioner简介
+            [Kubernetes] Docker简介
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] kubernetes之 nfs-client-provisioner简介
+Docker简介
 
+1. 基本概念
+1.1. image layer（镜像层）
+镜像可以看成是由多个镜像层叠加起来的一个文件系统，镜像层也可以简单理解为一个基本的镜像，而每个镜像层之间通过指针的形式进行叠加。
 
-如果要开发一个Dynamic Provisioner，需要使用到the helper library。
-
-1. Dynamic Provisioner
-1.1. Provisioner Interface
-开发Dynamic Provisioner需要实现Provisioner接口，该接......
+根据上图，镜像层的主要组成部分包括镜像层id，镜像层指针【指向父层】，元数据【layer metadata】包含了docker构建和运行的信息还有父层的层次信息。
+只读层和读写层【......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-03
+            2016-08-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -493,27 +499,35 @@ Provisi......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-kubelet/">
+    <a href="/article/kubernetes/docker/kubernetes-docker-architecture/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes核心原理（四）之kubelet
+            [Kubernetes]  Docker架构
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. kubelet简介
-在kubernetes集群中，每个Node节点都会启动kubelet进程，用来处理Master节点下发到本节点的任务，管理Pod和其中的容器。kubelet会在API Server上注册节点信息，定期向Master汇报节点资源使用情况，并通过cAdvisor监控容器和节点资源。可以把kubelet理解成【Server-Agent】架构中的agent，是Node上的p......
+            
+Docker架构
+
+1. Docker的总架构图
+
+docker是一个C/S模式的架构，后端是一个松耦合架构，模块各司其职。
+
+用户是使用Docker Client与Docker Daemon建立通信，并发送请求给后者。
+Docker Daemon作为Docker架构中的主体部分，首先提供Server的功能使其可以接受Docker Client的请求；
+Engine执行Docker内部的一......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-10-18
+            2016-08-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -523,29 +537,34 @@ Provisi......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-scheduler/">
+    <a href="/article/kubernetes/docker/kubernetes-dockerfile-usage/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes核心原理（三）之Scheduler
+            [Kubernetes] Dockerfile的说明
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. Scheduler简介
-Scheduler负责Pod调度。在整个系统中起&quot;承上启下&quot;作用，承上：负责接收Controller Manager创建的新的Pod，为其选择一个合适的Node；启下：Node上的kubelet接管Pod的生命周期。
-Scheduler：
-1）通过调度算法为待调度Pod列表的每个Pod从Node列表中选择一个最适合的Node，并将信息写入et......
+            
+Docker简介 Dockerfile的说明
+
+1. Dockerfile的说明
+dockerfile指令忽略大小写，建议大写，#作为注释，每行只支持一条指令，指令可以带多个参数。
+dockerfile指令分为构建指令和设置指令。
+
+构建指令：用于构建image，其指定的操作不会在运行image的容器中执行。
+设置指令：用于设置image的属性，其指定的操作会在运行image的容器中执行。......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-10-18
+            2016-08-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -560,12 +579,12 @@ Scheduler：
 <ul class="pager">
     
         <li class="previous">
-            <a href="/">&larr; Newer Posts</a>
+            <a href="/page/6/">&larr; Newer Posts</a>
         </li>
     
     
         <li class="next">
-            <a href="/archives/3/">Older Posts &rarr;</a>
+            <a href="/page/8/">Older Posts &rarr;</a>
         </li>
     
 </ul>
@@ -598,13 +617,11 @@ Scheduler：
     <div class="tags">
         
             
+            <a href="/tags/#Kubernetes" title="Kubernetes" rel="66">Kubernetes</a>
+            
         
             
             <a href="/tags/#Docker系列" title="Docker系列" rel="20">Docker系列</a>
-            
-        
-            
-            <a href="/tags/#Kubernetes" title="Kubernetes" rel="66">Kubernetes</a>
             
         
     </div>
@@ -664,15 +681,15 @@ Scheduler：
         </li>
       
         <li>
+          <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">[Kubernetes] kube-controller-manager源码分析（三）之 Informer机制</a>
+        </li>
+      
+        <li>
           <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">[Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand</a>
         </li>
       
         <li>
           <a href="/article/kubernetes/kube-controller-manager/deployment-controller/">[Kubernetes] kube-controller-manager源码分析（二）之 DeploymentController</a>
-        </li>
-      
-        <li>
-          <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">[Kubernetes] kube-controller-manager源码分析（三）之 Informer机制</a>
         </li>
       
         <li>

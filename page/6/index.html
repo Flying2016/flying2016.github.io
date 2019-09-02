@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://blog.sqlbtc.com/archives/6/">
+    <link rel="canonical" href="http://blog.sqlbtc.com/page/6/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -211,6 +211,82 @@
 
 <div class="post-preview">
 
+    <a href="/article/kubernetes/pod/kubernetes-pod-scheduler/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] Pod调度 
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] Pod调度
+
+Pod调度
+在kubernetes集群中，Pod（container）是应用的载体，一般通过RC、Deployment、DaemonSet、Job等对象来完成Pod的调度与自愈功能。
+1. RC、Deployment:全自动调度
+RC的功能即保持集群中始终运行着指定个数的Pod。
+在调度策略上主要有：
+
+系统内置调度算法[最优Node]
+NodeSe......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-10-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/pod/kubernetes-pod-operation/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] Pod操作 
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] Pod操作
+
+1. Pod伸缩
+k8s中RC的用来保持集群中始终运行指定数目的实例，通过RC的scale机制可以完成Pod的扩容和缩容（伸缩）。
+1.1. 手动伸缩（scale）
+1kubectl scale rc redis-slave --replicas=3
+1.2. 自动伸缩（HPA）
+Horizontal Pod Autoscaler（HPA）控制器用于......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-10-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/article/kubernetes/pod/kubernetes-pod-volume/">
         <h2 class="post-title">
                                  
@@ -390,24 +466,22 @@ Dynamic volume provisioning允许用户按需自动创建存储卷，这种方�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/resource/kubernetes-limit-range/">
+    <a href="/article/kubernetes/storage/kubernetes-persistent-volume-claim/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes资源配额之Pod限额 
+            [Kubernetes] Kubernetes存储之PersistentVolumeClaim 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes资源配额之Pod限额
+[Kubernetes] Kubernetes存储之PersistentVolumeClaim
 
-Pod限额（LimitRange）
-
-ResourceQuota对象是限制某个namespace下所有Pod(容器)的资源限额
-LimitRange对象是限制某个namespace单个Pod(容器)的资源限额
-
-LimitRange对象用来定义某个命名空间下某种资源对象的使用限额，其中资源对象包括：Pod、Contain......
+PersistentVolumeClaim
+1. PVC概述
+PersistentVolumeClaim（简称PVC）是用户存储的请求，PVC消耗PV的资源，可以请求特定的大小和访问模式，需要指定归属于某个Namespace，在同一个Namespace的Pod才可以指定对应的PVC。
+当需要不......
         </div>
     </a>
     
@@ -427,23 +501,24 @@ LimitRange对象用来定义某个命名空间下某种资源对象的使用限�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/resource/kubernetes-quality-of-service/">
+    <a href="/article/kubernetes/resource/kubernetes-limit-range/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes资源配额之资源服务质量 
+            [Kubernetes] Kubernetes资源配额之Pod限额 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes资源配额之资源服务质量
+[Kubernetes] Kubernetes资源配额之Pod限额
 
-Resource Quality of Service
-1. 资源QoS简介
-request值表示容器保证可被分配到资源。limit表示容器可允许使用的最大资源。Pod级别的request和limit是其所有容器的request和limit之和。
-2. Requests and Limits
-Pod可以指定reques......
+Pod限额（LimitRange）
+
+ResourceQuota对象是限制某个namespace下所有Pod(容器)的资源限额
+LimitRange对象是限制某个namespace单个Pod(容器)的资源限额
+
+LimitRange对象用来定义某个命名空间下某种资源对象的使用限额，其中资源对象包括：Pod、Contain......
         </div>
     </a>
     
@@ -503,78 +578,6 @@ ResourceQuota对象用来定义某个命名空间下所有资源的使用限额�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/article/kubernetes/storage/kubernetes-persistent-volume-claim/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Kubernetes存储之PersistentVolumeClaim 
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] Kubernetes存储之PersistentVolumeClaim
-
-PersistentVolumeClaim
-1. PVC概述
-PersistentVolumeClaim（简称PVC）是用户存储的请求，PVC消耗PV的资源，可以请求特定的大小和访问模式，需要指定归属于某个Namespace，在同一个Namespace的Pod才可以指定对应的PVC。
-当需要不......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-08-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/storage/kubernetes-persistent-volume/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Kubernetes存储之PersistentVolume 
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] Kubernetes存储之PersistentVolume
-
-PersistentVolume
-1. PV概述
-PersistentVolume（简称PV） 是 Volume 之类的卷插件，也是集群中的资源，但独立于Pod的生命周期（即不会因Pod删除而被删除），不归属于某个Namespace。
-2. PV和PVC的生命周期
-2.1. 配置（Provision）
-......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-08-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -582,12 +585,12 @@ PersistentVolume（简称PV） 是 Volume 之类的卷插件，也是集群中�
 <ul class="pager">
     
         <li class="previous">
-            <a href="/archives/5/">&larr; Newer Posts</a>
+            <a href="/page/5/">&larr; Newer Posts</a>
         </li>
     
     
         <li class="next">
-            <a href="/archives/7/">Older Posts &rarr;</a>
+            <a href="/page/7/">Older Posts &rarr;</a>
         </li>
     
 </ul>
@@ -620,13 +623,11 @@ PersistentVolume（简称PV） 是 Volume 之类的卷插件，也是集群中�
     <div class="tags">
         
             
+            <a href="/tags/#Kubernetes" title="Kubernetes" rel="66">Kubernetes</a>
+            
         
             
             <a href="/tags/#Docker系列" title="Docker系列" rel="20">Docker系列</a>
-            
-        
-            
-            <a href="/tags/#Kubernetes" title="Kubernetes" rel="66">Kubernetes</a>
             
         
     </div>
@@ -686,15 +687,15 @@ PersistentVolume（简称PV） 是 Volume 之类的卷插件，也是集群中�
         </li>
       
         <li>
+          <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">[Kubernetes] kube-controller-manager源码分析（三）之 Informer机制</a>
+        </li>
+      
+        <li>
           <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">[Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand</a>
         </li>
       
         <li>
           <a href="/article/kubernetes/kube-controller-manager/deployment-controller/">[Kubernetes] kube-controller-manager源码分析（二）之 DeploymentController</a>
-        </li>
-      
-        <li>
-          <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">[Kubernetes] kube-controller-manager源码分析（三）之 Informer机制</a>
         </li>
       
         <li>

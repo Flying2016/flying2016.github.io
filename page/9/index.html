@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://blog.sqlbtc.com/archives/5/">
+    <link rel="canonical" href="http://blog.sqlbtc.com/page/9/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -211,28 +211,30 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/monitor/kubernetes-cluster-monitoring/">
+    <a href="/article/k8s/docker/4.Dockerfile定制镜像/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes集群监控
+            [k8s系列] 04.Dockerfile定制镜像 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. 概述
-1.1. cAdvisor
-cAdvisor对Node机器上的资源及容器进行实时监控和性能数据采集，包括CPU使用情况、内存使用情况、网络吞吐量及文件系统使用情况，cAdvisor集成在Kubelet中，当kubelet启动时会自动启动cAdvisor，即一个cAdvisor仅对一台Node机器进行监控。kubelet的启动参数–cadvisor-port可以定义cAdvisor......
+            
+Dockerfile 定制镜像
+
+4. Dockerfile 定制镜像
+从docker commit的学习中，我们可以了解到，镜像的定制实际上就是定制每一层所添加的配置、文件等信息，但是命令毕竟只是命令，每次定制都得去重复执行这个命令，而且还不够直观，如果我们可以把每一层修改、安装、构建、操作的命令都写入一个脚本，用这个脚本来构建、定制镜像，那么这些问题不就都可以解决了吗？对的，这个脚本就......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-12-13
+            2016-05-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -242,30 +244,33 @@ cAdvisor对Node机器上的资源及容器进行实时监控和性能数据采�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/monitor/kubernetes-heapster-introduction/">
+    <a href="/article/k8s/docker/5.docker私有镜像仓库/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Heapster介绍
+            [k8s系列] 5.docker私有镜像仓库 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. heapster简介
-Heapster是容器集群监控和性能分析工具，天然的支持Kubernetes和CoreOS。
-Kubernetes有个出名的监控agent—cAdvisor。在每个kubernetes Node上都会运行cAdvisor，它会收集本机以及容器的监控数据(cpu,memory,filesystem,network,uptime)。
-2. heapster部署与配置
-......
+            
+私有镜像仓库
+
+5. 私有镜像仓库
+Docker Hub
+目前 Docker 官方维护了一个公共仓库Docker Hub，大部分需求都可以通过在 Docker Hub 中直接下载镜像来实现。如果你觉得拉取 Docker Hub 的镜像比较慢的话，我们可以配置一个镜像加速器：http://docker-cn.com/，当然国内大部分云厂商都提供了相应的加速器，简单配置即可。
+注册
+你可以在 ......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-12-13
+            2016-05-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -275,34 +280,31 @@ Kubernetes有个出名的监控agent—cAdvisor。在每个kubernetes Node上都
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/monitor/kubernetes-influxdb-introduction/">
+    <a href="/article/k8s/docker/7.Docker的网络模式/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Influxdb介绍
+            [k8s系列] 07.Docker的网络模式 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. InfluxDB简介
-InfluxDB是一个当下比较流行的时序数据库，InfluxDB使用 Go 语言编写，无需外部依赖，安装配置非常方便，适合构建大型分布式系统的监控系统。
-主要特色功能：
-1）基于时间序列，支持与时间有关的相关函数（如最大，最小，求和等）
-2）可度量性：你可以实时对大量数据进行计算
-3）基于事件：它支持任意的事件数据
-2. InfluxDB安装
-1）安装
-wget ......
+            
+Docker的网络模式
+
+7.Docker的网络模式
+Bridge模式
+当Docker进程启动时，会在主机上创建一个名为docker0的虚拟网桥，此主机上启动的Docker容器会连接到这个虚拟网桥上。虚拟网桥的工作方式和物理交换机类似，这样主机上的所有容器就通过交换机连在了一个二层网络中。从docker0子网中分配一个 IP 给容器使用，并设置 docker0 的 IP 地址为容器的默认网......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-12-13
+            2016-05-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -312,34 +314,31 @@ wget ......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/pod/kubernetes-pod/">
+    <a href="/article/k8s/docker/8.Docker-Compose/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Pod简介 
+            [k8s系列] 08.Docker Compose 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. Pod是什么（what）
-1.1. Pod概念
+            
+8.Docker Compose
 
-Pod是kubernetes集群中最小的部署和管理的基本单元，协同寻址，协同调度。
-Pod是一个或多个容器的集合，是一个或一组服务（进程）的抽象集合。
-Pod中可以共享网络和存储（可以简单理解为一个逻辑上的虚拟机，但并不是虚拟机）。
-Pod被创建后用一个UID来唯一标识，当Pod生命周期结束，被一个等价Pod替代，UID将重新生成。
-
-......
+8.Docker Compose
+介绍
+Docker Compose是Docker官方编排（Orchestration）项目之一，负责快速的部署分布式应用。其代码目前在https://github.com/docker/compose上开源。Compose 定位是 「定义和运行多个 Docker 容器的应用（Defining and running mu......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-10-13
+            2016-05-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -349,38 +348,32 @@ Pod被创建后用一个UID来唯一标识，当Pod生命周期结束，被一�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/pod/kubernetes-pod-configmap/">
+    <a href="/article/k8s/docker/9.Docker-Machine/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes之Pod的配置管理 
+            [k8s系列] 09.Docker Machine
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes之Pod的配置管理
+Docker Machine
 
-Pod的配置管理
-Kubernetes v1.2的版本提供统一的集群配置管理方案–ConfigMap。
-1. ConfigMap：容器应用的配置管理
-使用场景：
-
-生成为容器内的环境变量。
-设置容器启动命令的启动参数（需设置为环境变量）。
-以Volume的形式挂载为容器内部的文件或目录。
-
-ConfigMap以一个或多个k......
+9. Docker Machine
+Docker Machine是Docker官方编排（Orchestration）项目之一，负责在多种平台上快速安装 Docker 环境。
+Docker Machine项目基于Go语言实现，目前在Github上进行维护。
+Docker Machine是 Docker 官方提供的一个工具，它可以帮助我们在远程的机器上安装 Do......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-10-13
+            2016-05-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -390,194 +383,36 @@ ConfigMap以一个或多个k......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/pod/kubernetes-pod-definition/">
+    <a href="/article/k8s/docker/11.docker图形化管理和监控/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Pod的基本用法 
+            [k8s系列] 11.docker图形化管理和监控
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Pod的基本用法
+docker 图形化管理和监控
 
-1. Pod的基本用法
-1.1. 说明
+11.docker图形化管理和监控
+下面我们介绍几个可以用图形化的方式来管理Docker的工具。
 
-Pod实际上是容器的集合，在k8s中对运行容器的要求为：容器的主程序需要一直在前台运行，而不是后台运行。应用可以改造成前台运行的方式，例如Go语言的程序，直接运行二进制文件；java语言则运行主类；tomcat程序可以写个运行脚本。或者通过supervisor的进程管理工具，即supervisor在前台......
+Shipyard：https://github.com/shipyard/shipyard（已停止维护）
+
+Portainer
+Portainer（基于 Go）是一个轻量级的管理界面，可让您轻松管理Docker主机或Swarm集群。
+Portainer的使用......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-10-13
+            2016-05-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/pod/kubernetes-pod-lifecycle/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Pod生命周期 
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] Pod生命周期
-
-1. Pod phase
-Pod的phase是Pod生命周期中的简单宏观描述，定义在Pod的PodStatus对象的phase 字段中。
-phase有以下几种值：
-
-
-
-状态值
-说明
-
-
-
-
-挂起（Pending）
-Pod 已被 Kubernetes 系统接受，但有一个或者多个容器镜像尚未创建。等待时间包括调度 Pod 的时间和通过网络下载镜像的......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-10-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/pod/kubernetes-pod-operation/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Pod操作 
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] Pod操作
-
-1. Pod伸缩
-k8s中RC的用来保持集群中始终运行指定数目的实例，通过RC的scale机制可以完成Pod的扩容和缩容（伸缩）。
-1.1. 手动伸缩（scale）
-1kubectl scale rc redis-slave --replicas=3
-1.2. 自动伸缩（HPA）
-Horizontal Pod Autoscaler（HPA）控制器用于......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-10-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/pod/kubernetes-pod-probe/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Pod健康检查 
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] Pod健康检查
-
-Pod健康检查
-Pod的健康状态由两类探针来检查：LivenessProbe和ReadinessProbe。
-1. 探针类型
-1. livenessProbe(存活探针)
-
-表明容器是否正在运行。
-如果存活探测失败，则 kubelet 会杀死容器，并且容器将受到其 重启策略的影响。
-如果容器不提供存活探针，则默认状态为 Success。
-
-2. ......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-10-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/pod/kubernetes-pod-scheduler/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Pod调度 
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] Pod调度
-
-Pod调度
-在kubernetes集群中，Pod（container）是应用的载体，一般通过RC、Deployment、DaemonSet、Job等对象来完成Pod的调度与自愈功能。
-1. RC、Deployment:全自动调度
-RC的功能即保持集群中始终运行着指定个数的Pod。
-在调度策略上主要有：
-
-系统内置调度算法[最优Node]
-NodeSe......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-10-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -592,13 +427,9 @@ NodeSe......
 <ul class="pager">
     
         <li class="previous">
-            <a href="/archives/4/">&larr; Newer Posts</a>
+            <a href="/page/8/">&larr; Newer Posts</a>
         </li>
     
-    
-        <li class="next">
-            <a href="/archives/6/">Older Posts &rarr;</a>
-        </li>
     
 </ul>
 
@@ -630,13 +461,11 @@ NodeSe......
     <div class="tags">
         
             
+            <a href="/tags/#Kubernetes" title="Kubernetes" rel="66">Kubernetes</a>
+            
         
             
             <a href="/tags/#Docker系列" title="Docker系列" rel="20">Docker系列</a>
-            
-        
-            
-            <a href="/tags/#Kubernetes" title="Kubernetes" rel="66">Kubernetes</a>
             
         
     </div>
@@ -696,15 +525,15 @@ NodeSe......
         </li>
       
         <li>
+          <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">[Kubernetes] kube-controller-manager源码分析（三）之 Informer机制</a>
+        </li>
+      
+        <li>
           <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">[Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand</a>
         </li>
       
         <li>
           <a href="/article/kubernetes/kube-controller-manager/deployment-controller/">[Kubernetes] kube-controller-manager源码分析（二）之 DeploymentController</a>
-        </li>
-      
-        <li>
-          <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">[Kubernetes] kube-controller-manager源码分析（三）之 Informer机制</a>
         </li>
       
         <li>

@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://blog.sqlbtc.com/archives/4/">
+    <link rel="canonical" href="http://blog.sqlbtc.com/page/8/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -211,37 +211,33 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-kubectl-commands/">
+    <a href="/article/kubernetes/docker/code-analysis/code-analysis-of-docker-client/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubectl命令介绍
+            [Kubernetes] Docker Client
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] kubernetes  kubectl命令介绍
+[Kubernetes] Docker Client
 
-1. kubectl命令介绍
-kubectl的命令语法
-1kubectl [command] [TYPE] [NAME] [flags]
-其中command，TYPE，NAME，和flags分别是：
+1. 创建Docker Client
+​    Docker是一个client/server的架构，通过二进制文件docker创建Docker客户端将请求类型与参数发送给Docker Server，Docker Server具体执行命令调用。
+Docker Client运行流程图如下：
 
-
-command: 指定要在一个或多个资源进行操作，例如create，get，describe，delete。
-
-......
+说明：本文分析的代码为Docker 1.2.0......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-09-13
+            2016-08-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -251,33 +247,32 @@ command: 指定要在一个或多个资源进行操作，例如create，get，de
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/etcd/kubernetes-etcdctl-v3/">
+    <a href="/article/kubernetes/docker/code-analysis/code-analysis-of-docker-daemon/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之etcdctl命令安装
+            [Kubernetes] Docker Daemon
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] kubernetes之etcdctl安装
+[Kubernetes] Docker Daemon
 
+1. Docker Daemon架构示意图
 
-etcdctl的v3版本与v2版本使用命令有所不同，本文介绍etcdctl v3版本的命令工具的使用方式。
-
-1. etcdctl的安装
-etcdctl的二进制文件可以在 github.com/coreos/etcd/releases 选择对应的版本下载，例如可以执行以下install_etcdctl.sh的脚本，修改......
+Docker Daemon是Docker架构中运行在后台的守护进程，大致可以分为Docker Server、Engine和Job三部分。
+Docker Daemon可以认为是通过Docker Server模块接受Docker Client的请求，并在Engine中处理请求，然后根据请求类型......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-09-12
+            2016-08-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -287,31 +282,31 @@ etcdctl的二进制文件可以在 github.com/coreos/etcd/releases 选择对应�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/etcd/kubernetes-etcdctl-v2/">
+    <a href="/article/kubernetes/docker/code-analysis/code-analysis-of-docker-server/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之etcdctl命令工具介绍
+            [Kubernetes] Docker Server
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] kubernetes之etcdctl介绍
+[Kubernetes] Docker Server
 
-1. etcdctl介绍
-etcdctl是一个命令行的客户端，它提供了一下简洁的命令，可理解为命令工具集，可以方便我们在对服务进行测试或者手动修改数据库内容。etcdctl与其他xxxctl的命令原理及操作类似（例如kubectl，systemctl）。
-用法：etcdctl [global options] comma......
+1. Docker Server创建流程
+Docker Server是Daemon Server的重要组成部分，功能：接收Docker Client发送的请求，并按照相应的路由规则实现请求的路由分发，最终将请求处理的结果返回给Docker Client。
+Docker Daemon启动，在mainDaemon()运行的最后创建并运行s......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-09-11
+            2016-08-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -321,37 +316,36 @@ etcdctl是一个命令行的客户端，它提供了一下简洁的命令，可�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-objects/">
+    <a href="/article/kubernetes/docker/kubernetes-install-docker/">
         <h2 class="post-title">
                                  
-            [Kubernetes] 理解kubernetes对象
+            [Kubernetes] Docker安装
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] 理解kubernetes对象
+Docker安装
 
-1. kubernetes对象概述
-kubernetes中的对象是一些持久化的实体，可以理解为是对集群状态的描述或期望。
-包括：
+1. CentOS 安装Docker
 
-集群中哪些node上运行了哪些容器化应用
-应用的资源是否满足使用
-应用的执行策略，例如重启策略、更新策略、容错策略等。
+建议使用centos7
 
-kubernetes的对象是一种意图（期望）的记录，kubernetes会始终保......
+1.1. 安装Docker
+1.1.1. 卸载旧版本
+旧版本的Docker命名为docker或docker-engine，如果有安装旧版本，先卸载旧版本
+12345678910$ sudo yum remove -y docker \                  docker-client \   ......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-09-01
+            2016-08-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -361,32 +355,40 @@ kubernetes的对象是一种意图（期望）的记录，kubernetes会始终保
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-safely-drain-node/">
+    <a href="/article/k8s/docker/06.docker数据共享与持久化/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes安全迁移节点 
+            [k8s系列] 06.docker数据共享与持久化 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes安全迁移节点
+数据共享与持久化
 
-1. 迁移Pod
-1.1. 设置节点是否可调度
-确定需要迁移和被迁移的节点，将不允许被迁移的节点设置为不可调度。
-12345678# 查看节点kubectl get nodes# 设置节点为不可调度kubectl cordon &lt;NodeName&gt;# 设置节点为可调度kubectl uncordon &lt;Node......
+6. 数据共享与持久化
+这一节介绍如何在 Docker 内部以及容器之间管理数据，在容器中管理数据主要有两种方式：
+
+数据卷（Data Volumes）
+挂载主机目录 (Bind mounts)
+
+数据卷
+数据卷是一个可供一个或多个容器使用的特殊目录，它绕过UFS，可以提供很多有用的特性：
+
+数据卷 可以在容器之间共享和重用
+对 数据卷 的修改会立马生效
+对 数据卷 的......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-08-22
+            2016-05-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -396,56 +398,32 @@ kubernetes的对象是一种意图（期望）的记录，kubernetes会始终保
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-install-k8s-by-kubespray/">
+    <a href="/article/k8s/docker/10.Docker-Swarm/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes install 
+            [k8s系列] 10.Docker Swarm
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] kubernetes install
+Docker Swarm
 
-1. 环境准备
-1.1. 部署机器
-
-以下机器为虚拟机
-
-
-
-
-机器IP
-主机名
-角色
-系统版本
-备注
-
-
-
-
-172.16.94.140
-kube-master01
-k8s master
-Centos 4.17.14
-内存：3G
-
-
-172.16.94.141
-kube-node1
-k8s node
-Centos 4.17......
+10.Docker Swarm
+基本概念
+Swarm是使用SwarmKit构建的 Docker 引擎内置（原生）的集群管理和编排工具。Docker Swarm是 Docker 官方三剑客项目之一，提供 Docker 容器集群服务，是 Docker 官方对容器云生态进行支持的核心方案。
+使用它，用户可以将多个 Docker 主机封装为单个大型的虚拟 Docker ......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-08-13
+            2016-05-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -455,33 +433,30 @@ Centos 4.17......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-install-k8s-by-minikube/">
+    <a href="/article/k8s/docker/12.Docker的多阶段构建/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes install minikube 
+            [k8s系列] 12.Docker的多阶段构建
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] kubernetes install minikube
+Docker的多阶段构建
 
-
-以下内容基于Linux系统，特别为Ubuntu系统
-
-1. 安装kubectl
-1curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kube......
+12.Docker的多阶段构建
+Docker的口号是 Build,Ship,and Run Any App,Anywhere，在我们使用 Docker 的大部分时候，的确能感觉到其优越性，但是往往在我们 Build 一个应用的时候，是将我们的源代码也构建进去的，这对于类似于 golang 这样的编译型语言肯定是不行的，因为实际运行的时候我只需要把最终构建的二进制......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-07-13
+            2016-05-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -491,44 +466,33 @@ Centos 4.17......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-12-factor/">
+    <a href="/article/k8s/docker/13.Dockerfile最佳实践/">
         <h2 class="post-title">
-            
-                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
-                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
-                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
-                <font color=#F4711F>置顶</font>
-                <!-- <font color=#F89E8C>置顶</font>  -->
-                <!-- <font color=#1CB7ED>置顶</font>  -->
                                  
-            [Kubernetes] 12-Factor(要素)
+            [k8s系列] 13. Dockerfile最佳实践
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes]  12-Factor(要素)
+
+Dockerfile最佳实践
 
 
-以下主要介绍PaaS平台设计架构中使用到的方法论，统称为12-Factor(要素)
-
-简介
-软件通常会作为一种服务来交付，即软件即服务(SaaS)。12-Factor原则为构建SaaS应用提供了以下的方法论：
-
-使用标准化流程自动配置，减少开发者的学习成本。
-和操作系统解耦，使其可以在各个系统间提供最大的移植性。
-适合部署在现代的......
+13. Dockerfile最佳实践
+Docker官方关于Dockerfile最佳实践原文链接地址：https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+Docker 可以通过从 Dockerfile 包含所有命令的文本文件中读取指令自动构建镜像，以便构建给定镜......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-06-23
+            2016-05-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -538,31 +502,29 @@ Centos 4.17......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-nodeselector-and-taint/">
+    <a href="/article/k8s/docker/2.k8s-Docker-info/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes指定节点调度与隔离
+            [k8s系列] 02.Docker简介 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. NodeSelector
-1.1. 概念
-如果需要限制Pod到指定的Node上运行，则可以给Node打标签并给Pod配置NodeSelector。
-1.2. 使用方式
-1.2.1. 给Node打标签
-12345678910111213# get node的namekubectl get nodes# 设置Labelkubectl label nodes &lt;node-name&gt......
+            2.Docker 简介
+什么是 Docker？
+Docker的英文翻译是“搬运工”的意思，他搬运的东西就是我们常说的集装箱Container，Container 里面装的是任意类型的 App，我们的开发人员可以通过 Docker 将App 变成一种标准化的、可移植的、自管理的组件，我们可以在任何主流的操作系统中开发、调试和运行。
+从概念上来看 Docker 和我们传统的虚拟机比较类似，只是更......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-06-23
+            2016-05-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -572,30 +534,32 @@ Centos 4.17......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/monitor/kubernetes-cadvisor-introduction/">
+    <a href="/article/k8s/docker/3.docker镜像和容器的基本操作/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之cAdvisor介绍
+            [k8s系列] 03.docker镜像和容器的基本操作 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] kubernetes之cAdvisor介绍
+            3. 镜像和容器的基本操作
+这节课给大家讲解Docker镜像和容器的一些基本操作方法。
+获取镜像
+之前我们提到过 Docker 官方提供了一个公共的镜像仓库：Docker Hub，我们就可以从这上面获取镜像，获取镜像的命令：docker pull，格式为：
+1$ docker pull [选项] [Docker Registry 地址[:端口]/]仓库名[:标签]
 
-1. cAdvisor简介
-​	cAdvisor对Node机器上的资源及容器进行实时监控和性能数据采集，包括CPU使用情况、内存使用情况、网络吞吐量及文件系统使用情况，cAdvisor集成在Kubelet中，当kubelet启动时会自动启动cAdvisor，即一个cAdvisor仅对一台Node机器进行监控。kubel......
+Docker 镜像仓库地......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-12-13
+            2016-05-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
             
         </div>
     
@@ -610,12 +574,12 @@ Centos 4.17......
 <ul class="pager">
     
         <li class="previous">
-            <a href="/archives/3/">&larr; Newer Posts</a>
+            <a href="/page/7/">&larr; Newer Posts</a>
         </li>
     
     
         <li class="next">
-            <a href="/archives/5/">Older Posts &rarr;</a>
+            <a href="/page/9/">Older Posts &rarr;</a>
         </li>
     
 </ul>
@@ -648,13 +612,11 @@ Centos 4.17......
     <div class="tags">
         
             
+            <a href="/tags/#Kubernetes" title="Kubernetes" rel="66">Kubernetes</a>
+            
         
             
             <a href="/tags/#Docker系列" title="Docker系列" rel="20">Docker系列</a>
-            
-        
-            
-            <a href="/tags/#Kubernetes" title="Kubernetes" rel="66">Kubernetes</a>
             
         
     </div>
@@ -714,15 +676,15 @@ Centos 4.17......
         </li>
       
         <li>
+          <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">[Kubernetes] kube-controller-manager源码分析（三）之 Informer机制</a>
+        </li>
+      
+        <li>
           <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">[Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand</a>
         </li>
       
         <li>
           <a href="/article/kubernetes/kube-controller-manager/deployment-controller/">[Kubernetes] kube-controller-manager源码分析（二）之 DeploymentController</a>
-        </li>
-      
-        <li>
-          <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">[Kubernetes] kube-controller-manager源码分析（三）之 Informer机制</a>
         </li>
       
         <li>

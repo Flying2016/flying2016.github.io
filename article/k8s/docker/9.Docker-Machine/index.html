@@ -224,18 +224,18 @@
 <p>Docker Machine 可以在多种操作系统平台上安装，包括 Linux、macOS，以及 Windows。</p>
 <h3 id="macos-windows">macOS、Windows</h3>
 <p>Docker for Mac、Docker for Windows 自带 docker-machine 二进制包，安装之后即可使用。查看版本信息。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-machine -v</span></span><br><span class="line">docker-machine version 0.13.0, build 9ba6da9</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker-machine -v</span><br><span class="line">docker-machine version 0.13.0, build 9ba6da9</span><br></pre></td></tr></table></figure>
 <h3 id="linux">Linux</h3>
 <p>在 Linux 上的也安装十分简单，从<a href="https://github.com/docker/machine/releases" target="_blank" rel="noopener">官方 GitHub Release</a>处直接下载编译好的二进制文件即可。<br>
 例如，在 Linux 64 位系统上直接下载对应的二进制包。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo curl -L https://github.com/docker/machine/releases/download/v0.13.0/docker-machine-`uname -s`-`uname -m` &gt; /usr/<span class="built_in">local</span>/bin/docker-machine</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo chmod +x /usr/<span class="built_in">local</span>/bin/docker-machine</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo curl -L https://github.com/docker/machine/releases/download/v0.13.0/docker-machine-`uname -s`-`uname -m` &gt; /usr/local/bin/docker-machine</span><br><span class="line"><span class="meta">$</span> sudo chmod +x /usr/local/bin/docker-machine</span><br></pre></td></tr></table></figure>
 <p>完成后，查看版本信息。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-machine -v</span></span><br><span class="line">docker-machine version 0.13.0, build 9ba6da9</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker-machine -v</span><br><span class="line">docker-machine version 0.13.0, build 9ba6da9</span><br></pre></td></tr></table></figure>
 <h2 id="使用">使用</h2>
 <p>Docker Machine 支持多种后端驱动，包括虚拟机、本地主机和云平台等。</p>
 <h3 id="创建本地主机实例virtualbox-驱动">创建本地主机实例Virtualbox 驱动</h3>
 <p>使用<code>virtualbox</code>类型的驱动，创建一台 Docker 主机，命名为 test。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-machine create -d virtualbox <span class="built_in">test</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker-machine create -d virtualbox test</span><br></pre></td></tr></table></figure>
 <p>你也可以在创建时加上如下参数，来配置主机或者主机上的 Docker。</p>
 <ul>
 <li><strong>–engine-opt dns=114.114.114.114</strong>配置 Docker 的默认 DNS</li>
@@ -244,25 +244,25 @@
 <li><strong>–virtualbox-cpu-count 2</strong> 配置主机 CPU</li>
 </ul>
 <p>更多参数请使用<code>docker-machine create --driver virtualbox --help</code>命令查看。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-machine create -d generic \</span></span><br><span class="line">    --generic-ip-address=123.59.188.19 \</span><br><span class="line">    --generic-ssh-user=root \</span><br><span class="line">    --generic-ssh-key ~/.ssh/id_rsa \</span><br><span class="line">    dev</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker-machine create -d generic \</span><br><span class="line">    --generic-ip-address=123.59.188.19 \</span><br><span class="line">    --generic-ssh-user=root \</span><br><span class="line">    --generic-ssh-key ~/.ssh/id_rsa \</span><br><span class="line">    dev</span><br></pre></td></tr></table></figure>
 <h3 id="macos-xhyve-驱动">MacOS xhyve 驱动</h3>
 <p><code>xhyve</code> 驱动 GitHub: <a href="https://github.com/zchee/docker-machine-driver-xhyve%EF%BC%8C" target="_blank" rel="noopener">https://github.com/zchee/docker-machine-driver-xhyve，</a><code>xhyve</code>是<code>MacOS</code>上轻量化的虚拟引擎，使用其创建的 Docker Machine 较 VirtualBox 驱动创建的运行效率要高。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> brew install docker-machine-driver-xhyve</span></span><br><span class="line">......</span><br><span class="line"><span class="meta">$</span><span class="bash"> docker-machine create \</span></span><br><span class="line">      -d xhyve \</span><br><span class="line">      # --xhyve-boot2docker-url ~/.docker/machine/cache/boot2docker.iso \</span><br><span class="line">      --engine-opt dns=114.114.114.114 \</span><br><span class="line">      --engine-registry-mirror https://registry.docker-cn.com \</span><br><span class="line">      --xhyve-memory-size 2048 \</span><br><span class="line">      --xhyve-rawdisk \</span><br><span class="line">      --xhyve-cpu-count 2 \</span><br><span class="line">      xhyve</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> brew install docker-machine-driver-xhyve</span><br><span class="line">......</span><br><span class="line"><span class="meta">$</span> docker-machine create \</span><br><span class="line">      -d xhyve \</span><br><span class="line">      # --xhyve-boot2docker-url ~/.docker/machine/cache/boot2docker.iso \</span><br><span class="line">      --engine-opt dns=114.114.114.114 \</span><br><span class="line">      --engine-registry-mirror https://registry.docker-cn.com \</span><br><span class="line">      --xhyve-memory-size 2048 \</span><br><span class="line">      --xhyve-rawdisk \</span><br><span class="line">      --xhyve-cpu-count 2 \</span><br><span class="line">      xhyve</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>注意：非首次创建时建议加上**–xhyve-boot2docker-url ~/.docker/machine/cache/boot2docker.iso**参数，避免每次创建时都从 GitHub 下载 ISO 镜像。</p>
 </blockquote>
 <p>更多参数请使用<code>docker-machine create --driver xhyve --help</code>命令查看。</p>
 <h3 id="windows-10">Windows 10</h3>
 <p><code>Windows 10</code>安装<code>Docker for Windows</code>之后不能再安装<code>VirtualBox</code>，也就不能使用 virtualbox 驱动来创建 Docker Machine，我们可以选择使用 hyperv 驱动。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-machine create --driver hyperv vm</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker-machine create --driver hyperv vm</span><br></pre></td></tr></table></figure>
 <p>更多参数请使用<code>docker-machine create --driver hyperv --help</code>命令查看。</p>
 <h2 id="使用介绍">使用介绍</h2>
 <p>创建好主机之后，查看主机</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-machine ls</span></span><br><span class="line"></span><br><span class="line">NAME      ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER       ERRORStest      -        virtualbox   Running   tcp://192.168.99.187:2376           v17.10.0-ce</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker-machine ls</span><br><span class="line"></span><br><span class="line">NAME      ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER       ERRORStest      -        virtualbox   Running   tcp://192.168.99.187:2376           v17.10.0-ce</span><br></pre></td></tr></table></figure>
 <p>创建主机成功后，可以通过<code>env</code>命令来让后续操作对象都是目标主机。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-machine env <span class="built_in">test</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker-machine env test</span><br></pre></td></tr></table></figure>
 <p>后续根据提示在命令行输入命令之后就可以操作 test 主机。也可以通过<code>SSH</code>登录到主机。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-machine ssh <span class="built_in">test</span></span></span><br><span class="line"></span><br><span class="line">docker@test:~$ docker --version</span><br><span class="line">Docker version 17.10.0-ce, build f4ffd25</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker-machine ssh test</span><br><span class="line"></span><br><span class="line">docker@test:~$ docker --version</span><br><span class="line">Docker version 17.10.0-ce, build f4ffd25</span><br></pre></td></tr></table></figure>
 <p>连接到主机之后你就可以在其上使用 Docker 了。</p>
 <h3 id="官方支持驱动">官方支持驱动</h3>
 <p>通过<code>-d</code>选项可以选择支持的驱动类型：</p>
@@ -309,7 +309,7 @@
 <li>help 输出帮助信息</li>
 </ul>
 <p>每个命令，又带有不同的参数，可以通过如下命令来查看具体的用法：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-machine COMMAND --<span class="built_in">help</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker-machine COMMAND --help</span><br></pre></td></tr></table></figure>
 <hr>
 
                 
@@ -322,6 +322,10 @@
                             <a href="/article/k8s/docker/8.Docker-Compose/" data-toggle="tooltip" data-placement="top" title="[k8s系列] 08.Docker Compose ">&larr; Previous Post</a>
                         </li>
                     
+                    
+                        <li class="next">
+                            <a href="/article/k8s/docker/11.docker图形化管理和监控/" data-toggle="tooltip" data-placement="top" title="[k8s系列] 11.docker图形化管理和监控">Next Post &rarr;</a>
+                        </li>
                     
                 </ul>
 
