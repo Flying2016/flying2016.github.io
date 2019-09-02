@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          [k8s系列] 09.Docker Machine - 黄国辉 | Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://blog.sqlbtc.com/article/k8s/docker/9.Docker-Machine/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_bg.jpg')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+                            
+                        </div>
+                        <h1>[k8s系列] 09.Docker Machine</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 黄国辉 on
+                            2016-05-13
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">黄国辉</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">文章列表</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>Docker Machine</p>
+</blockquote>
+<h1 id="9-docker-machine">9. Docker Machine</h1>
+<p><a href="https://docs.docker.com/machine/overview/" target="_blank" rel="noopener"><code>Docker Machine</code></a>是<code>Docker</code>官方编排（Orchestration）项目之一，负责在多种平台上快速安装 Docker 环境。</p>
+<p><code>Docker Machine</code>项目基于<code>Go</code>语言实现，目前在<a href="https://github.com/docker/machine" target="_blank" rel="noopener">Github</a>上进行维护。</p>
+<p><code>Docker Machine</code>是 Docker 官方提供的一个工具，它可以帮助我们在远程的机器上安装 Docker，或者在虚拟机 host 上直接安装虚拟机并在虚拟机中安装 Docker。我们还可以通过 <code>docker-machine</code>命令来管理这些虚拟机和 Docker。</p>
+<p>本章将介绍 Docker Machine 的安装及使用。</p>
+<h2 id="安装">安装</h2>
+<p>Docker Machine 可以在多种操作系统平台上安装，包括 Linux、macOS，以及 Windows。</p>
+<h3 id="macos-windows">macOS、Windows</h3>
+<p>Docker for Mac、Docker for Windows 自带 docker-machine 二进制包，安装之后即可使用。查看版本信息。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-machine -v</span></span><br><span class="line">docker-machine version 0.13.0, build 9ba6da9</span><br></pre></td></tr></table></figure>
+<h3 id="linux">Linux</h3>
+<p>在 Linux 上的也安装十分简单，从<a href="https://github.com/docker/machine/releases" target="_blank" rel="noopener">官方 GitHub Release</a>处直接下载编译好的二进制文件即可。<br>
+例如，在 Linux 64 位系统上直接下载对应的二进制包。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo curl -L https://github.com/docker/machine/releases/download/v0.13.0/docker-machine-`uname -s`-`uname -m` &gt; /usr/<span class="built_in">local</span>/bin/docker-machine</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo chmod +x /usr/<span class="built_in">local</span>/bin/docker-machine</span></span><br></pre></td></tr></table></figure>
+<p>完成后，查看版本信息。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-machine -v</span></span><br><span class="line">docker-machine version 0.13.0, build 9ba6da9</span><br></pre></td></tr></table></figure>
+<h2 id="使用">使用</h2>
+<p>Docker Machine 支持多种后端驱动，包括虚拟机、本地主机和云平台等。</p>
+<h3 id="创建本地主机实例virtualbox-驱动">创建本地主机实例Virtualbox 驱动</h3>
+<p>使用<code>virtualbox</code>类型的驱动，创建一台 Docker 主机，命名为 test。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-machine create -d virtualbox <span class="built_in">test</span></span></span><br></pre></td></tr></table></figure>
+<p>你也可以在创建时加上如下参数，来配置主机或者主机上的 Docker。</p>
+<ul>
+<li><strong>–engine-opt dns=114.114.114.114</strong>配置 Docker 的默认 DNS</li>
+<li><strong>–engine-registry-mirror <a href="https://registry.docker-cn.com" target="_blank" rel="noopener">https://registry.docker-cn.com</a></strong>配置 Docker 的仓库镜像</li>
+<li><strong>–virtualbox-memory 2048</strong> 配置主机内存</li>
+<li><strong>–virtualbox-cpu-count 2</strong> 配置主机 CPU</li>
+</ul>
+<p>更多参数请使用<code>docker-machine create --driver virtualbox --help</code>命令查看。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-machine create -d generic \</span></span><br><span class="line">    --generic-ip-address=123.59.188.19 \</span><br><span class="line">    --generic-ssh-user=root \</span><br><span class="line">    --generic-ssh-key ~/.ssh/id_rsa \</span><br><span class="line">    dev</span><br></pre></td></tr></table></figure>
+<h3 id="macos-xhyve-驱动">MacOS xhyve 驱动</h3>
+<p><code>xhyve</code> 驱动 GitHub: <a href="https://github.com/zchee/docker-machine-driver-xhyve%EF%BC%8C" target="_blank" rel="noopener">https://github.com/zchee/docker-machine-driver-xhyve，</a><code>xhyve</code>是<code>MacOS</code>上轻量化的虚拟引擎，使用其创建的 Docker Machine 较 VirtualBox 驱动创建的运行效率要高。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> brew install docker-machine-driver-xhyve</span></span><br><span class="line">......</span><br><span class="line"><span class="meta">$</span><span class="bash"> docker-machine create \</span></span><br><span class="line">      -d xhyve \</span><br><span class="line">      # --xhyve-boot2docker-url ~/.docker/machine/cache/boot2docker.iso \</span><br><span class="line">      --engine-opt dns=114.114.114.114 \</span><br><span class="line">      --engine-registry-mirror https://registry.docker-cn.com \</span><br><span class="line">      --xhyve-memory-size 2048 \</span><br><span class="line">      --xhyve-rawdisk \</span><br><span class="line">      --xhyve-cpu-count 2 \</span><br><span class="line">      xhyve</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：非首次创建时建议加上**–xhyve-boot2docker-url ~/.docker/machine/cache/boot2docker.iso**参数，避免每次创建时都从 GitHub 下载 ISO 镜像。</p>
+</blockquote>
+<p>更多参数请使用<code>docker-machine create --driver xhyve --help</code>命令查看。</p>
+<h3 id="windows-10">Windows 10</h3>
+<p><code>Windows 10</code>安装<code>Docker for Windows</code>之后不能再安装<code>VirtualBox</code>，也就不能使用 virtualbox 驱动来创建 Docker Machine，我们可以选择使用 hyperv 驱动。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-machine create --driver hyperv vm</span></span><br></pre></td></tr></table></figure>
+<p>更多参数请使用<code>docker-machine create --driver hyperv --help</code>命令查看。</p>
+<h2 id="使用介绍">使用介绍</h2>
+<p>创建好主机之后，查看主机</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-machine ls</span></span><br><span class="line"></span><br><span class="line">NAME      ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER       ERRORStest      -        virtualbox   Running   tcp://192.168.99.187:2376           v17.10.0-ce</span><br></pre></td></tr></table></figure>
+<p>创建主机成功后，可以通过<code>env</code>命令来让后续操作对象都是目标主机。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-machine env <span class="built_in">test</span></span></span><br></pre></td></tr></table></figure>
+<p>后续根据提示在命令行输入命令之后就可以操作 test 主机。也可以通过<code>SSH</code>登录到主机。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-machine ssh <span class="built_in">test</span></span></span><br><span class="line"></span><br><span class="line">docker@test:~$ docker --version</span><br><span class="line">Docker version 17.10.0-ce, build f4ffd25</span><br></pre></td></tr></table></figure>
+<p>连接到主机之后你就可以在其上使用 Docker 了。</p>
+<h3 id="官方支持驱动">官方支持驱动</h3>
+<p>通过<code>-d</code>选项可以选择支持的驱动类型：</p>
+<ul>
+<li>amazonec2</li>
+<li>azure</li>
+<li>digitalocean</li>
+<li>exoscale</li>
+<li>generic</li>
+<li>google</li>
+<li>hyperv</li>
+<li>none</li>
+<li>openstack</li>
+<li>rackspace</li>
+<li>softlayer</li>
+<li>virtualbox</li>
+<li>vmwarevcloudair</li>
+<li>vmwarefusion</li>
+<li>vmwarevsphere</li>
+</ul>
+<h3 id="操作命令">操作命令</h3>
+<ul>
+<li>active 查看活跃的 Docker 主机</li>
+<li>config 输出连接的配置信息</li>
+<li>create 创建一个 Docker 主机</li>
+<li>env 显示连接到某个主机需要的环境变量</li>
+<li>inspect 输出主机更多信息</li>
+<li>ip 获取主机地址</li>
+<li>kill 停止某个主机</li>
+<li>ls 列出所有管理的主机</li>
+<li>provision 重新设置一个已存在的主机</li>
+<li>regenerate-certs 为某个主机重新生成 TLS 认证信息</li>
+<li>restart 重启主机</li>
+<li>rm 删除某台主机</li>
+<li>ssh SSH 到主机上执行命令</li>
+<li>scp 在主机之间复制文件</li>
+<li>mount 挂载主机目录到本地</li>
+<li>start 启动一个主机</li>
+<li>status 查看主机状态</li>
+<li>stop 停止一个主机</li>
+<li>upgrade 更新主机 Docker 版本为最新</li>
+<li>url 获取主机的 URL</li>
+<li>version 输出 docker-machine 版本信息</li>
+<li>help 输出帮助信息</li>
+</ul>
+<p>每个命令，又带有不同的参数，可以通过如下命令来查看具体的用法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-machine COMMAND --<span class="built_in">help</span></span></span><br></pre></td></tr></table></figure>
+<hr>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/k8s/docker/8.Docker-Compose/" data-toggle="tooltip" data-placement="top" title="[k8s系列] 08.Docker Compose ">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#9-docker-machine"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">9. Docker Machine</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#安装"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x5B89;&#x88C5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#macos-windows"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">macOS&#x3001;Windows</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#linux"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">Linux</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#使用"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4F7F;&#x7528;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#创建本地主机实例virtualbox-驱动"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">&#x521B;&#x5EFA;&#x672C;&#x5730;&#x4E3B;&#x673A;&#x5B9E;&#x4F8B;Virtualbox &#x9A71;&#x52A8;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#macos-xhyve-驱动"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text">MacOS xhyve &#x9A71;&#x52A8;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#windows-10"><span class="toc-nav-number">1.2.3.</span> <span class="toc-nav-text">Windows 10</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#使用介绍"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">&#x4F7F;&#x7528;&#x4ECB;&#x7ECD;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#官方支持驱动"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">&#x5B98;&#x65B9;&#x652F;&#x6301;&#x9A71;&#x52A8;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#操作命令"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">&#x64CD;&#x4F5C;&#x547D;&#x4EE4;</span></a></li></ol></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.sqlbtc.com" target="_blank">Blog 黄国辉</a></li>
+                    
+                        <li><a href="http://www.liujiangblog.com/" target="_blank">Django2.2教程</a></li>
+                    
+                        <li><a href="https://www.kubernetes.org.cn/k8s" target="_blank">k8s中文社区 </a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/sqlbtc">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 黄国辉 2019 
+                    <br>
+                    Theme by <a href="http://beantech.org">BeanTech</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://blog.sqlbtc.com">黄国辉</a> |
+                    <!-- iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huweihuang&repo=hexo-theme-huweihuang&type=star&count=true" -->
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://blog.sqlbtc.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://blog.sqlbtc.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

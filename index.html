@@ -264,7 +264,7 @@ Docker Server
         </p>
         <div class="tags">
             
-              <a href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -274,40 +274,28 @@ Docker Server
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-12-factor/">
+    <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">
         <h2 class="post-title">
-            
-                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
-                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
-                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
-                <font color=#F4711F>置顶</font>
-                <!-- <font color=#F89E8C>置顶</font>  -->
-                <!-- <font color=#1CB7ED>置顶</font>  -->
                                  
-            [Kubernetes] 12-Factor(要素)
+            [Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes]  12-Factor(要素)
+以下代码分析基于 kubernetes v1.12.0 版本。
 
-
-以下主要介绍PaaS平台设计架构中使用到的方法论，统称为12-Factor(要素)
-
-简介
-软件通常会作为一种服务来交付，即软件即服务(SaaS)。12-Factor原则为构建SaaS应用提供了以下的方法论：
-
-使用标准化流程自动配置，减少开发者的学习成本。
-和操作系统解耦，使其可以在各个系统间提供最大的移植性。
-适合部署在现代的......
+kube-apiserver源码分析（一）之 NewAPIServerCommand
+本文主要分析kube-apiserver中cmd部分的代码，即NewAPIServerCommand相关的代码。更多具体的逻辑待后续文章分析。
+kube-apiserver的cmd部分目录代码结构如下：
+12345678910kube-ap......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-06-23
+            2018-12-23
         </p>
         <div class="tags">
             
@@ -321,38 +309,29 @@ Docker Server
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-architecture/">
+    <a href="/article/kubernetes/kube-controller-manager/deployment-controller/">
         <h2 class="post-title">
-            
-                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
-                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
-                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
-                <font color=#F4711F>置顶</font>
-                <!-- <font color=#F89E8C>置顶</font>  -->
-                <!-- <font color=#1CB7ED>置顶</font>  -->
                                  
-            [Kubernetes] Kubernetes总架构图
+            [Kubernetes] kube-controller-manager源码分析（二）之 DeploymentController
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. Kubernetes的总架构图
+            
+以下代码分析基于 kubernetes v1.12.0 版本。
 
-2. Kubernetes各个组件介绍
-2.1 kube-master[控制节点]
-master的工作流程图
+kube-controller-manager源码分析（二）之 DeploymentController
 
+以下代码分析基于 kubernetes v1.12.0 版本。
 
-Kubecfg将特定的请求，比如创建Pod，发送给Kubernetes Client。
-Kubernetes Client将请求发送给API server。
-API Server根据请求的类型，比如创建Pod时storage类型是pods，......
+本文主要以deployment controller为例，分析该类controller的运行逻辑。此部分代码主要为位于pkg/controller/de......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-09-20
+            2018-12-23
         </p>
         <div class="tags">
             
@@ -366,78 +345,31 @@ API Server根据请求的类型，比如创建Pod时storage类型是pods，.....
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/docker/kubernetes-paas-based-on-docker-and-kubernetes/">
+    <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">
         <h2 class="post-title">
-            
-                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
-                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
-                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
-                <font color=#F4711F>置顶</font>
-                <!-- <font color=#F89E8C>置顶</font>  -->
-                <!-- <font color=#1CB7ED>置顶</font>  -->
                                  
-            [Kubernetes] 基于Docker及Kubernetes技术构建容器云（PaaS）平台
+            [Kubernetes] kube-controller-manager源码分析（三）之 Informer机制
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            [编者的话]
-目前很多的容器云平台通过Docker及Kubernetes等技术提供应用运行平台，从而实现运维自动化，快速部署应用、弹性伸缩和动态调整应用环境资源，提高研发运营效率。
-从宏观到微观（从抽象到具体）的思路来理解：云计算→PaaS→ App Engine→XAE[XXX App Engine] （XAE泛指一类应用运行平台，例如GAE、SAE、BAE等）。
-本文简要介绍了与容器云相......
+            
+以下代码分析基于 kubernetes v1.12.0 版本。
+
+kube-controller-manager源码分析（三）之 Informer机制
+本文主要分析k8s中各个核心组件经常使用到的Informer机制(即List-Watch)。该部分的代码主要位于client-go这个第三方包中。
+此部分的逻辑主要位于/vendor/k8s.io/client-go/tools/cache......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-09-19
+            2018-12-23
         </p>
         <div class="tags">
             
               <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/operation/2.k8s-Docker-info/">
-        <h2 class="post-title">
-                                 
-            [k8s系列]  Docker简介
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[k8s系列]   Docker简介
-
-2. Docker 简介
-什么是 Docker？
-
-
-Docker的英文翻译是“搬运工”的意思，他搬运的东西就是我们常说的集装箱Container，Container里面装的是任意类型的 App，
-
-
-我们的开发人员可以通过 Docker 将App 变成一种标准化的、可移植的、自管理的组件，我们可以在任何主流的操作系统中开发、调试和运行。
-
-
-从概念......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2019-09-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#K8s系列" title="K8s系列">K8s系列</a>
             
         </div>
     
@@ -469,7 +401,7 @@ N......
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-08-24
+            2018-11-24
         </p>
         <div class="tags">
             
@@ -503,7 +435,7 @@ N......
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-08-24
+            2018-11-24
         </p>
         <div class="tags">
             
@@ -538,7 +470,7 @@ syncLoop是处理变更的循环。 它监听来自三种channe......
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-08-24
+            2018-11-24
         </p>
         <div class="tags">
             
@@ -573,7 +505,7 @@ managePodLoop通过读取podUpdateschannel的信息，执行syncPodFn函数，�
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-08-24
+            2018-11-24
         </p>
         <div class="tags">
             
@@ -587,27 +519,64 @@ managePodLoop通过读取podUpdateschannel的信息，执行syncPodFn函数，�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-scheduler/NewSchedulerCommand/">
+    <a href="/article/kubernetes/kubelet/NewKubeletCommand/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-scheduler源码分析（一）之 NewSchedulerCommand
+            [Kubernetes] kubelet源码分析（一）之 NewKubeletCommand
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            kube-scheduler源码分析（一）之 NewSchedulerCommand
+            kubelet源码分析（一）之 NewKubeletCommand
 
 以下代码分析基于 kubernetes v1.12.0 版本。
+本文主要分析 https://github.com/kubernetes/kubernetes/tree/v1.12.0/cmd/kubelet 部分的代码。
 
-scheduler的cmd 代码目录结构如下：
-12345678910111213141516171819kube-scheduler├── BUILD├── OWNERS├── app            # app的目录下主要为运行s......
+1本文主要分析 kubernetes/cmd/kubelet部分，该部分主要涉及`kubelet`......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2019-08-23
+            2018-11-24
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/kube-scheduler/preempt/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kube-scheduler源码分析（六）之 preempt
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+以下代码分析基于kubernetesv1.12.0版本。
+
+kube-scheduler源码分析（六）之 preempt
+本文主要分析调度中的抢占逻辑，当pod不适合任何节点的时候，可能pod会调度失败，这时候可能会发生抢占。抢占逻辑的具体实现函数为Scheduler.preempt。
+1. 调用入口
+当pod不适合任何节点的时候，可能pod会调度失败。这时候可能会发生抢占。
+
+sched......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-11-23
         </p>
         <div class="tags">
             
@@ -627,7 +596,7 @@ scheduler的cmd 代码目录结构如下：
     
     
         <li class="next">
-            <a href="/page/2/">Older Posts &rarr;</a>
+            <a href="/archives/2/">Older Posts &rarr;</a>
         </li>
     
 </ul>
@@ -660,23 +629,13 @@ scheduler的cmd 代码目录结构如下：
     <div class="tags">
         
             
-            <a href="/tags/#kubernetes" title="kubernetes" rel="1">kubernetes</a>
+        
+            
+            <a href="/tags/#Docker系列" title="Docker系列" rel="20">Docker系列</a>
             
         
             
-            <a href="/tags/#Kubernetes" title="Kubernetes" rel="62">Kubernetes</a>
-            
-        
-            
-            <a href="/tags/#Kubernetes devops" title="Kubernetes devops" rel="3">Kubernetes devops</a>
-            
-        
-            
-            <a href="/tags/#Docker系列" title="Docker系列" rel="8">Docker系列</a>
-            
-        
-            
-            <a href="/tags/#K8s系列" title="K8s系列" rel="1">K8s系列</a>
+            <a href="/tags/#Kubernetes" title="Kubernetes" rel="66">Kubernetes</a>
             
         
     </div>
@@ -736,19 +695,19 @@ scheduler的cmd 代码目录结构如下：
         </li>
       
         <li>
-          <a href="/article/kubernetes/operation/2.k8s-Docker-info/">[k8s系列]  Docker简介</a>
+          <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">[Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand</a>
+        </li>
+      
+        <li>
+          <a href="/article/kubernetes/kube-controller-manager/deployment-controller/">[Kubernetes] kube-controller-manager源码分析（二）之 DeploymentController</a>
+        </li>
+      
+        <li>
+          <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">[Kubernetes] kube-controller-manager源码分析（三）之 Informer机制</a>
         </li>
       
         <li>
           <a href="/article/kubernetes/kubelet/NewMainKubelet/">[Kubernetes] kubelet源码分析（二）之 NewMainKubelet</a>
-        </li>
-      
-        <li>
-          <a href="/article/kubernetes/kubelet/startKubelet/">[Kubernetes] kubelet源码分析（三）之 startKubelet</a>
-        </li>
-      
-        <li>
-          <a href="/article/kubernetes/kubelet/syncLoopIteration/">[Kubernetes] kubelet源码分析（四）之 syncLoopIteration</a>
         </li>
       
     </ul>
@@ -775,7 +734,7 @@ scheduler的cmd 代码目录结构如下：
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">12</span></li></ul>
     </div>
 
         <hr>
