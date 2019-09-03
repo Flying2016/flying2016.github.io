@@ -134,14 +134,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -354,22 +354,24 @@ Dynamic volume provisioning允许用户按需自动创建存储卷，这种方�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/storage/kubernetes-persistent-volume-claim/">
+    <a href="/article/kubernetes/resource/kubernetes-limit-range/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes存储之PersistentVolumeClaim 
+            [Kubernetes] Kubernetes资源配额之Pod限额 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes存储之PersistentVolumeClaim
+[Kubernetes] Kubernetes资源配额之Pod限额
 
-PersistentVolumeClaim
-1. PVC概述
-PersistentVolumeClaim（简称PVC）是用户存储的请求，PVC消耗PV的资源，可以请求特定的大小和访问模式，需要指定归属于某个Namespace，在同一个Namespace的Pod才可以指定对应的PVC。
-当需要不......
+Pod限额（LimitRange）
+
+ResourceQuota对象是限制某个namespace下所有Pod(容器)的资源限额
+LimitRange对象是限制某个namespace单个Pod(容器)的资源限额
+
+LimitRange对象用来定义某个命名空间下某种资源对象的使用限额，其中资源对象包括：Pod、Contain......
         </div>
     </a>
     
@@ -389,24 +391,23 @@ PersistentVolumeClaim（简称PVC）是用户存储的请求，PVC消耗PV的资
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/resource/kubernetes-limit-range/">
+    <a href="/article/kubernetes/resource/kubernetes-quality-of-service/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes资源配额之Pod限额 
+            [Kubernetes] Kubernetes资源配额之资源服务质量 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes资源配额之Pod限额
+[Kubernetes] Kubernetes资源配额之资源服务质量
 
-Pod限额（LimitRange）
-
-ResourceQuota对象是限制某个namespace下所有Pod(容器)的资源限额
-LimitRange对象是限制某个namespace单个Pod(容器)的资源限额
-
-LimitRange对象用来定义某个命名空间下某种资源对象的使用限额，其中资源对象包括：Pod、Contain......
+Resource Quality of Service
+1. 资源QoS简介
+request值表示容器保证可被分配到资源。limit表示容器可允许使用的最大资源。Pod级别的request和limit是其所有容器的request和limit之和。
+2. Requests and Limits
+Pod可以指定reques......
         </div>
     </a>
     
@@ -505,23 +506,22 @@ PersistentVolume（简称PV） 是 Volume 之类的卷插件，也是集群中�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/resource/kubernetes-quality-of-service/">
+    <a href="/article/kubernetes/storage/kubernetes-persistent-volume-claim/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes资源配额之资源服务质量 
+            [Kubernetes] Kubernetes存储之PersistentVolumeClaim 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes资源配额之资源服务质量
+[Kubernetes] Kubernetes存储之PersistentVolumeClaim
 
-Resource Quality of Service
-1. 资源QoS简介
-request值表示容器保证可被分配到资源。limit表示容器可允许使用的最大资源。Pod级别的request和limit是其所有容器的request和limit之和。
-2. Requests and Limits
-Pod可以指定reques......
+PersistentVolumeClaim
+1. PVC概述
+PersistentVolumeClaim（简称PVC）是用户存储的请求，PVC消耗PV的资源，可以请求特定的大小和访问模式，需要指定归属于某个Namespace，在同一个Namespace的Pod才可以指定对应的PVC。
+当需要不......
         </div>
     </a>
     
@@ -541,23 +541,22 @@ Pod可以指定reques......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/storage/kubernetes-volume/">
+    <a href="/article/kubernetes/storage/kubernetes-storage-class/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes存储之Volumes 
+            [Kubernetes] Kubernetes存储之StorageClass 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes存储之Volumes
+[Kubernetes] Kubernetes存储之StorageClass
 
-Volumes
-1. volume概述
-
-容器上的文件生命周期同容器的生命周期一致，即容器挂掉之后，容器将会以最初镜像中的文件系统内容启动，之前容器运行时产生的文件将会丢失。
-Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时候，对应的volume才会被删除。即Pod中的容器重启时，之前的文件仍可以......
+StorageClass
+1. StorageClass概述
+StorageClass提供了一种描述存储类（class）的方法，不同的class可能会映射到不同的服务质量等级和备份策略或其他策略等。
+StorageClass 对象中包含 provisioner、parameters 和 reclaimPolic......
         </div>
     </a>
     

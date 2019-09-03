@@ -134,14 +134,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -211,22 +211,23 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/storage/kubernetes-storage-class/">
+    <a href="/article/kubernetes/storage/kubernetes-volume/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes存储之StorageClass 
+            [Kubernetes] Kubernetes存储之Volumes 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes存储之StorageClass
+[Kubernetes] Kubernetes存储之Volumes
 
-StorageClass
-1. StorageClass概述
-StorageClass提供了一种描述存储类（class）的方法，不同的class可能会映射到不同的服务质量等级和备份策略或其他策略等。
-StorageClass 对象中包含 provisioner、parameters 和 reclaimPolic......
+Volumes
+1. volume概述
+
+容器上的文件生命周期同容器的生命周期一致，即容器挂掉之后，容器将会以最初镜像中的文件系统内容启动，之前容器运行时产生的文件将会丢失。
+Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时候，对应的volume才会被删除。即Pod中的容器重启时，之前的文件仍可以......
         </div>
     </a>
     

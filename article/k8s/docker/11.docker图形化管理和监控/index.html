@@ -142,14 +142,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -225,9 +225,9 @@
 <p><code>Portainer</code>的使用意图是简单部署。它包含可以在任何 Docker 引擎上运行的单个容器（Docker for Linux 和 Docker for Windows）。</p>
 <p><code>Portainer</code>允许您管理 Docker 容器、image、volume、network 等。 它与独立的 Docker 引擎和 Docker Swarm 兼容。</p>
 <p>Docker 命令安装：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker volume create portainer_data</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker volume create portainer_data</span><br><span class="line"><span class="meta">$</span> docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer</span><br></pre></td></tr></table></figure>
 <p>Swarm集群部署：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker volume create portainer_data</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker service create \</span></span><br><span class="line">--name portainer \</span><br><span class="line">--publish 9000:9000 \</span><br><span class="line">--replicas=1 \</span><br><span class="line">--constraint 'node.role == manager' \</span><br><span class="line">--mount type=bind,src=//var/run/docker.sock,dst=/var/run/docker.sock \</span><br><span class="line">--mount type=volume,src=portainer_data,dst=/data \</span><br><span class="line">portainer/portainer \</span><br><span class="line">-H unix:///var/run/docker.sock</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker volume create portainer_data</span><br><span class="line"><span class="meta">$</span> docker service create \</span><br><span class="line">--name portainer \</span><br><span class="line">--publish 9000:9000 \</span><br><span class="line">--replicas=1 \</span><br><span class="line">--constraint 'node.role == manager' \</span><br><span class="line">--mount type=bind,src=//var/run/docker.sock,dst=/var/run/docker.sock \</span><br><span class="line">--mount type=volume,src=portainer_data,dst=/data \</span><br><span class="line">portainer/portainer \</span><br><span class="line">-H unix:///var/run/docker.sock</span><br></pre></td></tr></table></figure>
 <p>Docker Compose 部署：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'2'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  portainer:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">portainer/portainer</span></span><br><span class="line"><span class="attr">    command:</span> <span class="bullet">-H</span> <span class="attr">unix:///var/run/docker.sock</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">/var/run/docker.sock:/var/run/docker.sock</span></span><br><span class="line"><span class="attr">      - portainer_data:</span><span class="string">/data</span></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line"><span class="attr">  portainer_data:</span></span><br></pre></td></tr></table></figure>
 <p><img src="/images/docker-ui-portainer.png" alt="portainer"></p>
@@ -255,7 +255,7 @@ cAdvisor 会显示当前 host 的资源使用情况，包括 CPU、内存、网�
 <p>由于<code>cAdvisor</code>提供的操作界面略显简陋，而且需要在不同页面之间跳转，并且只能监控一个 host，这不免会让人质疑它的实用性。但 cAdvisor 的一个亮点是它可以将监控到的数据导出给第三方工具，由这些工具进一步加工处理。</p>
 <p>我们可以把 cAdvisor 定位为一个监控数据收集器，收集和导出数据是它的强项，而非展示数据。<br>
 cAdvisor 支持很多第三方工具，其中就包括后面我们重点要学习的<code>Prometheus</code>。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker run \</span></span><br><span class="line">  --volume=/:/rootfs:ro \</span><br><span class="line">  --volume=/var/run:/var/run:rw \</span><br><span class="line">  --volume=/sys:/sys:ro \</span><br><span class="line">  --volume=/var/lib/docker/:/var/lib/docker:ro \</span><br><span class="line">  --volume=/dev/disk/:/dev/disk:ro \</span><br><span class="line">  --publish=8080:8080 \</span><br><span class="line">  --detach=true \</span><br><span class="line">  --name=cadvisor \</span><br><span class="line">  google/cadvisor:latest</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker run \</span><br><span class="line">  --volume=/:/rootfs:ro \</span><br><span class="line">  --volume=/var/run:/var/run:rw \</span><br><span class="line">  --volume=/sys:/sys:ro \</span><br><span class="line">  --volume=/var/lib/docker/:/var/lib/docker:ro \</span><br><span class="line">  --volume=/dev/disk/:/dev/disk:ro \</span><br><span class="line">  --publish=8080:8080 \</span><br><span class="line">  --detach=true \</span><br><span class="line">  --name=cadvisor \</span><br><span class="line">  google/cadvisor:latest</span><br></pre></td></tr></table></figure>
 <p>通过访问地址：<a href="http://127.0.0.1:8080/containers/" target="_blank" rel="noopener">http://127.0.0.1:8080/containers/</a> 可以查看所有容器信息：<br>
 <img src="/images/docker-cadvisor.png" alt="docker cAdvisor"><br>
 ​​<br>
@@ -271,9 +271,13 @@ cAdvisor 支持很多第三方工具，其中就包括后面我们重点要学�
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/article/k8s/docker/9.Docker-Machine/" data-toggle="tooltip" data-placement="top" title="[k8s系列] 09.Docker Machine">&larr; Previous Post</a>
+                            <a href="/article/k8s/docker/10.Docker-Swarm/" data-toggle="tooltip" data-placement="top" title="[k8s系列] 10.Docker Swarm">&larr; Previous Post</a>
                         </li>
                     
+                    
+                        <li class="next">
+                            <a href="/article/k8s/docker/12.Docker的多阶段构建/" data-toggle="tooltip" data-placement="top" title="[k8s系列] 12.Docker的多阶段构建">Next Post &rarr;</a>
+                        </li>
                     
                 </ul>
 

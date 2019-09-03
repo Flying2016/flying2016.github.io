@@ -134,14 +134,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -254,10 +254,10 @@ Kubernetes的运维
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">
+    <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-controller-manager源码分析（三）之 Informer机制
+            [Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand
         </h2>
         <h3 class="post-subtitle">
             
@@ -266,9 +266,10 @@ Kubernetes的运维
             
 以下代码分析基于 kubernetes v1.12.0 版本。
 
-kube-controller-manager源码分析（三）之 Informer机制
-本文主要分析k8s中各个核心组件经常使用到的Informer机制(即List-Watch)。该部分的代码主要位于client-go这个第三方包中。
-此部分的逻辑主要位于/vendor/k8s.io/client-go/tools/cache......
+kube-apiserver源码分析（一）之 NewAPIServerCommand
+本文主要分析kube-apiserver中cmd部分的代码，即NewAPIServerCommand相关的代码。更多具体的逻辑待后续文章分析。
+kube-apiserver的cmd部分目录代码结构如下：
+12345678910kube-ap......
         </div>
     </a>
     
@@ -288,10 +289,10 @@ kube-controller-manager源码分析（三）之 Informer机制
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">
+    <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand
+            [Kubernetes] kube-controller-manager源码分析（三）之 Informer机制
         </h2>
         <h3 class="post-subtitle">
             
@@ -300,10 +301,9 @@ kube-controller-manager源码分析（三）之 Informer机制
             
 以下代码分析基于 kubernetes v1.12.0 版本。
 
-kube-apiserver源码分析（一）之 NewAPIServerCommand
-本文主要分析kube-apiserver中cmd部分的代码，即NewAPIServerCommand相关的代码。更多具体的逻辑待后续文章分析。
-kube-apiserver的cmd部分目录代码结构如下：
-12345678910kube-ap......
+kube-controller-manager源码分析（三）之 Informer机制
+本文主要分析k8s中各个核心组件经常使用到的Informer机制(即List-Watch)。该部分的代码主要位于client-go这个第三方包中。
+此部分的逻辑主要位于/vendor/k8s.io/client-go/tools/cache......
         </div>
     </a>
     

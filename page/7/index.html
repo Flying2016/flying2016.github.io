@@ -134,14 +134,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -439,6 +439,43 @@ Pod 已被 Kubernetes 系统接受，但有一个或者多个容器镜像尚未�
 
 <div class="post-preview">
 
+    <a href="/article/kubernetes/pod/kubernetes-pod-operation/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] Pod操作 
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] Pod操作
+
+1. Pod伸缩
+k8s中RC的用来保持集群中始终运行指定数目的实例，通过RC的scale机制可以完成Pod的扩容和缩容（伸缩）。
+1.1. 手动伸缩（scale）
+1kubectl scale rc redis-slave --replicas=3
+1.2. 自动伸缩（HPA）
+Horizontal Pod Autoscaler（HPA）控制器用于......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-10-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/article/kubernetes/pod/kubernetes-pod-probe/">
         <h2 class="post-title">
                                  
@@ -500,43 +537,6 @@ RC的功能即保持集群中始终运行着指定个数的Pod。
 
 系统内置调度算法[最优Node]
 NodeSe......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2017-10-13
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/pod/kubernetes-pod-operation/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] Pod操作 
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] Pod操作
-
-1. Pod伸缩
-k8s中RC的用来保持集群中始终运行指定数目的实例，通过RC的scale机制可以完成Pod的扩容和缩容（伸缩）。
-1.1. 手动伸缩（scale）
-1kubectl scale rc redis-slave --replicas=3
-1.2. 自动伸缩（HPA）
-Horizontal Pod Autoscaler（HPA）控制器用于......
         </div>
     </a>
     
