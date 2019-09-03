@@ -405,31 +405,30 @@ API Server根据请求的类型，比如创建Pod时storage类型是pods，.....
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">
+    <a href="/article/k8s/k8s-notes/17.k8s_Secret/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-controller-manager源码分析（三）之 Informer机制
+            [k8s系列] 17.k8s Secret
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-以下代码分析基于 kubernetes v1.12.0 版本。
+[k8s系列] Secret
 
-kube-controller-manager源码分析（三）之 Informer机制
-本文主要分析k8s中各个核心组件经常使用到的Informer机制(即List-Watch)。该部分的代码主要位于client-go这个第三方包中。
-此部分的逻辑主要位于/vendor/k8s.io/client-go/tools/cache......
+Secret
+ConfigMap这个资源对象是Kubernetes当中非常重要的一个对象，一般情况下ConfigMap是用来存储一些非安全的配置信息，如果涉及到一些安全相关的数据的话用ConfigMap就非常不妥了，因为ConfigMap是名为存储的，我们说这个时候我们就需要用到另外一个资源对象了：Secret，Secret用来保存敏感信息，例如密码、OAu......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-12-23
+            2019-09-01
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#k8s系列" title="k8s系列">k8s系列</a>
             
         </div>
     
@@ -439,32 +438,30 @@ kube-controller-manager源码分析（三）之 Informer机制
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">
+    <a href="/article/k8s/k8s-notes/16.k8s_ConfigMap/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand
+            [k8s系列] 16.k8s资源对象ConfigMap
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-以下代码分析基于 kubernetes v1.12.0 版本。
+[k8s系列] 资源对象：ConfigMap
 
-kube-apiserver源码分析（一）之 NewAPIServerCommand
-本文主要分析kube-apiserver中cmd部分的代码，即NewAPIServerCommand相关的代码。更多具体的逻辑待后续文章分析。
-kube-apiserver的cmd部分目录代码结构如下：
-12345678910kube-ap......
+ConfigMap
+资源对象：ConfigMap，我们知道许多应用经常会有从配置文件、命令行参数或者环境变量中读取一些配置信息，这些配置信息我们肯定不会直接写死到应用程序中去的，比如你一个应用连接一个redis服务，下一次想更换一个了的，还得重新去修改代码，重新制作一个镜像，这肯定是不可取的，而ConfigMap就给我们提供了向容器中注入配置......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-12-23
+            2019-09-01
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#k8s系列" title="k8s系列">k8s系列</a>
             
         </div>
     
@@ -474,33 +471,30 @@ kube-apiserver的cmd部分目录代码结构如下：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-controller-manager/deployment-controller/">
+    <a href="/article/k8s/k8s-notes/15.k8s_Service/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-controller-manager源码分析（二）之 DeploymentController
+            [k8s系列] 15.k8s_Service
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-以下代码分析基于 kubernetes v1.12.0 版本。
+[k8s系列] Service
 
-kube-controller-manager源码分析（二）之 DeploymentController
-
-以下代码分析基于 kubernetes v1.12.0 版本。
-
-本文主要以deployment controller为例，分析该类controller的运行逻辑。此部分代码主要为位于pkg/controller/de......
+Service
+学习了Pod的基本用法，了解到Pod的生命是有限的，死亡过后不会复活了。RC和Deployment可以用来动态的创建和销毁Pod。尽管每个Pod都有自己的IP地址，但是如果Pod重新启动了的话那么他的IP很有可能也就变化了。这就会带来一个问题：比如我们有一些后端的Pod的集合为集群中的其他前端的Pod集合提供API服务，如果我们在前端的Po......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-12-23
+            2019-09-01
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#k8s系列" title="k8s系列">k8s系列</a>
             
         </div>
     
@@ -510,33 +504,29 @@ kube-controller-manager源码分析（二）之 DeploymentController
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kubelet/NewMainKubelet/">
+    <a href="/article/k8s/k8s-notes/14.k8s_Job_Cronjob/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubelet源码分析（二）之 NewMainKubelet
+            [k8s系列] 14.k8s_Job和Cronjob的使用
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            kubelet源码分析（二）之 NewMainKubelet
-
-以下代码分析基于 kubernetes v1.12.0 版本。
-本文主要分析 https://github.com/kubernetes/kubernetes/tree/v1.12.0/pkg/kubelet 部分的代码。
-
-本文主要分析kubelet中的NewMainKubelet部分。
-1. NewMainKubelet
-N......
+            Job和Cronjob的使用
+资源对象：Job，我们在日常的工作中经常都会遇到一些需要进行批量数据处理和分析的需求，当然也会有按时间来进行调度的工作，在我们的Kubernetes集群中为我们提供了Job和CronJob两种资源对象来应对我们的这种需求。
+Job负责处理任务，即仅执行一次的任务，它保证批处理任务的一个或多个Pod成功结束。而CronJob则就是在Job上加上了时间调度。
+1.J......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-24
+            2019-09-01
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#k8s系列" title="k8s系列">k8s系列</a>
             
         </div>
     
@@ -546,31 +536,31 @@ N......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kubelet/startKubelet/">
+    <a href="/article/k8s/k8s-notes/13.k8s_pod_HPA/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubelet源码分析（三）之 startKubelet
+            [k8s系列] 13.k8s_Pod自动扩缩容(HPA)
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            kubelet源码分析（三）之 startKubelet
+            
+Pod HPA
 
-以下代码分析基于 kubernetes v1.12.0 版本。
-
-本文主要分析startKubelet，其中主要是kubelet.Run部分，该部分的内容主要是初始化并运行一些manager。对于kubelet所包含的各种manager的执行逻辑和pod的生命周期管理逻辑待后续文章分析。
-后续的文章主要会分类分析pkg/kubele......
+Pod自动扩缩容
+1.HPA最基本的原理
+通过手工执行kubectl scale命令和在Dashboard上操作可以实现Pod的扩缩容，但是这样毕竟需要每次去手工操作一次，而且指不定什么时候业务请求量就很大了，所以如果不能做到自动化的去扩缩容的话，这也是一个很麻烦的事情。如果Kubernetes系统能够根据Pod当前的负载的变化情况来自动的进行扩缩容就好了，因为这个过程本......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-24
+            2019-09-01
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#k8s系列" title="k8s系列">k8s系列</a>
             
         </div>
     
@@ -580,32 +570,30 @@ N......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kubelet/syncLoopIteration/">
+    <a href="/article/k8s/k8s-notes/12.k8s_Deployment/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubelet源码分析（四）之 syncLoopIteration
+            [k8s系列] 12.k8s_Deployment的使用
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            kubelet源码分析（四）之 syncLoopIteration
+            
+[k8s系列] 12.Deployment的使用
 
-以下代码分析基于 kubernetes v1.12.0 版本。
-
-本文主要分析kubelet中syncLoopIteration部分。syncLoopIteration通过几种channel来对不同类型的事件进行监听并做增删改查的处理。
-1. syncLoop
-syncLoop是处理变更的循环。 它监听来自三种channe......
+Deployment的使用
+前面的课程中我们学习了Replication Controller和Replica Set两种资源对象，RC和RS的功能基本上是差不多的，唯一的区别就是RS支持集合的selector。我们也学习到了用RC/RS来控制Pod副本的数量，也实现了滚动升级Pod的功能。现在看上去似乎一切都比较完美的运行着，但是我们上......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-24
+            2019-09-01
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#k8s系列" title="k8s系列">k8s系列</a>
             
         </div>
     
@@ -659,6 +647,10 @@ syncLoop是处理变更的循环。 它监听来自三种channe......
         
             
             <a href="/tags/#Docker系列" title="Docker系列" rel="20">Docker系列</a>
+            
+        
+            
+            <a href="/tags/#k8s系列" title="k8s系列" rel="17">k8s系列</a>
             
         
     </div>
@@ -718,19 +710,19 @@ syncLoop是处理变更的循环。 它监听来自三种channe......
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">[Kubernetes] kube-controller-manager源码分析（三）之 Informer机制</a>
+          <a href="/article/k8s/k8s-notes/17.k8s_Secret/">[k8s系列] 17.k8s Secret</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">[Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand</a>
+          <a href="/article/k8s/k8s-notes/16.k8s_ConfigMap/">[k8s系列] 16.k8s资源对象ConfigMap</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-controller-manager/deployment-controller/">[Kubernetes] kube-controller-manager源码分析（二）之 DeploymentController</a>
+          <a href="/article/k8s/k8s-notes/15.k8s_Service/">[k8s系列] 15.k8s_Service</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kubelet/NewMainKubelet/">[Kubernetes] kubelet源码分析（二）之 NewMainKubelet</a>
+          <a href="/article/k8s/k8s-notes/14.k8s_Job_Cronjob/">[k8s系列] 14.k8s_Job和Cronjob的使用</a>
         </li>
       
     </ul>
@@ -757,7 +749,7 @@ syncLoop是处理变更的循环。 它监听来自三种channe......
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">12</span></li></ul>
     </div>
 
         <hr>

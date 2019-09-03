@@ -211,30 +211,70 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/develop/kubernetes-nfs-client-provisioner/">
+    <a href="/article/k8s/k8s-notes/01.k8s笔记/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之 nfs-client-provisioner简介
+            [k8s系列] 01.k8s笔记 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] kubernetes之 nfs-client-provisioner简介
+[kubernetes系列] 01.k8s笔记
 
+1. k8s笔记
 
-如果要开发一个Dynamic Provisioner，需要使用到the helper library。
+Docker的一些常用方法
+kubeadm搭建一套Kubernetes的集群
+理解Kubernetes集群的运行原理
+常用的一些控制器使用方法
+Kubernetes的一些调度策略
+Kubernetes的运维
+包管理工具Helm的使用
+实现基于Kubernetes的CI/CD
 
-1. Dynamic Provisioner
-1.1. Provisioner Interface
-开发Dynamic Provisioner需要实现Provisioner接口，该接......
+1234567891011121314151......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-03
+            2019-01-01
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#k8s系列" title="k8s系列">k8s系列</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] kube-controller-manager源码分析（三）之 Informer机制
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+以下代码分析基于 kubernetes v1.12.0 版本。
+
+kube-controller-manager源码分析（三）之 Informer机制
+本文主要分析k8s中各个核心组件经常使用到的Informer机制(即List-Watch)。该部分的代码主要位于client-go这个第三方包中。
+此部分的逻辑主要位于/vendor/k8s.io/client-go/tools/cache......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2018-12-23
         </p>
         <div class="tags">
             
@@ -248,23 +288,28 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-kubelet/">
+    <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes核心原理（四）之kubelet
+            [Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. kubelet简介
-在kubernetes集群中，每个Node节点都会启动kubelet进程，用来处理Master节点下发到本节点的任务，管理Pod和其中的容器。kubelet会在API Server上注册节点信息，定期向Master汇报节点资源使用情况，并通过cAdvisor监控容器和节点资源。可以把kubelet理解成【Server-Agent】架构中的agent，是Node上的p......
+            
+以下代码分析基于 kubernetes v1.12.0 版本。
+
+kube-apiserver源码分析（一）之 NewAPIServerCommand
+本文主要分析kube-apiserver中cmd部分的代码，即NewAPIServerCommand相关的代码。更多具体的逻辑待后续文章分析。
+kube-apiserver的cmd部分目录代码结构如下：
+12345678910kube-ap......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-10-18
+            2018-12-23
         </p>
         <div class="tags">
             
@@ -278,25 +323,29 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-scheduler/">
+    <a href="/article/kubernetes/kube-controller-manager/deployment-controller/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes核心原理（三）之Scheduler
+            [Kubernetes] kube-controller-manager源码分析（二）之 DeploymentController
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. Scheduler简介
-Scheduler负责Pod调度。在整个系统中起&quot;承上启下&quot;作用，承上：负责接收Controller Manager创建的新的Pod，为其选择一个合适的Node；启下：Node上的kubelet接管Pod的生命周期。
-Scheduler：
-1）通过调度算法为待调度Pod列表的每个Pod从Node列表中选择一个最适合的Node，并将信息写入et......
+            
+以下代码分析基于 kubernetes v1.12.0 版本。
+
+kube-controller-manager源码分析（二）之 DeploymentController
+
+以下代码分析基于 kubernetes v1.12.0 版本。
+
+本文主要以deployment controller为例，分析该类controller的运行逻辑。此部分代码主要为位于pkg/controller/de......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-10-18
+            2018-12-23
         </p>
         <div class="tags">
             
@@ -310,23 +359,29 @@ Scheduler：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-controller-manager/">
+    <a href="/article/kubernetes/kubelet/NewMainKubelet/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes核心原理（二）之Controller Manager
+            [Kubernetes] kubelet源码分析（二）之 NewMainKubelet
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. Controller Manager简介
-Controller Manager作为集群内部的管理控制中心，负责集群内的Node、Pod副本、服务端点（Endpoint）、命名空间（Namespace）、服务账号（ServiceAccount）、资源定额（ResourceQuota）的管理，当某个Node意外宕机时，Controller Manager会及时发现并执行自动化修复流程，确保......
+            kubelet源码分析（二）之 NewMainKubelet
+
+以下代码分析基于 kubernetes v1.12.0 版本。
+本文主要分析 https://github.com/kubernetes/kubernetes/tree/v1.12.0/pkg/kubelet 部分的代码。
+
+本文主要分析kubelet中的NewMainKubelet部分。
+1. NewMainKubelet
+N......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-10-18
+            2018-11-24
         </p>
         <div class="tags">
             
@@ -340,27 +395,27 @@ Controller Manager作为集群内部的管理控制中心，负责集群内的No
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-api-server/">
+    <a href="/article/kubernetes/kubelet/startKubelet/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes核心原理（一）之API Server
+            [Kubernetes] kubelet源码分析（三）之 startKubelet
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. API Server简介
-k8s API Server提供了k8s各类资源对象（pod,RC,Service等）的增删改查及watch等HTTP Rest接口，是整个系统的数据总线和数据中心。
-kubernetes API Server的功能：
+            kubelet源码分析（三）之 startKubelet
 
-提供了集群管理的REST API接口(包括认证授权、数据校验以及集群状态变更)；
-提供其他模块之间的数据交互和通信的枢纽（其他模块通过API......
+以下代码分析基于 kubernetes v1.12.0 版本。
+
+本文主要分析startKubelet，其中主要是kubelet.Run部分，该部分的内容主要是初始化并运行一些manager。对于kubelet所包含的各种manager的执行逻辑和pod的生命周期管理逻辑待后续文章分析。
+后续的文章主要会分类分析pkg/kubele......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-10-18
+            2018-11-24
         </p>
         <div class="tags">
             
@@ -374,30 +429,28 @@ kubernetes API Server的功能：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/csi/ceph/csi-cephfs-plugin/">
+    <a href="/article/kubernetes/kubelet/syncLoopIteration/">
         <h2 class="post-title">
                                  
-            [Kubernetes] 部署CSI CephFS plugin
+            [Kubernetes] kubelet源码分析（四）之 syncLoopIteration
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] 部署CSI CephFS plugin
+            kubelet源码分析（四）之 syncLoopIteration
 
-1. 编译CSI CephFS plugin
-CSI CephFS plugin用来提供CephFS存储卷和挂载存储卷，源码参考：https://github.com/ceph/ceph-csi 。
-1.1. 编译二进制
-1$ make cephfsplugin
-1.2. 编译Docker镜像
-1$ make image-......
+以下代码分析基于 kubernetes v1.12.0 版本。
+
+本文主要分析kubelet中syncLoopIteration部分。syncLoopIteration通过几种channel来对不同类型的事件进行监听并做增删改查的处理。
+1. syncLoop
+syncLoop是处理变更的循环。 它监听来自三种channe......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-10-13
+            2018-11-24
         </p>
         <div class="tags">
             
@@ -411,28 +464,28 @@ CSI CephFS plugin用来提供CephFS存储卷和挂载存储卷，源码参考：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/csi/ceph/deploy-csi-cephfs/">
+    <a href="/article/kubernetes/kubelet/syncPod/">
         <h2 class="post-title">
                                  
-            [Kubernetes] 部署csi-cephfs
+            [Kubernetes] kubelet源码分析（五）之 syncPod
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-部署csi-cephfs
+以下代码分析基于 kubernetes v1.12.0 版本。
 
-0. 说明
-要求Kubernetes的版本在1.11及以上，k8s集群必须允许特权Pod（privileged pods），即apiserver和kubelet需要设置--allow-privileged为true。节点的Docker daemon需要允许挂载共享卷。
-涉及镜像
-1234- quay.io/k8scsi/csi-provisioner:v0.3.......
+kubelet源码分析（五）之 syncPod
+本文主要分析kubelet中syncPod的部分。
+1. managePodLoop
+managePodLoop通过读取podUpdateschannel的信息，执行syncPodFn函数，而syncPodFn函数在newPodWorkers的时候赋值了，即kubelet.sy......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-10-13
+            2018-11-24
         </p>
         <div class="tags">
             
@@ -446,27 +499,27 @@ CSI CephFS plugin用来提供CephFS存储卷和挂载存储卷，源码参考：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/csi/provisioner/cephfs-provisioner/">
+    <a href="/article/kubernetes/kubelet/NewKubeletCommand/">
         <h2 class="post-title">
                                  
-            [Kubernetes] 部署cephfs-provisioner
+            [Kubernetes] kubelet源码分析（一）之 NewKubeletCommand
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. 安装cephfs客户端
-所有node节点安装cephfs客户端，主要用来和ceph集群挂载使用。
-1yum install -y ceph-common
-2. 部署RBAC
-2.1. ClusterRole
-12345678910111213141516171819202122kind: ClusterRoleapiVersion: rbac.authorization.k8s.io/......
+            kubelet源码分析（一）之 NewKubeletCommand
+
+以下代码分析基于 kubernetes v1.12.0 版本。
+本文主要分析 https://github.com/kubernetes/kubernetes/tree/v1.12.0/cmd/kubelet 部分的代码。
+
+1本文主要分析 kubernetes/cmd/kubelet部分，该部分主要涉及`kubelet`......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-10-13
+            2018-11-24
         </p>
         <div class="tags">
             
@@ -480,71 +533,30 @@ CSI CephFS plugin用来提供CephFS存储卷和挂载存储卷，源码参考：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/etcd/kubernetes-raft/">
+    <a href="/article/kubernetes/kube-scheduler/preempt/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Raft协议
+            [Kubernetes] kube-scheduler源码分析（六）之 preempt
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] ETCD  Raft协议
+以下代码分析基于kubernetesv1.12.0版本。
 
-1. Raft协议[分布式一致性算法]
+kube-scheduler源码分析（六）之 preempt
+本文主要分析调度中的抢占逻辑，当pod不适合任何节点的时候，可能pod会调度失败，这时候可能会发生抢占。抢占逻辑的具体实现函数为Scheduler.preempt。
+1. 调用入口
+当pod不适合任何节点的时候，可能pod会调度失败。这时候可能会发生抢占。
 
-raft算法中涉及三种角色，分别是：
-
-follower: 跟随者
-candidate: 候选者，选举过程中的中间状态角色
-leader: 领导者
-
-2. 过程
-2.1. 选举
-有两个timeout来控制选举，第一个是election timeout，该时间是节点从follower到成为cand......
+sched......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-09-20
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/kubernetes/etcd/kubernetes-etcd-auth-and-security/">
-        <h2 class="post-title">
-                                 
-            [Kubernetes] kubernetes之ETCD访问控制
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-[Kubernetes] kubernetes之ETCD访问控制
-
-1. ETCD资源类型
-There are three types of resources in etcd
-
-permission resources: users and roles in the user store
-key-value resources: key-value pairs in the key-va......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 黄国辉 on
-            2018-09-18
+            2018-11-23
         </p>
         <div class="tags">
             
@@ -608,6 +620,10 @@ key-value resources: key-value pairs in the key-va......
             <a href="/tags/#Docker系列" title="Docker系列" rel="20">Docker系列</a>
             
         
+            
+            <a href="/tags/#k8s系列" title="k8s系列" rel="17">k8s系列</a>
+            
+        
     </div>
 </section>
 
@@ -665,19 +681,19 @@ key-value resources: key-value pairs in the key-va......
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">[Kubernetes] kube-controller-manager源码分析（三）之 Informer机制</a>
+          <a href="/article/k8s/k8s-notes/17.k8s_Secret/">[k8s系列] 17.k8s Secret</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">[Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand</a>
+          <a href="/article/k8s/k8s-notes/16.k8s_ConfigMap/">[k8s系列] 16.k8s资源对象ConfigMap</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-controller-manager/deployment-controller/">[Kubernetes] kube-controller-manager源码分析（二）之 DeploymentController</a>
+          <a href="/article/k8s/k8s-notes/15.k8s_Service/">[k8s系列] 15.k8s_Service</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kubelet/NewMainKubelet/">[Kubernetes] kubelet源码分析（二）之 NewMainKubelet</a>
+          <a href="/article/k8s/k8s-notes/14.k8s_Job_Cronjob/">[k8s系列] 14.k8s_Job和Cronjob的使用</a>
         </li>
       
     </ul>
@@ -704,7 +720,7 @@ key-value resources: key-value pairs in the key-va......
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">12</span></li></ul>
     </div>
 
         <hr>

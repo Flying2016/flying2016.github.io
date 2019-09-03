@@ -211,27 +211,23 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-nodeselector-and-taint/">
+    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-controller-manager/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes指定节点调度与隔离
+            [Kubernetes] Kubernetes核心原理（二）之Controller Manager
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. NodeSelector
-1.1. 概念
-如果需要限制Pod到指定的Node上运行，则可以给Node打标签并给Pod配置NodeSelector。
-1.2. 使用方式
-1.2.1. 给Node打标签
-12345678910111213# get node的namekubectl get nodes# 设置Labelkubectl label nodes &lt;node-name&gt......
+            1. Controller Manager简介
+Controller Manager作为集群内部的管理控制中心，负责集群内的Node、Pod副本、服务端点（Endpoint）、命名空间（Namespace）、服务账号（ServiceAccount）、资源定额（ResourceQuota）的管理，当某个Node意外宕机时，Controller Manager会及时发现并执行自动化修复流程，确保......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-06-23
+            2018-10-18
         </p>
         <div class="tags">
             
@@ -245,26 +241,27 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/monitor/kubernetes-cadvisor-introduction/">
+    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-api-server/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之cAdvisor介绍
+            [Kubernetes] Kubernetes核心原理（一）之API Server
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] kubernetes之cAdvisor介绍
+            1. API Server简介
+k8s API Server提供了k8s各类资源对象（pod,RC,Service等）的增删改查及watch等HTTP Rest接口，是整个系统的数据总线和数据中心。
+kubernetes API Server的功能：
 
-1. cAdvisor简介
-​	cAdvisor对Node机器上的资源及容器进行实时监控和性能数据采集，包括CPU使用情况、内存使用情况、网络吞吐量及文件系统使用情况，cAdvisor集成在Kubelet中，当kubelet启动时会自动启动cAdvisor，即一个cAdvisor仅对一台Node机器进行监控。kubel......
+提供了集群管理的REST API接口(包括认证授权、数据校验以及集群状态变更)；
+提供其他模块之间的数据交互和通信的枢纽（其他模块通过API......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-12-13
+            2018-10-18
         </p>
         <div class="tags">
             
@@ -278,24 +275,30 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/monitor/kubernetes-cluster-monitoring/">
+    <a href="/article/kubernetes/csi/ceph/csi-cephfs-plugin/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes集群监控
+            [Kubernetes] 部署CSI CephFS plugin
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. 概述
-1.1. cAdvisor
-cAdvisor对Node机器上的资源及容器进行实时监控和性能数据采集，包括CPU使用情况、内存使用情况、网络吞吐量及文件系统使用情况，cAdvisor集成在Kubelet中，当kubelet启动时会自动启动cAdvisor，即一个cAdvisor仅对一台Node机器进行监控。kubelet的启动参数–cadvisor-port可以定义cAdvisor......
+            
+[Kubernetes] 部署CSI CephFS plugin
+
+1. 编译CSI CephFS plugin
+CSI CephFS plugin用来提供CephFS存储卷和挂载存储卷，源码参考：https://github.com/ceph/ceph-csi 。
+1.1. 编译二进制
+1$ make cephfsplugin
+1.2. 编译Docker镜像
+1$ make image-......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-12-13
+            2018-10-13
         </p>
         <div class="tags">
             
@@ -309,26 +312,28 @@ cAdvisor对Node机器上的资源及容器进行实时监控和性能数据采�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/monitor/kubernetes-heapster-introduction/">
+    <a href="/article/kubernetes/csi/ceph/deploy-csi-cephfs/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Heapster介绍
+            [Kubernetes] 部署csi-cephfs
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. heapster简介
-Heapster是容器集群监控和性能分析工具，天然的支持Kubernetes和CoreOS。
-Kubernetes有个出名的监控agent—cAdvisor。在每个kubernetes Node上都会运行cAdvisor，它会收集本机以及容器的监控数据(cpu,memory,filesystem,network,uptime)。
-2. heapster部署与配置
-......
+            
+部署csi-cephfs
+
+0. 说明
+要求Kubernetes的版本在1.11及以上，k8s集群必须允许特权Pod（privileged pods），即apiserver和kubelet需要设置--allow-privileged为true。节点的Docker daemon需要允许挂载共享卷。
+涉及镜像
+1234- quay.io/k8scsi/csi-provisioner:v0.3.......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-12-13
+            2018-10-13
         </p>
         <div class="tags">
             
@@ -342,30 +347,27 @@ Kubernetes有个出名的监控agent—cAdvisor。在每个kubernetes Node上都
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/monitor/kubernetes-influxdb-introduction/">
+    <a href="/article/kubernetes/csi/provisioner/cephfs-provisioner/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Influxdb介绍
+            [Kubernetes] 部署cephfs-provisioner
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. InfluxDB简介
-InfluxDB是一个当下比较流行的时序数据库，InfluxDB使用 Go 语言编写，无需外部依赖，安装配置非常方便，适合构建大型分布式系统的监控系统。
-主要特色功能：
-1）基于时间序列，支持与时间有关的相关函数（如最大，最小，求和等）
-2）可度量性：你可以实时对大量数据进行计算
-3）基于事件：它支持任意的事件数据
-2. InfluxDB安装
-1）安装
-wget ......
+            1. 安装cephfs客户端
+所有node节点安装cephfs客户端，主要用来和ceph集群挂载使用。
+1yum install -y ceph-common
+2. 部署RBAC
+2.1. ClusterRole
+12345678910111213141516171819202122kind: ClusterRoleapiVersion: rbac.authorization.k8s.io/......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-12-13
+            2018-10-13
         </p>
         <div class="tags">
             
@@ -379,30 +381,35 @@ wget ......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/pod/kubernetes-pod/">
+    <a href="/article/kubernetes/etcd/kubernetes-raft/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Pod简介 
+            [Kubernetes] Raft协议
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            1. Pod是什么（what）
-1.1. Pod概念
+            
+[Kubernetes] ETCD  Raft协议
 
-Pod是kubernetes集群中最小的部署和管理的基本单元，协同寻址，协同调度。
-Pod是一个或多个容器的集合，是一个或一组服务（进程）的抽象集合。
-Pod中可以共享网络和存储（可以简单理解为一个逻辑上的虚拟机，但并不是虚拟机）。
-Pod被创建后用一个UID来唯一标识，当Pod生命周期结束，被一个等价Pod替代，UID将重新生成。
+1. Raft协议[分布式一致性算法]
 
-......
+raft算法中涉及三种角色，分别是：
+
+follower: 跟随者
+candidate: 候选者，选举过程中的中间状态角色
+leader: 领导者
+
+2. 过程
+2.1. 选举
+有两个timeout来控制选举，第一个是election timeout，该时间是节点从follower到成为cand......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-10-13
+            2018-09-20
         </p>
         <div class="tags">
             
@@ -416,34 +423,29 @@ Pod被创建后用一个UID来唯一标识，当Pod生命周期结束，被一�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/pod/kubernetes-pod-configmap/">
+    <a href="/article/kubernetes/etcd/kubernetes-etcd-auth-and-security/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes之Pod的配置管理 
+            [Kubernetes] kubernetes之ETCD访问控制
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes之Pod的配置管理
+[Kubernetes] kubernetes之ETCD访问控制
 
-Pod的配置管理
-Kubernetes v1.2的版本提供统一的集群配置管理方案–ConfigMap。
-1. ConfigMap：容器应用的配置管理
-使用场景：
+1. ETCD资源类型
+There are three types of resources in etcd
 
-生成为容器内的环境变量。
-设置容器启动命令的启动参数（需设置为环境变量）。
-以Volume的形式挂载为容器内部的文件或目录。
-
-ConfigMap以一个或多个k......
+permission resources: users and roles in the user store
+key-value resources: key-value pairs in the key-va......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-10-13
+            2018-09-18
         </p>
         <div class="tags">
             
@@ -457,28 +459,28 @@ ConfigMap以一个或多个k......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/pod/kubernetes-pod-definition/">
+    <a href="/article/kubernetes/etcd/kubernetes-etcd-introduction/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Pod的基本用法 
+            [Kubernetes] kubernetes之ETCD介绍
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Pod的基本用法
+[Kubernetes] kubernetes之ETCD介绍
 
-1. Pod的基本用法
-1.1. 说明
+1. Etcd是什么（what）
+etcd is a distributed, consistent key-value store for shared configuration and service discovery, with a focus on being:
 
-Pod实际上是容器的集合，在k8s中对运行容器的要求为：容器的主程序需要一直在前台运行，而不是后台运行。应用可以改造成前台运行的方式，例如Go语言的程序，直接运行二进制文件；java语言则运行主类；tomcat程序可以写个运行脚本。或者通过supervisor的进程管理工具，即supervisor在前台......
+Secure: automatic TLS wit......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-10-13
+            2018-09-16
         </p>
         <div class="tags">
             
@@ -492,38 +494,26 @@ Pod实际上是容器的集合，在k8s中对运行容器的要求为：容器�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/pod/kubernetes-pod-lifecycle/">
+    <a href="/article/kubernetes/etcd/kubernetes-etcd-setup-flags/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Pod生命周期 
+            [Kubernetes] kubernetes之ETCD配置参数
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Pod生命周期
+[Kubernetes] kubernetes之ETCD配置参数
 
-1. Pod phase
-Pod的phase是Pod生命周期中的简单宏观描述，定义在Pod的PodStatus对象的phase 字段中。
-phase有以下几种值：
-
-
-
-状态值
-说明
-
-
-
-
-挂起（Pending）
-Pod 已被 Kubernetes 系统接受，但有一个或者多个容器镜像尚未创建。等待时间包括调度 Pod 的时间和通过网络下载镜像的......
+1. Etcd配置参数
+123456789101112131415161718/ # etcd --helpusage: etcd [flags]       start an etcd server       etcd --version       show the version of etcd       etc......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-10-13
+            2018-09-13
         </p>
         <div class="tags">
             
@@ -537,34 +527,39 @@ Pod 已被 Kubernetes 系统接受，但有一个或者多个容器镜像尚未�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/pod/kubernetes-pod-probe/">
+    <a href="/article/kubernetes/operation/kubernetes-kubectl-alias/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Pod健康检查 
+            [Kubernetes] kubectl的别名kubectl-aliases
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Pod健康检查
+[Kubernetes] kubernetes kubectl的别名kubectl-aliases
 
-Pod健康检查
-Pod的健康状态由两类探针来检查：LivenessProbe和ReadinessProbe。
-1. 探针类型
-1. livenessProbe(存活探针)
+1. kubectl-aliases
+kubectl-aliases开源工具是由脚本通过拼接各种kubectl相关元素组成的alias命令别名列表，其中命令别名拼接元素如下：
 
-表明容器是否正在运行。
-如果存活探测失败，则 kubelet 会杀死容器，并且容器将受到其 重启策略的影响。
-如果容器不提供存活探针，则默认状态为 Success。
 
-2. ......
+
+base
+[system?]
+[operation]
+[resource]
+[flags]
+
+
+
+
+kube......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-10-13
+            2018-09-13
         </p>
         <div class="tags">
             
@@ -628,6 +623,10 @@ Pod的健康状态由两类探针来检查：LivenessProbe和ReadinessProbe。
             <a href="/tags/#Docker系列" title="Docker系列" rel="20">Docker系列</a>
             
         
+            
+            <a href="/tags/#k8s系列" title="k8s系列" rel="17">k8s系列</a>
+            
+        
     </div>
 </section>
 
@@ -685,19 +684,19 @@ Pod的健康状态由两类探针来检查：LivenessProbe和ReadinessProbe。
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">[Kubernetes] kube-controller-manager源码分析（三）之 Informer机制</a>
+          <a href="/article/k8s/k8s-notes/17.k8s_Secret/">[k8s系列] 17.k8s Secret</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">[Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand</a>
+          <a href="/article/k8s/k8s-notes/16.k8s_ConfigMap/">[k8s系列] 16.k8s资源对象ConfigMap</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-controller-manager/deployment-controller/">[Kubernetes] kube-controller-manager源码分析（二）之 DeploymentController</a>
+          <a href="/article/k8s/k8s-notes/15.k8s_Service/">[k8s系列] 15.k8s_Service</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kubelet/NewMainKubelet/">[Kubernetes] kubelet源码分析（二）之 NewMainKubelet</a>
+          <a href="/article/k8s/k8s-notes/14.k8s_Job_Cronjob/">[k8s系列] 14.k8s_Job和Cronjob的使用</a>
         </li>
       
     </ul>
@@ -724,7 +723,7 @@ Pod的健康状态由两类探针来检查：LivenessProbe和ReadinessProbe。
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">12</span></li></ul>
     </div>
 
         <hr>

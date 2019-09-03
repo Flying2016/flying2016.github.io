@@ -211,33 +211,31 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/docker/code-analysis/code-analysis-of-docker-client/">
+    <a href="/article/kubernetes/operation/kubernetes-troubleshooting/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Docker Client
+            [Kubernetes] Kubernetes集群问题排查
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] Docker Client
+            1. 查看系统Event事件
+ 1kubectl describe pod &lt;PodName&gt; --namespace=&lt;NAMESPACE&gt;
+该命令可以显示Pod创建时的配置定义、状态等信息和最近的Event事件，事件信息可用于排错。例如当Pod状态为Pending，可通过查看Event事件确认原因，一般原因有几种：
 
-1. 创建Docker Client
-​    Docker是一个client/server的架构，通过二进制文件docker创建Docker客户端将请求类型与参数发送给Docker Server，Docker Server具体执行命令调用。
-Docker Client运行流程图如下：
-
-说明：本文分析的代码为Docker 1.2.0......
+没有可用的Node可调度
+开启了资源配额管理并......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-08-13
+            2017-09-20
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -247,32 +245,34 @@ Docker Client运行流程图如下：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/docker/code-analysis/code-analysis-of-docker-daemon/">
+    <a href="/article/kubernetes/operation/kubernetes-network/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Docker Daemon
+            [Kubernetes] Kubernetes网络模型
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Docker Daemon
+[Kubernetes] K8s网络模型
 
-1. Docker Daemon架构示意图
+1. kubernetes网络模型
+1.1. 基础原则
 
-Docker Daemon是Docker架构中运行在后台的守护进程，大致可以分为Docker Server、Engine和Job三部分。
-Docker Daemon可以认为是通过Docker Server模块接受Docker Client的请求，并在Engine中处理请求，然后根据请求类型......
+每个Pod都拥有一个独立的IP地址，而且假定所有Pod都在一个可以直接连通的、扁平的网络空间中，不管是否运行在同一Node上都可以通过Pod的IP来访问。
+k8s中Pod的IP是最小粒度IP。同一个Pod内所有的容器共享一个网络堆栈，该模型称为IP-per-Pod模型。
+Pod由docke......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-08-13
+            2017-08-14
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -282,31 +282,34 @@ Docker Daemon可以认为是通过Docker Server模块接受Docker Client的请�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/docker/code-analysis/code-analysis-of-docker-server/">
+    <a href="/article/kubernetes/operation/kubernetes-flannel-introduction/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Docker Server
+            [Kubernetes] [Flannel介绍] 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Docker Server
+[Flannel介绍]
 
-1. Docker Server创建流程
-Docker Server是Daemon Server的重要组成部分，功能：接收Docker Client发送的请求，并按照相应的路由规则实现请求的路由分发，最终将请求处理的结果返回给Docker Client。
-Docker Daemon启动，在mainDaemon()运行的最后创建并运行s......
+1. flannel是什么（what）
+1.1. 概述
+Flannel是CoreOS团队针对Kubernetes设计的一个网络规划服务，简单来说，它的功能是让集群中的不同节点主机创建的Docker容器都具有全集群唯一的虚拟IP地址。
+Flannel官网：https://github.com/coreos/flannel
+1.2. 补充知识点
+1、覆盖网络[over......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-08-13
+            2017-08-14
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -316,36 +319,32 @@ Docker Daemon启动，在mainDaemon()运行的最后创建并运行s......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/docker/kubernetes-install-docker/">
+    <a href="/article/kubernetes/storage/kubernetes-dynamic-provisioning/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Docker安装
+            [Kubernetes] kubernetes之存储 Dynamic Volume Provisioning
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-Docker安装
+[Kubernetes] kubernetes之存储Dynamic Volume Provisioning
 
-1. CentOS 安装Docker
-
-建议使用centos7
-
-1.1. 安装Docker
-1.1.1. 卸载旧版本
-旧版本的Docker命名为docker或docker-engine，如果有安装旧版本，先卸载旧版本
-12345678910$ sudo yum remove -y docker \                  docker-client \   ......
+Dynamic Volume Provisioning
+Dynamic volume provisioning允许用户按需自动创建存储卷，这种方式可以让用户不需要关心存储的复杂性和差别，又可以选择不同的存储类型。
+1. 开启Dynamic Provisioning
+需要先提前创建S......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-08-13
+            2017-08-14
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -355,40 +354,32 @@ Docker安装
 
 <div class="post-preview">
 
-    <a href="/article/k8s/docker/06.docker数据共享与持久化/">
+    <a href="/article/kubernetes/storage/kubernetes-persistent-volume-claim/">
         <h2 class="post-title">
                                  
-            [k8s系列] 06.docker数据共享与持久化 
+            [Kubernetes] Kubernetes存储之PersistentVolumeClaim 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-数据共享与持久化
+[Kubernetes] Kubernetes存储之PersistentVolumeClaim
 
-6. 数据共享与持久化
-这一节介绍如何在 Docker 内部以及容器之间管理数据，在容器中管理数据主要有两种方式：
-
-数据卷（Data Volumes）
-挂载主机目录 (Bind mounts)
-
-数据卷
-数据卷是一个可供一个或多个容器使用的特殊目录，它绕过UFS，可以提供很多有用的特性：
-
-数据卷 可以在容器之间共享和重用
-对 数据卷 的修改会立马生效
-对 数据卷 的......
+PersistentVolumeClaim
+1. PVC概述
+PersistentVolumeClaim（简称PVC）是用户存储的请求，PVC消耗PV的资源，可以请求特定的大小和访问模式，需要指定归属于某个Namespace，在同一个Namespace的Pod才可以指定对应的PVC。
+当需要不......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-05-13
+            2017-08-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -398,32 +389,34 @@ Docker安装
 
 <div class="post-preview">
 
-    <a href="/article/k8s/docker/10.Docker-Swarm/">
+    <a href="/article/kubernetes/resource/kubernetes-limit-range/">
         <h2 class="post-title">
                                  
-            [k8s系列] 10.Docker Swarm
+            [Kubernetes] Kubernetes资源配额之Pod限额 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-Docker Swarm
+[Kubernetes] Kubernetes资源配额之Pod限额
 
-10.Docker Swarm
-基本概念
-Swarm是使用SwarmKit构建的 Docker 引擎内置（原生）的集群管理和编排工具。Docker Swarm是 Docker 官方三剑客项目之一，提供 Docker 容器集群服务，是 Docker 官方对容器云生态进行支持的核心方案。
-使用它，用户可以将多个 Docker 主机封装为单个大型的虚拟 Docker ......
+Pod限额（LimitRange）
+
+ResourceQuota对象是限制某个namespace下所有Pod(容器)的资源限额
+LimitRange对象是限制某个namespace单个Pod(容器)的资源限额
+
+LimitRange对象用来定义某个命名空间下某种资源对象的使用限额，其中资源对象包括：Pod、Contain......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-05-13
+            2017-08-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -433,30 +426,39 @@ Swarm是使用SwarmKit构建的 Docker 引擎内置（原生）的集群管理�
 
 <div class="post-preview">
 
-    <a href="/article/k8s/docker/12.Docker的多阶段构建/">
+    <a href="/article/kubernetes/resource/kubernetes-resource-quota/">
         <h2 class="post-title">
                                  
-            [k8s系列] 12.Docker的多阶段构建
+            [Kubernetes] Kubernetes资源配额 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-Docker的多阶段构建
+[Kubernetes] Kubernetes资源配额
 
-12.Docker的多阶段构建
-Docker的口号是 Build,Ship,and Run Any App,Anywhere，在我们使用 Docker 的大部分时候，的确能感觉到其优越性，但是往往在我们 Build 一个应用的时候，是将我们的源代码也构建进去的，这对于类似于 golang 这样的编译型语言肯定是不行的，因为实际运行的时候我只需要把最终构建的二进制......
+资源配额（ResourceQuota）
+ResourceQuota对象用来定义某个命名空间下所有资源的使用限额，其实包括：
+
+计算资源的配额
+存储资源的配额
+对象数量的配额
+
+如果集群的总容量小于命名空间的配额总额，可能会产生资源竞争。这时会按照先到先得来处理。
+资源竞争和配额的更新都不会影响已经创建好的资源。
+1. 启动资源配额
+......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-05-13
+            2017-08-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -466,33 +468,34 @@ Docker的口号是 Build,Ship,and Run Any App,Anywhere，在我们使用 Docker 
 
 <div class="post-preview">
 
-    <a href="/article/k8s/docker/13.Dockerfile最佳实践/">
+    <a href="/article/kubernetes/storage/kubernetes-persistent-volume/">
         <h2 class="post-title">
                                  
-            [k8s系列] 13. Dockerfile最佳实践
+            [Kubernetes] Kubernetes存储之PersistentVolume 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
+[Kubernetes] Kubernetes存储之PersistentVolume
 
-Dockerfile最佳实践
-
-
-13. Dockerfile最佳实践
-Docker官方关于Dockerfile最佳实践原文链接地址：https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
-Docker 可以通过从 Dockerfile 包含所有命令的文本文件中读取指令自动构建镜像，以便构建给定镜......
+PersistentVolume
+1. PV概述
+PersistentVolume（简称PV） 是 Volume 之类的卷插件，也是集群中的资源，但独立于Pod的生命周期（即不会因Pod删除而被删除），不归属于某个Namespace。
+2. PV和PVC的生命周期
+2.1. 配置（Provision）
+......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-05-13
+            2017-08-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -502,29 +505,33 @@ Docker 可以通过从 Dockerfile 包含所有命令的文本文件中读取指�
 
 <div class="post-preview">
 
-    <a href="/article/k8s/docker/2.k8s-Docker-info/">
+    <a href="/article/kubernetes/resource/kubernetes-quality-of-service/">
         <h2 class="post-title">
                                  
-            [k8s系列] 02.Docker简介 
+            [Kubernetes] Kubernetes资源配额之资源服务质量 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            2.Docker 简介
-什么是 Docker？
-Docker的英文翻译是“搬运工”的意思，他搬运的东西就是我们常说的集装箱Container，Container 里面装的是任意类型的 App，我们的开发人员可以通过 Docker 将App 变成一种标准化的、可移植的、自管理的组件，我们可以在任何主流的操作系统中开发、调试和运行。
-从概念上来看 Docker 和我们传统的虚拟机比较类似，只是更......
+            
+[Kubernetes] Kubernetes资源配额之资源服务质量
+
+Resource Quality of Service
+1. 资源QoS简介
+request值表示容器保证可被分配到资源。limit表示容器可允许使用的最大资源。Pod级别的request和limit是其所有容器的request和limit之和。
+2. Requests and Limits
+Pod可以指定reques......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-05-13
+            2017-08-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -534,32 +541,33 @@ Docker的英文翻译是“搬运工”的意思，他搬运的东西就是我�
 
 <div class="post-preview">
 
-    <a href="/article/k8s/docker/3.docker镜像和容器的基本操作/">
+    <a href="/article/kubernetes/storage/kubernetes-volume/">
         <h2 class="post-title">
                                  
-            [k8s系列] 03.docker镜像和容器的基本操作 
+            [Kubernetes] Kubernetes存储之Volumes 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            3. 镜像和容器的基本操作
-这节课给大家讲解Docker镜像和容器的一些基本操作方法。
-获取镜像
-之前我们提到过 Docker 官方提供了一个公共的镜像仓库：Docker Hub，我们就可以从这上面获取镜像，获取镜像的命令：docker pull，格式为：
-1$ docker pull [选项] [Docker Registry 地址[:端口]/]仓库名[:标签]
+            
+[Kubernetes] Kubernetes存储之Volumes
 
-Docker 镜像仓库地......
+Volumes
+1. volume概述
+
+容器上的文件生命周期同容器的生命周期一致，即容器挂掉之后，容器将会以最初镜像中的文件系统内容启动，之前容器运行时产生的文件将会丢失。
+Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时候，对应的volume才会被删除。即Pod中的容器重启时，之前的文件仍可以......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-05-13
+            2017-08-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -619,6 +627,10 @@ Docker 镜像仓库地......
             <a href="/tags/#Docker系列" title="Docker系列" rel="20">Docker系列</a>
             
         
+            
+            <a href="/tags/#k8s系列" title="k8s系列" rel="17">k8s系列</a>
+            
+        
     </div>
 </section>
 
@@ -676,19 +688,19 @@ Docker 镜像仓库地......
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">[Kubernetes] kube-controller-manager源码分析（三）之 Informer机制</a>
+          <a href="/article/k8s/k8s-notes/17.k8s_Secret/">[k8s系列] 17.k8s Secret</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">[Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand</a>
+          <a href="/article/k8s/k8s-notes/16.k8s_ConfigMap/">[k8s系列] 16.k8s资源对象ConfigMap</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-controller-manager/deployment-controller/">[Kubernetes] kube-controller-manager源码分析（二）之 DeploymentController</a>
+          <a href="/article/k8s/k8s-notes/15.k8s_Service/">[k8s系列] 15.k8s_Service</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kubelet/NewMainKubelet/">[Kubernetes] kubelet源码分析（二）之 NewMainKubelet</a>
+          <a href="/article/k8s/k8s-notes/14.k8s_Job_Cronjob/">[k8s系列] 14.k8s_Job和Cronjob的使用</a>
         </li>
       
     </ul>
@@ -715,7 +727,7 @@ Docker 镜像仓库地......
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">12</span></li></ul>
     </div>
 
         <hr>

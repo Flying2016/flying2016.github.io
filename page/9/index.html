@@ -211,26 +211,135 @@
 
 <div class="post-preview">
 
-    <a href="/article/k8s/docker/4.Dockerfile定制镜像/">
+    <a href="/article/kubernetes/storage/kubernetes-storage-class/">
         <h2 class="post-title">
                                  
-            [k8s系列] 04.Dockerfile定制镜像 
+            [Kubernetes] Kubernetes存储之StorageClass 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-Dockerfile 定制镜像
+[Kubernetes] Kubernetes存储之StorageClass
 
-4. Dockerfile 定制镜像
-从docker commit的学习中，我们可以了解到，镜像的定制实际上就是定制每一层所添加的配置、文件等信息，但是命令毕竟只是命令，每次定制都得去重复执行这个命令，而且还不够直观，如果我们可以把每一层修改、安装、构建、操作的命令都写入一个脚本，用这个脚本来构建、定制镜像，那么这些问题不就都可以解决了吗？对的，这个脚本就......
+StorageClass
+1. StorageClass概述
+StorageClass提供了一种描述存储类（class）的方法，不同的class可能会映射到不同的服务质量等级和备份策略或其他策略等。
+StorageClass 对象中包含 provisioner、parameters 和 reclaimPolic......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-05-13
+            2017-08-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/operation/kubernetes-install-kubectl/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes]  kubectl的安装 
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] kubernetes kubectl的安装
+
+1. kubectl的安装
+1curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-07-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/operation/kubernetes-basic-concepts/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] Kubernetes基本概念
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] Kubernetes基本概念
+
+1. Master
+集群的控制节点，负责整个集群的管理和控制，kubernetes的所有的命令基本都是发给Master，由它来负责具体的执行过程。
+1.1. Master的组件
+
+kube-apiserver：资源增删改查的入口
+kube-controller-manager：资源对象的大总管
+kube-scheduler：负责资源......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2017-01-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/docker/kubernetes-docker-network/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] Docker的网络基础
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+Docker简介 Docker的网络基础
+
+1. Docker的网络基础
+1.1. Network Namespace
+不同的网络命名空间中，协议栈是独立的，完全隔离，彼此之间无法通信。同一个网络命名空间有独立的路由表和独立的Iptables/Netfilter来提供包的转发、NAT、IP包过滤等功能。
+1.1.1. 网络命名空间的实现
+将与网络协议栈相关的全局变量变成一个Net Name......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2016-08-13
         </p>
         <div class="tags">
             
@@ -244,29 +353,30 @@ Dockerfile 定制镜像
 
 <div class="post-preview">
 
-    <a href="/article/k8s/docker/5.docker私有镜像仓库/">
+    <a href="/article/kubernetes/docker/kubernetes-docker-commands-principle/">
         <h2 class="post-title">
                                  
-            [k8s系列] 5.docker私有镜像仓库 
+            [Kubernetes] Docker简介
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-私有镜像仓库
+Docker简介
 
-5. 私有镜像仓库
-Docker Hub
-目前 Docker 官方维护了一个公共仓库Docker Hub，大部分需求都可以通过在 Docker Hub 中直接下载镜像来实现。如果你觉得拉取 Docker Hub 的镜像比较慢的话，我们可以配置一个镜像加速器：http://docker-cn.com/，当然国内大部分云厂商都提供了相应的加速器，简单配置即可。
-注册
-你可以在 ......
+1. 基本概念
+1.1. image layer（镜像层）
+镜像可以看成是由多个镜像层叠加起来的一个文件系统，镜像层也可以简单理解为一个基本的镜像，而每个镜像层之间通过指针的形式进行叠加。
+
+根据上图，镜像层的主要组成部分包括镜像层id，镜像层指针【指向父层】，元数据【layer metadata】包含了docker构建和运行的信息还有父层的层次信息。
+只读层和读写层【......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-05-13
+            2016-08-13
         </p>
         <div class="tags">
             
@@ -280,27 +390,31 @@ Docker Hub
 
 <div class="post-preview">
 
-    <a href="/article/k8s/docker/7.Docker的网络模式/">
+    <a href="/article/kubernetes/docker/kubernetes-docker-architecture/">
         <h2 class="post-title">
                                  
-            [k8s系列] 07.Docker的网络模式 
+            [Kubernetes]  Docker架构
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-Docker的网络模式
+Docker架构
 
-7.Docker的网络模式
-Bridge模式
-当Docker进程启动时，会在主机上创建一个名为docker0的虚拟网桥，此主机上启动的Docker容器会连接到这个虚拟网桥上。虚拟网桥的工作方式和物理交换机类似，这样主机上的所有容器就通过交换机连在了一个二层网络中。从docker0子网中分配一个 IP 给容器使用，并设置 docker0 的 IP 地址为容器的默认网......
+1. Docker的总架构图
+
+docker是一个C/S模式的架构，后端是一个松耦合架构，模块各司其职。
+
+用户是使用Docker Client与Docker Daemon建立通信，并发送请求给后者。
+Docker Daemon作为Docker架构中的主体部分，首先提供Server的功能使其可以接受Docker Client的请求；
+Engine执行Docker内部的一......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-05-13
+            2016-08-13
         </p>
         <div class="tags">
             
@@ -314,27 +428,30 @@ Bridge模式
 
 <div class="post-preview">
 
-    <a href="/article/k8s/docker/8.Docker-Compose/">
+    <a href="/article/kubernetes/docker/kubernetes-dockerfile-usage/">
         <h2 class="post-title">
                                  
-            [k8s系列] 08.Docker Compose 
+            [Kubernetes] Dockerfile的说明
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-8.Docker Compose
+Docker简介 Dockerfile的说明
 
-8.Docker Compose
-介绍
-Docker Compose是Docker官方编排（Orchestration）项目之一，负责快速的部署分布式应用。其代码目前在https://github.com/docker/compose上开源。Compose 定位是 「定义和运行多个 Docker 容器的应用（Defining and running mu......
+1. Dockerfile的说明
+dockerfile指令忽略大小写，建议大写，#作为注释，每行只支持一条指令，指令可以带多个参数。
+dockerfile指令分为构建指令和设置指令。
+
+构建指令：用于构建image，其指定的操作不会在运行image的容器中执行。
+设置指令：用于设置image的属性，其指定的操作会在运行image的容器中执行。......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-05-13
+            2016-08-13
         </p>
         <div class="tags">
             
@@ -348,28 +465,29 @@ Docker Compose是Docker官方编排（Orchestration）项目之一，负责快�
 
 <div class="post-preview">
 
-    <a href="/article/k8s/docker/9.Docker-Machine/">
+    <a href="/article/kubernetes/docker/code-analysis/code-analysis-of-docker-client/">
         <h2 class="post-title">
                                  
-            [k8s系列] 09.Docker Machine
+            [Kubernetes] Docker Client
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-Docker Machine
+[Kubernetes] Docker Client
 
-9. Docker Machine
-Docker Machine是Docker官方编排（Orchestration）项目之一，负责在多种平台上快速安装 Docker 环境。
-Docker Machine项目基于Go语言实现，目前在Github上进行维护。
-Docker Machine是 Docker 官方提供的一个工具，它可以帮助我们在远程的机器上安装 Do......
+1. 创建Docker Client
+​    Docker是一个client/server的架构，通过二进制文件docker创建Docker客户端将请求类型与参数发送给Docker Server，Docker Server具体执行命令调用。
+Docker Client运行流程图如下：
+
+说明：本文分析的代码为Docker 1.2.0......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-05-13
+            2016-08-13
         </p>
         <div class="tags">
             
@@ -383,32 +501,62 @@ Docker Machine是 Docker 官方提供的一个工具，它可以帮助我们在�
 
 <div class="post-preview">
 
-    <a href="/article/k8s/docker/11.docker图形化管理和监控/">
+    <a href="/article/kubernetes/docker/code-analysis/code-analysis-of-docker-daemon/">
         <h2 class="post-title">
                                  
-            [k8s系列] 11.docker图形化管理和监控
+            [Kubernetes] Docker Daemon
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-docker 图形化管理和监控
+[Kubernetes] Docker Daemon
 
-11.docker图形化管理和监控
-下面我们介绍几个可以用图形化的方式来管理Docker的工具。
+1. Docker Daemon架构示意图
 
-Shipyard：https://github.com/shipyard/shipyard（已停止维护）
-
-Portainer
-Portainer（基于 Go）是一个轻量级的管理界面，可让您轻松管理Docker主机或Swarm集群。
-Portainer的使用......
+Docker Daemon是Docker架构中运行在后台的守护进程，大致可以分为Docker Server、Engine和Job三部分。
+Docker Daemon可以认为是通过Docker Server模块接受Docker Client的请求，并在Engine中处理请求，然后根据请求类型......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-05-13
+            2016-08-13
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/kubernetes/docker/code-analysis/code-analysis-of-docker-server/">
+        <h2 class="post-title">
+                                 
+            [Kubernetes] Docker Server
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+[Kubernetes] Docker Server
+
+1. Docker Server创建流程
+Docker Server是Daemon Server的重要组成部分，功能：接收Docker Client发送的请求，并按照相应的路由规则实现请求的路由分发，最终将请求处理的结果返回给Docker Client。
+Docker Daemon启动，在mainDaemon()运行的最后创建并运行s......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄国辉 on
+            2016-08-13
         </p>
         <div class="tags">
             
@@ -430,6 +578,10 @@ Portainer的使用......
             <a href="/page/8/">&larr; Newer Posts</a>
         </li>
     
+    
+        <li class="next">
+            <a href="/page/10/">Older Posts &rarr;</a>
+        </li>
     
 </ul>
 
@@ -466,6 +618,10 @@ Portainer的使用......
         
             
             <a href="/tags/#Docker系列" title="Docker系列" rel="20">Docker系列</a>
+            
+        
+            
+            <a href="/tags/#k8s系列" title="k8s系列" rel="17">k8s系列</a>
             
         
     </div>
@@ -525,19 +681,19 @@ Portainer的使用......
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">[Kubernetes] kube-controller-manager源码分析（三）之 Informer机制</a>
+          <a href="/article/k8s/k8s-notes/17.k8s_Secret/">[k8s系列] 17.k8s Secret</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">[Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand</a>
+          <a href="/article/k8s/k8s-notes/16.k8s_ConfigMap/">[k8s系列] 16.k8s资源对象ConfigMap</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-controller-manager/deployment-controller/">[Kubernetes] kube-controller-manager源码分析（二）之 DeploymentController</a>
+          <a href="/article/k8s/k8s-notes/15.k8s_Service/">[k8s系列] 15.k8s_Service</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kubelet/NewMainKubelet/">[Kubernetes] kubelet源码分析（二）之 NewMainKubelet</a>
+          <a href="/article/k8s/k8s-notes/14.k8s_Job_Cronjob/">[k8s系列] 14.k8s_Job和Cronjob的使用</a>
         </li>
       
     </ul>
@@ -564,7 +720,7 @@ Portainer的使用......
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">12</span></li></ul>
     </div>
 
         <hr>

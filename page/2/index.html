@@ -211,32 +211,35 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kubelet/syncPod/">
+    <a href="/article/k8s/k8s-notes/11.k8s_RC_pod/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubelet源码分析（五）之 syncPod
+            [k8s系列] 11.k8s使用RC管理Pod
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-以下代码分析基于 kubernetes v1.12.0 版本。
+k8s使用RC管理Pod
 
-kubelet源码分析（五）之 syncPod
-本文主要分析kubelet中syncPod的部分。
-1. managePodLoop
-managePodLoop通过读取podUpdateschannel的信息，执行syncPodFn函数，而syncPodFn函数在newPodWorkers的时候赋值了，即kubelet.sy......
+使用Replication Controller、Replica Set 管理Pod
+假如我们现在有一个Pod正在提供线上的服务，我们来想想一下我们可能会遇到的一些场景：
+
+某次运营活动非常成功，网站访问量突然暴增
+运行当前Pod的节点发生故障了，Pod不能正常提供服务了
+
+第一种情况，可能比较好应对，一般活动之前我们会大概计算下会有多大的访问量，提前多启动几个......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-24
+            2019-09-01
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#k8s系列" title="k8s系列">k8s系列</a>
             
         </div>
     
@@ -246,31 +249,32 @@ managePodLoop通过读取podUpdateschannel的信息，执行syncPodFn函数，�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kubelet/NewKubeletCommand/">
+    <a href="/article/k8s/k8s-notes/10.k8s_init_Container/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubelet源码分析（一）之 NewKubeletCommand
+            [k8s系列] 10.k8s初始化容器
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            kubelet源码分析（一）之 NewKubeletCommand
+            k8s系列
 
-以下代码分析基于 kubernetes v1.12.0 版本。
-本文主要分析 https://github.com/kubernetes/kubernetes/tree/v1.12.0/cmd/kubelet 部分的代码。
+[k8s系列] 10.初始化容器
 
-1本文主要分析 kubernetes/cmd/kubelet部分，该部分主要涉及`kubelet`......
+初始化容器
+0.容器的健康检查的两个探针
+容器的健康检查的两个探针：liveness probe（存活探针）和readiness probe（可读性探针）的使用方法，我们说在这两个探针是可以影响容器的生命周期的，包括我们之前提到的容器的两个钩子函数PostStart和PreStop。我们今天要给大家介绍的是Init Container（初始化......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-24
+            2019-09-01
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#k8s系列" title="k8s系列">k8s系列</a>
             
         </div>
     
@@ -280,34 +284,31 @@ managePodLoop通过读取podUpdateschannel的信息，执行syncPodFn函数，�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-scheduler/preempt/">
+    <a href="/article/k8s/k8s-notes/09.k8s_健康检查/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-scheduler源码分析（六）之 preempt
+            [k8s系列] 09.k8s健康检查
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-以下代码分析基于kubernetesv1.12.0版本。
+[k8s系列] 09. 健康检查
 
-kube-scheduler源码分析（六）之 preempt
-本文主要分析调度中的抢占逻辑，当pod不适合任何节点的时候，可能pod会调度失败，这时候可能会发生抢占。抢占逻辑的具体实现函数为Scheduler.preempt。
-1. 调用入口
-当pod不适合任何节点的时候，可能pod会调度失败。这时候可能会发生抢占。
-
-sched......
+健康检查
+Pod中容器的生命周期的两个钩子函数，PostStart与PreStop，其中PostStart是在容器创建后立即执行的，而PreStop这个钩子函数则是在容器终止之前执行的。除了上面这两个钩子函数以外，还有一项配置会影响到容器的生命周期的，那就是健康检查的探针。
+在Kubernetes集群当中，我们可以通过配置liveness probe（存......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-23
+            2019-09-01
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#k8s系列" title="k8s系列">k8s系列</a>
             
         </div>
     
@@ -317,32 +318,44 @@ sched......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-scheduler/PrioritizeNodes/">
+    <a href="/article/k8s/k8s-notes/06.k8s_YAML/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-scheduler源码分析（五）之 PrioritizeNodes
+            [k8s系列] 06.k8s YAML文件
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-以下代码分析基于 kubernetes v1.12.0 版本。
+YAML文件
 
-kube-scheduler源码分析（五）之 PrioritizeNodes
-本文主要分析优选策略逻辑，即从预选的节点中选择出最优的节点。优选策略的具体实现函数为PrioritizeNodes。PrioritizeNodes最终返回是一个记录了各个节点分数的列表。
-1. 调用入口
-genericScheduler.Sched......
+06.YAML文件
+YAML 基础
+它的基本语法规则如下：
+
+大小写敏感
+使用缩进表示层级关系
+缩进时不允许使用Tab键，只允许使用空格。
+缩进的空格数目不重要，只要相同层级的元素左侧对齐即可
+# 表示注释，从这个字符一直到行尾，都会被解析器忽略。
+
+在我们的 kubernetes 中，你只需要两种结构类型就行了：
+
+Lists
+Maps
+
+也就是说，你可能会遇到 List......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-23
+            2019-09-01
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#k8s系列" title="k8s系列">k8s系列</a>
             
         </div>
     
@@ -352,37 +365,31 @@ genericScheduler.Sched......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-scheduler/findNodesThatFit/">
+    <a href="/article/k8s/k8s-notes/07.k8s_静态Pod/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-scheduler源码分析（四）之 findNodesThatFit
+            [k8s系列] 07.k8s静态Pod
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-以下代码分析基于 kubernetes v1.12.0 版本。
+k8s系列
 
-kube-scheduler源码分析（四）之 findNodesThatFit
-
-以下代码分析基于 kubernetes v1.15.0 版本。
-
-本文主要分析调度逻辑中的预选策略，即第一步筛选出符合pod调度条件的节点。
-1. 调用入口
-预选，通过预选函数来判断每个节点是否适合被该Pod调度。
-
-genericSchedu......
+静态Pod
+静态 Pod 直接由特定节点上的kubelet进程来管理，不通过 master 节点上的apiserver。无法与我们常用的控制器Deployment或者DaemonSet进行关联，它由kubelet进程自己来监控，当pod崩溃时重启该pod，kubelete也无法对他们进行健康检查。静态 pod 始终绑定在某一个kubelet，并且始终运行在同一个节点上。
+ku......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-23
+            2019-09-01
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#k8s系列" title="k8s系列">k8s系列</a>
             
         </div>
     
@@ -392,32 +399,31 @@ genericSchedu......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-scheduler/scheduleOne/">
+    <a href="/article/k8s/k8s-notes/08.k8s_Pod_Hook/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-scheduler源码分析（三）之 scheduleOne
+            [k8s系列] 08.k8s_Pod Hook
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            kube-scheduler源码分析（三）之 scheduleOne
+            
+k8s系列 Pod Hook
 
-以下代码分析基于 kubernetes v1.12.0版本。
-
-本文主要分析/pkg/scheduler/中调度的基本流程。具体的预选调度逻辑、优选调度逻辑、节点抢占逻辑待后续再独立分析。
-scheduler的pkg代码目录结构如下：
-1234567891011121314151617181920212223242526......
+Pod Hook
+我们知道Pod是Kubernetes集群中的最小单元，而 Pod 是有容器组组成的，所以在讨论 Pod 的生命周期的时候我们可以先来讨论下容器的生命周期。
+实际上 Kubernetes 为我们的容器提供了生命周期钩子的，就是我们说的Pod Hook，Pod Hook 是由 kubelet 发起的，当容器中的进程启动前或者容器中的进程终止之前......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-23
+            2019-09-01
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#k8s系列" title="k8s系列">k8s系列</a>
             
         </div>
     
@@ -427,30 +433,40 @@ scheduler的pkg代码目录结构如下：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-scheduler/registerAlgorithmProvider/">
+    <a href="/article/k8s/k8s-notes/03.k8s_基本概念与组件/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-scheduler源码分析（二）之 registerAlgorithmProvider
+            [k8s系列] 03.k8s基本概念与组件
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            kube-scheduler源码分析（二）之 registerAlgorithmProvider
+            
+基本概念与组件
 
-以下代码分析基于 kubernetes v1.12.0 版本。
+03.基本概念与组件
+基本概念
+Kubernetes 中的绝大部分概念都抽象成 Kubernetes 管理的一种资源对象：
 
-此部分主要介绍调度中使用的各种调度算法，包括调度算法的注册部分。注册部分的代码主要在/pkg/scheduler/algorithmprovider中，具体的预选策略和优选策略的算法实现在/pkg/scheduler/algor......
+
+Master：Master 节点是 Kubernetes 集群的控制节点，负责整个集群的管理和控制。Master 节点上包含以下组件：
+
+
+kube-apiserver：集群控制的入口，提供 HTTP REST 服务
+
+
+kube-control......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-23
+            2019-09-01
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#k8s系列" title="k8s系列">k8s系列</a>
             
         </div>
     
@@ -460,31 +476,33 @@ scheduler的pkg代码目录结构如下：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/kube-scheduler/NewSchedulerCommand/">
+    <a href="/article/k8s/k8s-notes/05.k8s_Dashboard_install/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kube-scheduler源码分析（一）之 NewSchedulerCommand
+            [k8s系列] 05.k8s Dashboard插件安装
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            kube-scheduler源码分析（一）之 NewSchedulerCommand
+            
+安装Dashboard插件
 
-以下代码分析基于 kubernetes v1.12.0 版本。
-
-scheduler的cmd 代码目录结构如下：
-12345678910111213141516171819kube-scheduler├── BUILD├── OWNERS├── app            # app的目录下主要为运行s......
+05. 安装Dashboard插件
+Kubernetes Dashboard 是k8s集群的一个WEB UI管理工具，代码托管在github上，地址：https://github.com/kubernetes/dashboard
+安装：
+直接使用官方的配置文件安装即可：
+123wget https://raw.githubusercontent.com/kub......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-23
+            2019-09-01
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#k8s系列" title="k8s系列">k8s系列</a>
             
         </div>
     
@@ -494,29 +512,36 @@ scheduler的cmd 代码目录结构如下：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/develop/kubernetes-client-go/">
+    <a href="/article/k8s/k8s-notes/04.kubeadm_install_k8s(v1.15.2)/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之 client-go简介
+            [k8s系列] 04.基于kubeadm部署kubernetes(v1.15.2)集群
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            kubernetes之 client-go简介
-1. client-go简介
-1.1 client-go说明
-​	client-go是一个调用kubernetes集群资源对象API的客户端，即通过client-go实现对kubernetes集群中资源对象（包括deployment、service、ingress、replicaSet、pod、namespace、node等）的增删改查等操作。......
+            
+kubeadm搭建集群环境
+
+04.基于kubeadm部署kubernetes(v1.15.2)集群
+1.架构
+​​
+​
+
+核心层：Kubernetes 最核心的功能，对外提供 API 构建高层的应用，对内提供插件式应用执行环境
+应用层：部署（无状态应用、有状态应用、批处理任务、集群应用等）和路由（服务发现、DNS 解析等）
+管理层：系统度量（如基础设施、容器和网络的度量），自动化（如自动......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-03
+            2019-08-01
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#k8s系列" title="k8s系列">k8s系列</a>
             
         </div>
     
@@ -526,33 +551,33 @@ scheduler的cmd 代码目录结构如下：
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/develop/kubernetes-csi-provisioner/">
+    <a href="/article/k8s/k8s-notes/02.Kubernetes简介/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之Dynamic Provisioner
+            [k8s系列] 02.Kubernetes简介
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-本文主要分析csi-provisioner的源码，关于开发一个Dynamic Provisioner，具体可参考nfs-client-provisioner的源码分析
+Kubernetes简介
 
-1. Dynamic Provisioner
-1.1. Provisioner Interface
-开发Dynamic Provisioner需要实现Provisioner接口，该接口有两个方法，分别是：
-
-Provisi......
+02.Kubernetes简介
+简介
+Kubernetes 是 Google 团队发起的一个开源项目，它的目标是管理跨多个主机的容器，用于自动部署、扩展和管理容器化的应用程序，主要实现语言为 Go 语言。Kubernetes 的组件和架构还是相对较复杂的，
+1.katacoda的课程：katacoda，可以在网站上帮我们启动一个minikube的环境（学习）
+​......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-11-03
+            2019-01-01
         </p>
         <div class="tags">
             
-              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+              <a href="/tags/#k8s系列" title="k8s系列">k8s系列</a>
             
         </div>
     
@@ -612,6 +637,10 @@ Provisi......
             <a href="/tags/#Docker系列" title="Docker系列" rel="20">Docker系列</a>
             
         
+            
+            <a href="/tags/#k8s系列" title="k8s系列" rel="17">k8s系列</a>
+            
+        
     </div>
 </section>
 
@@ -669,19 +698,19 @@ Provisi......
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">[Kubernetes] kube-controller-manager源码分析（三）之 Informer机制</a>
+          <a href="/article/k8s/k8s-notes/17.k8s_Secret/">[k8s系列] 17.k8s Secret</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">[Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand</a>
+          <a href="/article/k8s/k8s-notes/16.k8s_ConfigMap/">[k8s系列] 16.k8s资源对象ConfigMap</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-controller-manager/deployment-controller/">[Kubernetes] kube-controller-manager源码分析（二）之 DeploymentController</a>
+          <a href="/article/k8s/k8s-notes/15.k8s_Service/">[k8s系列] 15.k8s_Service</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kubelet/NewMainKubelet/">[Kubernetes] kubelet源码分析（二）之 NewMainKubelet</a>
+          <a href="/article/k8s/k8s-notes/14.k8s_Job_Cronjob/">[k8s系列] 14.k8s_Job和Cronjob的使用</a>
         </li>
       
     </ul>
@@ -708,7 +737,7 @@ Provisi......
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">12</span></li></ul>
     </div>
 
         <hr>

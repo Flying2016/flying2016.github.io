@@ -211,28 +211,28 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/etcd/kubernetes-etcd-introduction/">
+    <a href="/article/kubernetes/kube-scheduler/PrioritizeNodes/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之ETCD介绍
+            [Kubernetes] kube-scheduler源码分析（五）之 PrioritizeNodes
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] kubernetes之ETCD介绍
+以下代码分析基于 kubernetes v1.12.0 版本。
 
-1. Etcd是什么（what）
-etcd is a distributed, consistent key-value store for shared configuration and service discovery, with a focus on being:
-
-Secure: automatic TLS wit......
+kube-scheduler源码分析（五）之 PrioritizeNodes
+本文主要分析优选策略逻辑，即从预选的节点中选择出最优的节点。优选策略的具体实现函数为PrioritizeNodes。PrioritizeNodes最终返回是一个记录了各个节点分数的列表。
+1. 调用入口
+genericScheduler.Sched......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-09-16
+            2018-11-23
         </p>
         <div class="tags">
             
@@ -246,26 +246,33 @@ Secure: automatic TLS wit......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/etcd/kubernetes-etcd-setup-flags/">
+    <a href="/article/kubernetes/kube-scheduler/findNodesThatFit/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之ETCD配置参数
+            [Kubernetes] kube-scheduler源码分析（四）之 findNodesThatFit
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] kubernetes之ETCD配置参数
+以下代码分析基于 kubernetes v1.12.0 版本。
 
-1. Etcd配置参数
-123456789101112131415161718/ # etcd --helpusage: etcd [flags]       start an etcd server       etcd --version       show the version of etcd       etc......
+kube-scheduler源码分析（四）之 findNodesThatFit
+
+以下代码分析基于 kubernetes v1.15.0 版本。
+
+本文主要分析调度逻辑中的预选策略，即第一步筛选出符合pod调度条件的节点。
+1. 调用入口
+预选，通过预选函数来判断每个节点是否适合被该Pod调度。
+
+genericSchedu......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-09-13
+            2018-11-23
         </p>
         <div class="tags">
             
@@ -279,39 +286,28 @@ Secure: automatic TLS wit......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-kubectl-alias/">
+    <a href="/article/kubernetes/kube-scheduler/scheduleOne/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubectl的别名kubectl-aliases
+            [Kubernetes] kube-scheduler源码分析（三）之 scheduleOne
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] kubernetes kubectl的别名kubectl-aliases
+            kube-scheduler源码分析（三）之 scheduleOne
 
-1. kubectl-aliases
-kubectl-aliases开源工具是由脚本通过拼接各种kubectl相关元素组成的alias命令别名列表，其中命令别名拼接元素如下：
+以下代码分析基于 kubernetes v1.12.0版本。
 
-
-
-base
-[system?]
-[operation]
-[resource]
-[flags]
-
-
-
-
-kube......
+本文主要分析/pkg/scheduler/中调度的基本流程。具体的预选调度逻辑、优选调度逻辑、节点抢占逻辑待后续再独立分析。
+scheduler的pkg代码目录结构如下：
+1234567891011121314151617181920212223242526......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-09-13
+            2018-11-23
         </p>
         <div class="tags">
             
@@ -325,33 +321,26 @@ kube......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-kubectl-commands/">
+    <a href="/article/kubernetes/kube-scheduler/registerAlgorithmProvider/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubectl命令介绍
+            [Kubernetes] kube-scheduler源码分析（二）之 registerAlgorithmProvider
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] kubernetes  kubectl命令介绍
+            kube-scheduler源码分析（二）之 registerAlgorithmProvider
 
-1. kubectl命令介绍
-kubectl的命令语法
-1kubectl [command] [TYPE] [NAME] [flags]
-其中command，TYPE，NAME，和flags分别是：
+以下代码分析基于 kubernetes v1.12.0 版本。
 
-
-command: 指定要在一个或多个资源进行操作，例如create，get，describe，delete。
-
-......
+此部分主要介绍调度中使用的各种调度算法，包括调度算法的注册部分。注册部分的代码主要在/pkg/scheduler/algorithmprovider中，具体的预选策略和优选策略的算法实现在/pkg/scheduler/algor......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-09-13
+            2018-11-23
         </p>
         <div class="tags">
             
@@ -365,29 +354,27 @@ command: 指定要在一个或多个资源进行操作，例如create，get，de
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/etcd/kubernetes-etcdctl-v3/">
+    <a href="/article/kubernetes/kube-scheduler/NewSchedulerCommand/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之etcdctl命令安装
+            [Kubernetes] kube-scheduler源码分析（一）之 NewSchedulerCommand
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] kubernetes之etcdctl安装
+            kube-scheduler源码分析（一）之 NewSchedulerCommand
 
+以下代码分析基于 kubernetes v1.12.0 版本。
 
-etcdctl的v3版本与v2版本使用命令有所不同，本文介绍etcdctl v3版本的命令工具的使用方式。
-
-1. etcdctl的安装
-etcdctl的二进制文件可以在 github.com/coreos/etcd/releases 选择对应的版本下载，例如可以执行以下install_etcdctl.sh的脚本，修改......
+scheduler的cmd 代码目录结构如下：
+12345678910111213141516171819kube-scheduler├── BUILD├── OWNERS├── app            # app的目录下主要为运行s......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-09-12
+            2018-11-23
         </p>
         <div class="tags">
             
@@ -401,27 +388,25 @@ etcdctl的二进制文件可以在 github.com/coreos/etcd/releases 选择对应�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/etcd/kubernetes-etcdctl-v2/">
+    <a href="/article/kubernetes/develop/kubernetes-client-go/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes之etcdctl命令工具介绍
+            [Kubernetes] kubernetes之 client-go简介
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] kubernetes之etcdctl介绍
-
-1. etcdctl介绍
-etcdctl是一个命令行的客户端，它提供了一下简洁的命令，可理解为命令工具集，可以方便我们在对服务进行测试或者手动修改数据库内容。etcdctl与其他xxxctl的命令原理及操作类似（例如kubectl，systemctl）。
-用法：etcdctl [global options] comma......
+            kubernetes之 client-go简介
+1. client-go简介
+1.1 client-go说明
+​	client-go是一个调用kubernetes集群资源对象API的客户端，即通过client-go实现对kubernetes集群中资源对象（包括deployment、service、ingress、replicaSet、pod、namespace、node等）的增删改查等操作。......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-09-11
+            2018-11-03
         </p>
         <div class="tags">
             
@@ -435,33 +420,29 @@ etcdctl是一个命令行的客户端，它提供了一下简洁的命令，可�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-objects/">
+    <a href="/article/kubernetes/develop/kubernetes-csi-provisioner/">
         <h2 class="post-title">
                                  
-            [Kubernetes] 理解kubernetes对象
+            [Kubernetes] kubernetes之Dynamic Provisioner
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] 理解kubernetes对象
+本文主要分析csi-provisioner的源码，关于开发一个Dynamic Provisioner，具体可参考nfs-client-provisioner的源码分析
 
-1. kubernetes对象概述
-kubernetes中的对象是一些持久化的实体，可以理解为是对集群状态的描述或期望。
-包括：
+1. Dynamic Provisioner
+1.1. Provisioner Interface
+开发Dynamic Provisioner需要实现Provisioner接口，该接口有两个方法，分别是：
 
-集群中哪些node上运行了哪些容器化应用
-应用的资源是否满足使用
-应用的执行策略，例如重启策略、更新策略、容错策略等。
-
-kubernetes的对象是一种意图（期望）的记录，kubernetes会始终保......
+Provisi......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-09-01
+            2018-11-03
         </p>
         <div class="tags">
             
@@ -475,28 +456,30 @@ kubernetes的对象是一种意图（期望）的记录，kubernetes会始终保
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-safely-drain-node/">
+    <a href="/article/kubernetes/develop/kubernetes-nfs-client-provisioner/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes安全迁移节点 
+            [Kubernetes] kubernetes之 nfs-client-provisioner简介
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes安全迁移节点
+[Kubernetes] kubernetes之 nfs-client-provisioner简介
 
-1. 迁移Pod
-1.1. 设置节点是否可调度
-确定需要迁移和被迁移的节点，将不允许被迁移的节点设置为不可调度。
-12345678# 查看节点kubectl get nodes# 设置节点为不可调度kubectl cordon &lt;NodeName&gt;# 设置节点为可调度kubectl uncordon &lt;Node......
+
+如果要开发一个Dynamic Provisioner，需要使用到the helper library。
+
+1. Dynamic Provisioner
+1.1. Provisioner Interface
+开发Dynamic Provisioner需要实现Provisioner接口，该接......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-08-22
+            2018-11-03
         </p>
         <div class="tags">
             
@@ -510,52 +493,23 @@ kubernetes的对象是一种意图（期望）的记录，kubernetes会始终保
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-install-k8s-by-kubespray/">
+    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-kubelet/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes install 
+            [Kubernetes] Kubernetes核心原理（四）之kubelet
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] kubernetes install
-
-1. 环境准备
-1.1. 部署机器
-
-以下机器为虚拟机
-
-
-
-
-机器IP
-主机名
-角色
-系统版本
-备注
-
-
-
-
-172.16.94.140
-kube-master01
-k8s master
-Centos 4.17.14
-内存：3G
-
-
-172.16.94.141
-kube-node1
-k8s node
-Centos 4.17......
+            1. kubelet简介
+在kubernetes集群中，每个Node节点都会启动kubelet进程，用来处理Master节点下发到本节点的任务，管理Pod和其中的容器。kubelet会在API Server上注册节点信息，定期向Master汇报节点资源使用情况，并通过cAdvisor监控容器和节点资源。可以把kubelet理解成【Server-Agent】架构中的agent，是Node上的p......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-08-13
+            2018-10-18
         </p>
         <div class="tags">
             
@@ -569,29 +523,25 @@ Centos 4.17......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-install-k8s-by-minikube/">
+    <a href="/article/kubernetes/core-principle/kubernetes-core-principle-scheduler/">
         <h2 class="post-title">
                                  
-            [Kubernetes] kubernetes install minikube 
+            [Kubernetes] Kubernetes核心原理（三）之Scheduler
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] kubernetes install minikube
-
-
-以下内容基于Linux系统，特别为Ubuntu系统
-
-1. 安装kubectl
-1curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kube......
+            1. Scheduler简介
+Scheduler负责Pod调度。在整个系统中起&quot;承上启下&quot;作用，承上：负责接收Controller Manager创建的新的Pod，为其选择一个合适的Node；启下：Node上的kubelet接管Pod的生命周期。
+Scheduler：
+1）通过调度算法为待调度Pod列表的每个Pod从Node列表中选择一个最适合的Node，并将信息写入et......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2018-07-13
+            2018-10-18
         </p>
         <div class="tags">
             
@@ -655,6 +605,10 @@ Centos 4.17......
             <a href="/tags/#Docker系列" title="Docker系列" rel="20">Docker系列</a>
             
         
+            
+            <a href="/tags/#k8s系列" title="k8s系列" rel="17">k8s系列</a>
+            
+        
     </div>
 </section>
 
@@ -712,19 +666,19 @@ Centos 4.17......
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">[Kubernetes] kube-controller-manager源码分析（三）之 Informer机制</a>
+          <a href="/article/k8s/k8s-notes/17.k8s_Secret/">[k8s系列] 17.k8s Secret</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">[Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand</a>
+          <a href="/article/k8s/k8s-notes/16.k8s_ConfigMap/">[k8s系列] 16.k8s资源对象ConfigMap</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-controller-manager/deployment-controller/">[Kubernetes] kube-controller-manager源码分析（二）之 DeploymentController</a>
+          <a href="/article/k8s/k8s-notes/15.k8s_Service/">[k8s系列] 15.k8s_Service</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kubelet/NewMainKubelet/">[Kubernetes] kubelet源码分析（二）之 NewMainKubelet</a>
+          <a href="/article/k8s/k8s-notes/14.k8s_Job_Cronjob/">[k8s系列] 14.k8s_Job和Cronjob的使用</a>
         </li>
       
     </ul>
@@ -751,7 +705,7 @@ Centos 4.17......
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">12</span></li></ul>
     </div>
 
         <hr>

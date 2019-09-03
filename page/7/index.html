@@ -211,30 +211,26 @@
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/storage/kubernetes-persistent-volume/">
+    <a href="/article/kubernetes/monitor/kubernetes-heapster-introduction/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes存储之PersistentVolume 
+            [Kubernetes] Heapster介绍
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] Kubernetes存储之PersistentVolume
-
-PersistentVolume
-1. PV概述
-PersistentVolume（简称PV） 是 Volume 之类的卷插件，也是集群中的资源，但独立于Pod的生命周期（即不会因Pod删除而被删除），不归属于某个Namespace。
-2. PV和PVC的生命周期
-2.1. 配置（Provision）
+            1. heapster简介
+Heapster是容器集群监控和性能分析工具，天然的支持Kubernetes和CoreOS。
+Kubernetes有个出名的监控agent—cAdvisor。在每个kubernetes Node上都会运行cAdvisor，它会收集本机以及容器的监控数据(cpu,memory,filesystem,network,uptime)。
+2. heapster部署与配置
 ......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2017-12-13
         </p>
         <div class="tags">
             
@@ -248,29 +244,30 @@ PersistentVolume（简称PV） 是 Volume 之类的卷插件，也是集群中�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/resource/kubernetes-quality-of-service/">
+    <a href="/article/kubernetes/monitor/kubernetes-influxdb-introduction/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes资源配额之资源服务质量 
+            [Kubernetes] Influxdb介绍
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] Kubernetes资源配额之资源服务质量
-
-Resource Quality of Service
-1. 资源QoS简介
-request值表示容器保证可被分配到资源。limit表示容器可允许使用的最大资源。Pod级别的request和limit是其所有容器的request和limit之和。
-2. Requests and Limits
-Pod可以指定reques......
+            1. InfluxDB简介
+InfluxDB是一个当下比较流行的时序数据库，InfluxDB使用 Go 语言编写，无需外部依赖，安装配置非常方便，适合构建大型分布式系统的监控系统。
+主要特色功能：
+1）基于时间序列，支持与时间有关的相关函数（如最大，最小，求和等）
+2）可度量性：你可以实时对大量数据进行计算
+3）基于事件：它支持任意的事件数据
+2. InfluxDB安装
+1）安装
+wget ......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2017-12-13
         </p>
         <div class="tags">
             
@@ -284,29 +281,30 @@ Pod可以指定reques......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/storage/kubernetes-volume/">
+    <a href="/article/kubernetes/pod/kubernetes-pod/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes存储之Volumes 
+            [Kubernetes] Pod简介 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-[Kubernetes] Kubernetes存储之Volumes
+            1. Pod是什么（what）
+1.1. Pod概念
 
-Volumes
-1. volume概述
+Pod是kubernetes集群中最小的部署和管理的基本单元，协同寻址，协同调度。
+Pod是一个或多个容器的集合，是一个或一组服务（进程）的抽象集合。
+Pod中可以共享网络和存储（可以简单理解为一个逻辑上的虚拟机，但并不是虚拟机）。
+Pod被创建后用一个UID来唯一标识，当Pod生命周期结束，被一个等价Pod替代，UID将重新生成。
 
-容器上的文件生命周期同容器的生命周期一致，即容器挂掉之后，容器将会以最初镜像中的文件系统内容启动，之前容器运行时产生的文件将会丢失。
-Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时候，对应的volume才会被删除。即Pod中的容器重启时，之前的文件仍可以......
+......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2017-10-13
         </p>
         <div class="tags">
             
@@ -320,28 +318,34 @@ Pod的volume的生命周期同Pod的生命周期一致，当Pod被删除的时�
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/storage/kubernetes-storage-class/">
+    <a href="/article/kubernetes/pod/kubernetes-pod-configmap/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes存储之StorageClass 
+            [Kubernetes] Kubernetes之Pod的配置管理 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes存储之StorageClass
+[Kubernetes] Kubernetes之Pod的配置管理
 
-StorageClass
-1. StorageClass概述
-StorageClass提供了一种描述存储类（class）的方法，不同的class可能会映射到不同的服务质量等级和备份策略或其他策略等。
-StorageClass 对象中包含 provisioner、parameters 和 reclaimPolic......
+Pod的配置管理
+Kubernetes v1.2的版本提供统一的集群配置管理方案–ConfigMap。
+1. ConfigMap：容器应用的配置管理
+使用场景：
+
+生成为容器内的环境变量。
+设置容器启动命令的启动参数（需设置为环境变量）。
+以Volume的形式挂载为容器内部的文件或目录。
+
+ConfigMap以一个或多个k......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-08-13
+            2017-10-13
         </p>
         <div class="tags">
             
@@ -355,26 +359,28 @@ StorageClass 对象中包含 provisioner、parameters 和 reclaimPolic......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-install-kubectl/">
+    <a href="/article/kubernetes/pod/kubernetes-pod-definition/">
         <h2 class="post-title">
                                  
-            [Kubernetes]  kubectl的安装 
+            [Kubernetes] Pod的基本用法 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] kubernetes kubectl的安装
+[Kubernetes] Pod的基本用法
 
-1. kubectl的安装
-1curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt......
+1. Pod的基本用法
+1.1. 说明
+
+Pod实际上是容器的集合，在k8s中对运行容器的要求为：容器的主程序需要一直在前台运行，而不是后台运行。应用可以改造成前台运行的方式，例如Go语言的程序，直接运行二进制文件；java语言则运行主类；tomcat程序可以写个运行脚本。或者通过supervisor的进程管理工具，即supervisor在前台......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-07-13
+            2017-10-13
         </p>
         <div class="tags">
             
@@ -388,31 +394,38 @@ StorageClass 对象中包含 provisioner、parameters 和 reclaimPolic......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/operation/kubernetes-basic-concepts/">
+    <a href="/article/kubernetes/pod/kubernetes-pod-lifecycle/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Kubernetes基本概念
+            [Kubernetes] Pod生命周期 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-[Kubernetes] Kubernetes基本概念
+[Kubernetes] Pod生命周期
 
-1. Master
-集群的控制节点，负责整个集群的管理和控制，kubernetes的所有的命令基本都是发给Master，由它来负责具体的执行过程。
-1.1. Master的组件
+1. Pod phase
+Pod的phase是Pod生命周期中的简单宏观描述，定义在Pod的PodStatus对象的phase 字段中。
+phase有以下几种值：
 
-kube-apiserver：资源增删改查的入口
-kube-controller-manager：资源对象的大总管
-kube-scheduler：负责资源......
+
+
+状态值
+说明
+
+
+
+
+挂起（Pending）
+Pod 已被 Kubernetes 系统接受，但有一个或者多个容器镜像尚未创建。等待时间包括调度 Pod 的时间和通过网络下载镜像的......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2017-01-13
+            2017-10-13
         </p>
         <div class="tags">
             
@@ -426,33 +439,38 @@ kube-scheduler：负责资源......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/docker/kubernetes-docker-network/">
+    <a href="/article/kubernetes/pod/kubernetes-pod-probe/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Docker的网络基础
+            [Kubernetes] Pod健康检查 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-Docker简介 Docker的网络基础
+[Kubernetes] Pod健康检查
 
-1. Docker的网络基础
-1.1. Network Namespace
-不同的网络命名空间中，协议栈是独立的，完全隔离，彼此之间无法通信。同一个网络命名空间有独立的路由表和独立的Iptables/Netfilter来提供包的转发、NAT、IP包过滤等功能。
-1.1.1. 网络命名空间的实现
-将与网络协议栈相关的全局变量变成一个Net Name......
+Pod健康检查
+Pod的健康状态由两类探针来检查：LivenessProbe和ReadinessProbe。
+1. 探针类型
+1. livenessProbe(存活探针)
+
+表明容器是否正在运行。
+如果存活探测失败，则 kubelet 会杀死容器，并且容器将受到其 重启策略的影响。
+如果容器不提供存活探针，则默认状态为 Success。
+
+2. ......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-08-13
+            2017-10-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -462,34 +480,36 @@ Docker简介 Docker的网络基础
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/docker/kubernetes-docker-commands-principle/">
+    <a href="/article/kubernetes/pod/kubernetes-pod-scheduler/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Docker简介
+            [Kubernetes] Pod调度 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-Docker简介
+[Kubernetes] Pod调度
 
-1. 基本概念
-1.1. image layer（镜像层）
-镜像可以看成是由多个镜像层叠加起来的一个文件系统，镜像层也可以简单理解为一个基本的镜像，而每个镜像层之间通过指针的形式进行叠加。
+Pod调度
+在kubernetes集群中，Pod（container）是应用的载体，一般通过RC、Deployment、DaemonSet、Job等对象来完成Pod的调度与自愈功能。
+1. RC、Deployment:全自动调度
+RC的功能即保持集群中始终运行着指定个数的Pod。
+在调度策略上主要有：
 
-根据上图，镜像层的主要组成部分包括镜像层id，镜像层指针【指向父层】，元数据【layer metadata】包含了docker构建和运行的信息还有父层的层次信息。
-只读层和读写层【......
+系统内置调度算法[最优Node]
+NodeSe......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-08-13
+            2017-10-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -499,35 +519,34 @@ Docker简介
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/docker/kubernetes-docker-architecture/">
+    <a href="/article/kubernetes/pod/kubernetes-pod-operation/">
         <h2 class="post-title">
                                  
-            [Kubernetes]  Docker架构
+            [Kubernetes] Pod操作 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-Docker架构
+[Kubernetes] Pod操作
 
-1. Docker的总架构图
-
-docker是一个C/S模式的架构，后端是一个松耦合架构，模块各司其职。
-
-用户是使用Docker Client与Docker Daemon建立通信，并发送请求给后者。
-Docker Daemon作为Docker架构中的主体部分，首先提供Server的功能使其可以接受Docker Client的请求；
-Engine执行Docker内部的一......
+1. Pod伸缩
+k8s中RC的用来保持集群中始终运行指定数目的实例，通过RC的scale机制可以完成Pod的扩容和缩容（伸缩）。
+1.1. 手动伸缩（scale）
+1kubectl scale rc redis-slave --replicas=3
+1.2. 自动伸缩（HPA）
+Horizontal Pod Autoscaler（HPA）控制器用于......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-08-13
+            2017-10-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -537,34 +556,33 @@ Engine执行Docker内部的一......
 
 <div class="post-preview">
 
-    <a href="/article/kubernetes/docker/kubernetes-dockerfile-usage/">
+    <a href="/article/kubernetes/pod/kubernetes-pod-volume/">
         <h2 class="post-title">
                                  
-            [Kubernetes] Dockerfile的说明
+            [Kubernetes] Pod存储卷Volume 
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-Docker简介 Dockerfile的说明
+[Kubernetes] Pod存储卷Volume
 
-1. Dockerfile的说明
-dockerfile指令忽略大小写，建议大写，#作为注释，每行只支持一条指令，指令可以带多个参数。
-dockerfile指令分为构建指令和设置指令。
+Pod Volume
+同一个Pod中的多个容器可以共享Pod级别的存储卷Volume,Volume可以定义为各种类型，多个容器各自进行挂载，将Pod的Volume挂载为容器内部需要的目录。
+例如：Pod级别的Volume:“app-logs”,用于tomcat向其中写日志文件，busybox读日志文件。
 
-构建指令：用于构建image，其指定的操作不会在运行image的容器中执行。
-设置指令：用于设置image的属性，其指定的操作会在运行image的容器中执行。......
+pod-volumes-app......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 黄国辉 on
-            2016-08-13
+            2017-10-13
         </p>
         <div class="tags">
             
-              <a href="/tags/#Docker系列" title="Docker系列">Docker系列</a>
+              <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
         </div>
     
@@ -624,6 +642,10 @@ dockerfile指令分为构建指令和设置指令。
             <a href="/tags/#Docker系列" title="Docker系列" rel="20">Docker系列</a>
             
         
+            
+            <a href="/tags/#k8s系列" title="k8s系列" rel="17">k8s系列</a>
+            
+        
     </div>
 </section>
 
@@ -681,19 +703,19 @@ dockerfile指令分为构建指令和设置指令。
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-controller-manager/sharedIndexInformer/">[Kubernetes] kube-controller-manager源码分析（三）之 Informer机制</a>
+          <a href="/article/k8s/k8s-notes/17.k8s_Secret/">[k8s系列] 17.k8s Secret</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-apiserver/NewAPIServerCommand/">[Kubernetes] kube-apiserver源码分析（一）之 NewAPIServerCommand</a>
+          <a href="/article/k8s/k8s-notes/16.k8s_ConfigMap/">[k8s系列] 16.k8s资源对象ConfigMap</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kube-controller-manager/deployment-controller/">[Kubernetes] kube-controller-manager源码分析（二）之 DeploymentController</a>
+          <a href="/article/k8s/k8s-notes/15.k8s_Service/">[k8s系列] 15.k8s_Service</a>
         </li>
       
         <li>
-          <a href="/article/kubernetes/kubelet/NewMainKubelet/">[Kubernetes] kubelet源码分析（二）之 NewMainKubelet</a>
+          <a href="/article/k8s/k8s-notes/14.k8s_Job_Cronjob/">[k8s系列] 14.k8s_Job和Cronjob的使用</a>
         </li>
       
     </ul>
@@ -720,7 +742,7 @@ dockerfile指令分为构建指令和设置指令。
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">12</span></li></ul>
     </div>
 
         <hr>

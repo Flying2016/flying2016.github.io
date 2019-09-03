@@ -7,6 +7,142 @@
     </url>
 
     <url>
+        <loc>http://blog.sqlbtc.com/article/k8s/k8s-notes/17.k8s_Secret/</loc>
+        <lastmod>2019-09-03T05:41:09.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/k8s/k8s-notes/16.k8s_ConfigMap/</loc>
+        <lastmod>2019-09-03T05:32:02.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/k8s/k8s-notes/03.k8s_%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%BB%84%E4%BB%B6/</loc>
+        <lastmod>2019-09-03T05:23:36.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/k8s/k8s-notes/08.k8s_Pod_Hook/</loc>
+        <lastmod>2019-09-03T05:23:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/k8s/k8s-notes/15.k8s_Service/</loc>
+        <lastmod>2019-09-03T05:22:54.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/k8s/k8s-notes/14.k8s_Job_Cronjob/</loc>
+        <lastmod>2019-09-03T05:22:20.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/k8s/k8s-notes/02.Kubernetes%E7%AE%80%E4%BB%8B/</loc>
+        <lastmod>2019-09-03T05:19:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/k8s/k8s-notes/01.k8s%E7%AC%94%E8%AE%B0/</loc>
+        <lastmod>2019-09-03T05:19:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/k8s/k8s-notes/12.k8s_Deployment/</loc>
+        <lastmod>2019-09-03T05:18:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/k8s/k8s-notes/13.k8s_pod_HPA/</loc>
+        <lastmod>2019-09-03T05:17:52.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/k8s/k8s-notes/11.k8s_RC_pod/</loc>
+        <lastmod>2019-09-03T04:56:20.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/k8s/k8s-notes/10.k8s_init_Container/</loc>
+        <lastmod>2019-09-03T04:53:14.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/k8s/k8s-notes/09.k8s_%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/</loc>
+        <lastmod>2019-09-03T04:53:14.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/k8s/k8s-notes/06.k8s_YAML/</loc>
+        <lastmod>2019-09-03T04:53:14.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/k8s/k8s-notes/07.k8s_%E9%9D%99%E6%80%81Pod/</loc>
+        <lastmod>2019-09-03T04:53:14.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/k8s/k8s-notes/05.k8s_Dashboard_install/</loc>
+        <lastmod>2019-09-03T04:53:14.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.sqlbtc.com/article/k8s/k8s-notes/04.kubeadm_install_k8s(v1.15.2)/</loc>
+        <lastmod>2019-09-02T23:54:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://blog.sqlbtc.com/article/kubernetes/docker/kubernetes-docker-network/</loc>
         <lastmod>2019-09-02T14:41:53.000Z</lastmod>
         <changefreq>weekly</changefreq>
